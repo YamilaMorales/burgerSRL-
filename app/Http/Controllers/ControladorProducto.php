@@ -8,7 +8,7 @@ class ControladorProducto extends Controller
     public function nuevo()
     {
       $titulo = "Nuevo producto";   
-      return view("sistema.cliente-nuevo", compact("titulo"));
+      return view("sistema.producto-nuevo", compact("titulo"));
     }
 }
 ?>

@@ -62,9 +62,11 @@
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
-
-                   <textarea name="txtDescripcion"id="txtDescripcion"cols="30" rows="10" class="form-control" value="" required>Descripcion: *</textarea>
+                  <label>Descripcion: *</label>
+                   <textarea name="txtDescripcion"id="txtDescripcion"cols="30" rows="20" class="form-control" value="" required></textarea>
                   </div>
 
             </div>
       </form>
+
+      @endsection
