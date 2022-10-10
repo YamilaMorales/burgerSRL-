@@ -47,7 +47,7 @@ class Estado extends Model
 
     public function guardar() {
         $sql = "UPDATE estados SET
-            nombre='$this->nombre',
+            nombre='$this->nombre'
           
             WHERE idestado=?";
         $affected = DB::update($sql, [$this->idestado]);

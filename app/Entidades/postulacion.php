@@ -63,7 +63,7 @@ class Postulacion extends Model
             apellido='$this->apellido',
             celular='$this->celular',
             correo='$this->correo',
-            curriculum='$this->curriculum',
+            curriculum='$this->curriculum'
             
             WHERE idpostulacion=?";
         $affected = DB::update($sql, [$this->idpostulacion]);
@@ -91,8 +91,6 @@ class Postulacion extends Model
             $this->celular,
             $this->correo,
             $this->curriculum,
-            
-            $this->clave,
         ]);
         return $this->idpostulacion = DB::getPdo()->lastInsertId();
     }

@@ -10,7 +10,7 @@ class Sucursal extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idsucursal', 'nombre', 'direccion', 'linkmapa', 
+        'idsucursal', 'nombre', 'direccion', 'telefono', 'horario', 'linkmapa', 
     ];
 
     protected $hidden = [
@@ -23,6 +23,8 @@ class Sucursal extends Model
                  idsucursal, 
                  nombre, 
                  direccion, 
+                 telefono,
+                 horario,
                  linkmapa
                 FROM sucursales ORDER BY nombre ASC";
 
@@ -36,6 +38,8 @@ class Sucursal extends Model
                  idsucursal, 
                  nombre, 
                  direccion, 
+                 telefono,
+                 horario,
                  linkmapa
                 FROM sucursales WHERE idsucursal = $idSucursal";
         $lstRetorno = DB::select($sql);
@@ -44,9 +48,9 @@ class Sucursal extends Model
             $this->idsucursal = $lstRetorno[0]->idsucursal;
             $this->nombre = $lstRetorno[0]->nombre;
             $this->direccion = $lstRetorno[0]->direccion;
-            $this->linkmapa = $lstRetorno[0]->linkmapa;
-           
-            
+            $this->telefono = $lstRetorno[0]->telefono;
+            $this->horario = $lstRetorno[0]->horario;
+            $this->linkmapa = $lstRetorno[0]->linkmapa;      
             return $this;
         }
         return null;
@@ -56,6 +60,8 @@ class Sucursal extends Model
         $sql = "UPDATE sucursales SET
             nombre='$this->nombre',
             direccion='$this->direccion',
+            telefono='$this->telefono',
+            horario='$this->horario',
             linkmapa='$this->linkmapa',
       
             WHERE idsucursal=?";
@@ -74,13 +80,16 @@ class Sucursal extends Model
         $sql = "INSERT INTO sucursales (
                  nombre, 
                  direccion, 
+                 telefono,
+                 horario,
                  linkmapa
-            ) VALUES (?, ?, ?);";
+            ) VALUES (?, ?, ?,?,?);";
         $result = DB::insert($sql, [
             $this->nombre,
             $this->direccion,
+            $this->telefono,
+            $this->horario,
             $this->linkmapa,
-           =
         ]);
         return $this->idsucursal = DB::getPdo()->lastInsertId();
     }

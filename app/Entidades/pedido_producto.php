@@ -61,7 +61,7 @@ class PedidoProducto extends Model
             fk_idpedido=$this->fk_idpedido,
             fk_idproducto =$this->fk_idproducto ,
             cantidad=$this->cantidad,
-            precio_unitario=$this->precio_unitario,
+            precio_unitario=$this->precio_unitario
            
             WHERE idpedidoproducto=?";
         $affected = DB::update($sql, [$this->idpedidoproducto]);

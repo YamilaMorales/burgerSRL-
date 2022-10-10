@@ -10,7 +10,7 @@ class Producto extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idproducto', 'nombre', 'cantidad', 'precio', 'imagen', 'fk_idcategoria',
+        'idproducto', 'nombre', 'cantidad', 'precio', 'imagen', 'fk_idcategoria', 'descripcion',
     ];
 
     protected $hidden = [
@@ -25,7 +25,8 @@ class Producto extends Model
                   cantidad,
                   precio, 
                   imagen,
-                  fk_idcategoria
+                  fk_idcategoria,
+                  descripcion
                 FROM productos ORDER BY nombre ASC";
 
         $lstRetorno = DB::select($sql);
@@ -40,7 +41,8 @@ class Producto extends Model
                   cantidad,
                   precio, 
                   imagen,
-                  fk_idcategoria
+                  fk_idcategoria,
+                  descripcion
                 FROM productos WHERE idproducto = $idProducto";
         $lstRetorno = DB::select($sql);
 
@@ -51,7 +53,7 @@ class Producto extends Model
             $this->precio = $lstRetorno[0]->precio;
             $this->imagen= $lstRetorno[0]->imagen;
             $this->fk_idcategoria = $lstRetorno[0]->fk_idcategoria;
-      
+            $this->descripcion = $lstRetorno[0]->descripcion;
             return $this;
         }
         return null;
@@ -63,7 +65,8 @@ class Producto extends Model
             cantidad=$this->cantidad,
             precio=$this->precio,
             imagen='$this->imagen',
-            fk_idcategoria='$this->fk_idcategoria'
+            fk_idcategoria=$this->fk_idcategoria,
+            descripcion= '$this->descripcion'
       
             WHERE idproducto=?";
         $affected = DB::update($sql, [$this->idproducto]);
@@ -83,15 +86,16 @@ class Producto extends Model
                   cantidad,
                   precio, 
                   imagen,
-                  fk_idcategoria
-            ) VALUES (?, ?, ?, ?, ?);";
+                  fk_idcategoria,
+                  descripcion
+            ) VALUES (?, ?, ?, ?, ?,?);";
         $result = DB::insert($sql, [
             $this->nombre,
             $this->cantidad,
             $this->precio,
             $this->imagen,
             $this->fk_idcategoria,
-            
+            $this->descripcion,
         ]);
         return $this->idproducto = DB::getPdo()->lastInsertId();
     }
