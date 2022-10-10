@@ -63,9 +63,7 @@
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
 
-                        <textarea name="txtDescripcion"id="txtDescripcion"cols="30" rows="10" class="form-control" value="" required>Descripcion: *</textarea>
-                        
-                        
+                   <textarea name="txtDescripcion"id="txtDescripcion"cols="30" rows="10" class="form-control" value="" required>Descripcion: *</textarea>
                   </div>
 
             </div>
