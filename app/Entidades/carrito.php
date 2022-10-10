@@ -22,7 +22,7 @@ class Carrito extends Model
         $sql = "SELECT
                  idcarrito,
                 fk_idcliente
-                FROM carritos ORDER BY nombre ASC";
+                FROM carritos ORDER BY idcarrito ASC";
 
         $lstRetorno = DB::select($sql);
         return $lstRetorno;
@@ -47,7 +47,7 @@ class Carrito extends Model
 
     public function guardar() {
         $sql = "UPDATE carritos SET
-            fk_idcliente=$this->fk_idcliente,
+            fk_idcliente=$this->fk_idcliente
           
             WHERE idcarrito=?";
         $affected = DB::update($sql, [$this->idcarrito]);
