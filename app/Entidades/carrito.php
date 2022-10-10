@@ -47,7 +47,7 @@ class Carrito extends Model
 
     public function guardar() {
         $sql = "UPDATE carritos SET
-            fk_idcliente='$this->fk_idcliente,
+            fk_idcliente=$this->fk_idcliente,
           
             WHERE idcarrito=?";
         $affected = DB::update($sql, [$this->idcarrito]);
@@ -64,12 +64,12 @@ class Carrito extends Model
     {
         $sql = "INSERT INTO carritos (
                 fk_idcliente
-            ) VALUES (?, ?, ?, ?, ?, ?);";
+            ) VALUES (?);";
         $result = DB::insert($sql, [
-            $this->fk_idcliente
+            $this->fk_idcliente,
             
         ]);
-        return $this->idcliente = DB::getPdo()->lastInsertId();
+        return $this->idcarrito = DB::getPdo()->lastInsertId();
     }
 
 }
