@@ -2,7 +2,7 @@
 @section('titulo', "$titulo")
 @section('scripts')
 <script>
-      globalId = '<?php echo isset($producto->idproducto) && $producto->idproducto> 0 ? $producto->idproducto : 0; ?>';
+      globalId = '<?php echo isset($producto->idproducto) && $producto->idproducto > 0 ? $producto->idproducto : 0; ?>';
       <?php $globalId = isset($producto->idproducto) ? $producto->idproducto : "0"; ?>
 </script>
 @endsection
@@ -62,11 +62,12 @@
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
-                  <label>Descripcion: *</label>
-                   <textarea name="txtDescripcion"id="txtDescripcion"cols="30" rows="20" class="form-control" value="" required></textarea>
+                        <label>Descripcion: *</label>
+                        <textarea name="txtDescripcion" id="txtDescripcion" cols="30" rows="20" class="form-control" value="" required></textarea>
                   </div>
 
             </div>
       </form>
+</div>
 
-      @endsection
+@endsection

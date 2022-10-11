@@ -1,19 +1,19 @@
-@extends("plantilla")
+@extends('plantilla')
 @section('titulo', "$titulo")
 @section('scripts')
 <script>
-      globalId = '<?php echo isset($cliente->idcliente) && $cliente->idcliente > 0 ? $cliente->idcliente : 0; ?>';
-      <?php $globalId = isset($cliente->idcliente) ? $cliente->idcliente : "0"; ?>
+      globalId = '<?php echo isset($pedido->idpedido) && $pedido->idpedido > 0 ? $pedido->idpedido : 0; ?>';
+      <?php $globalId = isset($pedido->idpedido) ? $pedido->idpedido : "0"; ?>
 </script>
 @endsection
 @section('breadcrumb')
 <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="/admin/home">Inicio</a></li>
-      <li class="breadcrumb-item"><a href="/admin/clientes">Clientes</a></li>
+      <li class="breadcrumb-item"><a href="/admin/pedidos">Pedidos</a></li>
       <li class="breadcrumb-item active">Modificar</li>
 </ol>
 <ol class="toolbar">
-      <li class="btn-item"><a title="Nuevo" href="/admin/cliente/nuevo" class="fa fa-plus-circle" aria-hidden="true"><span>Nuevo</span></a></li>
+      <li class="btn-item"><a title="Nuevo" href="/admin/pedido/nuevo" class="fa fa-plus-circle" aria-hidden="true"><span>Nuevo</span></a></li>
       <li class="btn-item"><a title="Guardar" href="#" class="fa fa-floppy-o" aria-hidden="true" onclick="javascript: $('#modalGuardar').modal('toggle');"><span>Guardar</span></a>
       </li>
       @if($globalId > 0)
@@ -40,30 +40,38 @@
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
-                        <label>Nombre: *</label>
-                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="" required>
+                        <label>Fecha: *</label>
+                        <input type="text" id="txtFecha" name="txtFecha" class="form-control " value="" required>
                   </div>
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
-                        <label>Apellido: *</label>
-                        <input type="text" id="txtApellido" name="txtApellido" class="form-control" value="" required>
+                        <label>Descripcion: *</label>
+                        <textarea name="txtDescripcion" id="txtDescripcion" cols="30" rows="20" class="form-control" value="" required></textarea>
+                  </div>
+
+                  <div class="form-group col-6">
+                        <label>Total: *</label>
+                        <input type="text" id="txtCantidad" name="txtCantidad" class="form-control" value="" required>
                   </div>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
-                        <label>DNI: *</label>
-                        <input type="text" id="txtDni" name="txtDni" class="form-control" value="" required>
+                        <label>Estado: *</label>
+                        <select value="" id="lstEstado" name="lstEstado" required class="form-control">Estado</select>
                   </div>
-                  <div class="form-group col-6">
-                        <label>Correo: *</label>
-                        <input type="text" id="txtCorreo" name="txtCorreo" class="form-control" value="" required>
-                  </div>
-
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
-                        <label>Celular: *</label>
-                        <input type="text" id="txtCelular" name="txtCelular" class="form-control" value="" required>
+                        <label>Sucursal: *</label>
+                        <select value="" id="lstSucursal" name="lstSucursal" required class="form-control">Sucursal</select>
+                  </div>
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+                  <div class="form-group col-6">
+                        <label>Cliente: *</label>
+                        <select value="" id="lstCliente" name="lstCliente" required class="form-control">CLiente</select>
                   </div>
 
             </div>

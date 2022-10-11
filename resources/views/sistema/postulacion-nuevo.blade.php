@@ -2,18 +2,18 @@
 @section('titulo', "$titulo")
 @section('scripts')
 <script>
-      globalId = '<?php echo isset($cliente->idcliente) && $cliente->idcliente > 0 ? $cliente->idcliente : 0; ?>';
-      <?php $globalId = isset($cliente->idcliente) ? $cliente->idcliente : "0"; ?>
+      globalId = '<?php echo isset($postulacion->idpostulacion) && $postulacion->idpostulacion > 0 ? $postulacion->idpostulacion: 0; ?>';
+      <?php $globalId = isset($postulacion->idpostulacion) ? $postulacion->idpostulacion: "0"; ?>
 </script>
 @endsection
 @section('breadcrumb')
 <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="/admin/home">Inicio</a></li>
-      <li class="breadcrumb-item"><a href="/admin/clientes">Clientes</a></li>
+      <li class="breadcrumb-item"><a href="/admin/postulaciones">Postulaciones</a></li>
       <li class="breadcrumb-item active">Modificar</li>
 </ol>
 <ol class="toolbar">
-      <li class="btn-item"><a title="Nuevo" href="/admin/cliente/nuevo" class="fa fa-plus-circle" aria-hidden="true"><span>Nuevo</span></a></li>
+      <li class="btn-item"><a title="Nuevo" href="/admin/postulacion/nuevo" class="fa fa-plus-circle" aria-hidden="true"><span>Nuevo</span></a></li>
       <li class="btn-item"><a title="Guardar" href="#" class="fa fa-floppy-o" aria-hidden="true" onclick="javascript: $('#modalGuardar').modal('toggle');"><span>Guardar</span></a>
       </li>
       @if($globalId > 0)
@@ -48,12 +48,6 @@
                         <input type="text" id="txtApellido" name="txtApellido" class="form-control" value="" required>
                   </div>
 
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
-                  <div class="form-group col-6">
-                        <label>DNI: *</label>
-                        <input type="text" id="txtDni" name="txtDni" class="form-control" value="" required>
-                  </div>
                   <div class="form-group col-6">
                         <label>Correo: *</label>
                         <input type="text" id="txtCorreo" name="txtCorreo" class="form-control" value="" required>
@@ -65,7 +59,12 @@
                         <label>Celular: *</label>
                         <input type="text" id="txtCelular" name="txtCelular" class="form-control" value="" required>
                   </div>
-
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+                  <div class="form-group col-6">
+                        <label for="file" >Curriculum: *</label>
+                        <input type="file" id="curriculum" name="archivo" class="form-control-file" value="" required>
+                  </div>
             </div>
       </form>
 </div>
