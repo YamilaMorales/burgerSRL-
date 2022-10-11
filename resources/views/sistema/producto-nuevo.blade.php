@@ -55,8 +55,8 @@
                         <input type="text" id="txtPrecio" name="txtPrecio" class="form-control" value="" required>
                   </div>
                   <div class="form-group col-6">
-                        <label>Imagen: *</label>
-                        <input type="text" id="txtImagen" name="txtImagen" class="form-control" value="" required>
+                        <label for="fileImage">Imagen: *</label>
+                        <input type="file" id="archivo" name="imagen" class="form-control-file" value="" required>
                   </div>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
