@@ -65,7 +65,18 @@
                         <label>Celular: *</label>
                         <input type="text" id="txtCelular" name="txtCelular" class="form-control" value="" required>
                   </div>
-
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+                  <div class="form-group col-6">
+                        <label>Clave: *</label>
+                        <input type="password" id="txtClave" name="txtClave" class="form-control" value="" required>
+                  </div>
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+                  <div class="form-group col-6">
+                        <label>Dirección: *</label>
+                        <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" value="" required>
+                  </div>
             </div>
       </form>
 </div>

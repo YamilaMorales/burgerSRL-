@@ -1,6 +1,6 @@
 <?php
 namespace App\Entidades;
-use Illuminate\Http\Request;
+
 
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -11,23 +11,22 @@ class Cliente extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idcliente', 'nombre', 'apellido', 'correo', 'dni', 'celular', 'clave',
+        'idcliente', 'nombre', 'apellido', 'correo', 'dni', 'celular', 'clave', 'direccion',
     ];
 
     protected $hidden = [
 
     ];
 
-
-
     public function cargarDesdeRequest($request) {
-        $this->idcliente = $request->input('id') != "0" ? $request->input('id') : $this->idmenu;
+        $this->idcliente = $request->input('id') != "0" ? $request->input('id') : $this->idcliente;
         $this->nombre = $request->input('txtNombre');
         $this->apellido = $request->input('txtApellido');
         $this->correo = $request->input('txtCorreo');
         $this->dni = $request->input('txtDni');
         $this->celular = $request->input('txtCelular');
         $this->clave = $request->input('txtClave');
+        $this->direccion = $request->input('txtDireccion');
     }
     public function obtenerTodos()
     {
@@ -38,7 +37,8 @@ class Cliente extends Model
                  correo,
                  dni,
                  celular,
-                 clave
+                 clave,
+                 direccion
                 FROM clientes ORDER BY nombre ASC";
 
         $lstRetorno = DB::select($sql);
@@ -54,7 +54,8 @@ class Cliente extends Model
                  correo,
                  dni,
                  celular,
-                 clave
+                 clave,
+                 direccion
                 FROM clientes WHERE idcliente = $idCliente";
         $lstRetorno = DB::select($sql);
 
@@ -66,6 +67,7 @@ class Cliente extends Model
             $this->dni = $lstRetorno[0]->dni;
             $this->celular = $lstRetorno[0]->celular;
             $this->clave = $lstRetorno[0]->clave;
+            $this->direccion = $lstRetorno[0]->direccion;
             return $this;
         }
         return null;
@@ -78,7 +80,8 @@ class Cliente extends Model
             correo='$this->correo',
             dni='$this->dni',
             celular='$this->celular',
-            clave='$this->clave'
+            clave='$this->clave',
+            clave='$this->direccion'
             WHERE idcliente=?";
         $affected = DB::update($sql, [$this->idcliente]);
     }
@@ -98,8 +101,9 @@ class Cliente extends Model
                 correo,
                 dni,
                 celular,
-                clave
-            ) VALUES (?, ?, ?, ?, ?, ?);";
+                clave,
+                direccion
+            ) VALUES (?, ?, ?, ?, ?, ?, ?);";
         $result = DB::insert($sql, [
             $this->nombre,
             $this->apellido,
@@ -107,6 +111,7 @@ class Cliente extends Model
             $this->dni,
             $this->celular,
             $this->clave,
+            $this->direccion,
         ]);
         return $this->idcliente = DB::getPdo()->lastInsertId();
     }

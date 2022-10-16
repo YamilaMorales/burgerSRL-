@@ -65,7 +65,12 @@
                         <label>Descripcion: *</label>
                         <textarea name="txtDescripcion" id="txtDescripcion" cols="30" rows="20" class="form-control" value="" required></textarea>
                   </div>
-
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+                  <div class="form-group col-6">
+                        <label for=""> Tipo de producto: *</label>
+                        <select name="lstCategoria" id="lstCategoria" class="form-control" selected > </select>
+                  </div>
             </div>
       </form>
 </div>

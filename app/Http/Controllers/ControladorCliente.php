@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Entidades\Cliente;
+use Illuminate\Http\Request;
 require app_path().'/start/constants.php';
 
 class ControladorCliente extends Controller
@@ -14,8 +15,10 @@ class ControladorCliente extends Controller
 
 
     public function guardar(Request $request){
+
           $cliente = new Cliente();
           $cliente->cargarDesdeRequest($request);
+
           try {
             //Define la entidad servicio
             $titulo = "Modificar cliente";
@@ -23,7 +26,7 @@ class ControladorCliente extends Controller
             $entidad->cargarDesdeRequest($request);
 
             //validaciones
-            if ($entidad->nombre == "" || $entidad->apellido == "" || $entidad->dni == "" || $entidad->correo == "" || $entidad->celular == "" ) {
+            if ($entidad->nombre == "" || $entidad->apellido == "" || $entidad->dni == "" || $entidad->correo == "" || $entidad->celular == "" || $entidad->clave == "" || $entidad->direccion == "" ) {
                 $msg["ESTADO"] = MSG_ERROR;
                 $msg["MSG"] = "Complete todos los datos";
             } else {
@@ -38,29 +41,25 @@ class ControladorCliente extends Controller
                     $entidad->insertar();
 
                     $msg["ESTADO"] = MSG_SUCCESS;
-                    $msg["MSG"] = OKINSERT;
-                    
+                     $msg["MSG"] = OKINSERT;
+                }
                 $_POST["id"] = $entidad->idcliente;
                 return view('sistema.cliente-listar', compact('titulo', 'msg'));
                 }
-              } catch (Exception $e) {
+            
+            } catch (Exception $e) {
                 $msg["ESTADO"] = MSG_ERROR;
                 $msg["MSG"] = ERRORINSERT;
             }
           
-            $id = $cliente->idcliente;
+            $id = $entidad->idcliente;
             $cliente = new Cliente();
             $cliente->obtenerPorId($id);
+    
+        return view('sistema.cliente-nuevo', compact('msg', 'cliente', 'titulo',)) . '?id=' . $cliente->idcliente;
 
-                $_POST["id"] = $entidad->idcliente;
-                return view('sistema.cliente-listar', compact('titulo', 'msg'));
-            }
-        
-          
-
-        return view(('sistema.cliente-nuevo', compact('msg', 'cliente', 'titulo',)) . '?id=' . $cliente->idcliente;
-
-          
+    } 
+    
 }
-}
+
 ?>
