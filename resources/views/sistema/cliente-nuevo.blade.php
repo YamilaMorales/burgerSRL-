@@ -56,7 +56,7 @@
                   </div>
                   <div class="form-group col-6">
                         <label>Correo: *</label>
-                        <input type="text" id="txtCorreo" name="txtCorreo" class="form-control" value="" required>
+                        <input type="email" id="txtCorreo" name="txtCorreo" class="form-control" value="" required>
                   </div>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>

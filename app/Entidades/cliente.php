@@ -1,5 +1,6 @@
 <?php
 namespace App\Entidades;
+use Illuminate\Http\Request;
 
 use DB;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +18,17 @@ class Cliente extends Model
 
     ];
 
+
+
+    public function cargarDesdeRequest($request) {
+        $this->idcliente = $request->input('id') != "0" ? $request->input('id') : $this->idmenu;
+        $this->nombre = $request->input('txtNombre');
+        $this->apellido = $request->input('txtApellido');
+        $this->correo = $request->input('txtCorreo');
+        $this->dni = $request->input('txtDni');
+        $this->celular = $request->input('txtCelular');
+        $this->clave = $request->input('txtClave');
+    }
     public function obtenerTodos()
     {
         $sql = "SELECT
@@ -98,6 +110,8 @@ class Cliente extends Model
         ]);
         return $this->idcliente = DB::getPdo()->lastInsertId();
     }
+
+    
 
 }
     

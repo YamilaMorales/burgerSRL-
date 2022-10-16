@@ -102,36 +102,39 @@ Route::post('/admin/patente/nuevo/{id}', 'ControladorPatente@guardar');
 /* CONTROLADOR CLIENTES                          */
 /* --------------------------------------------- */
 Route::get('/admin/cliente/nuevo', 'ControladorCliente@nuevo');
+Route::post('/admin/cliente/nuevo', 'ControladorCliente@guardar');
 
 
 /* --------------------------------------------- */
 /* CONTROLADOR PRODUCTOS                          */
 /* --------------------------------------------- */
 Route::get('/admin/producto/nuevo', 'ControladorProducto@nuevo');
+Route::post('/admin/producto/nuevo', 'ControladorProducto@guardar');
 
 
 /* --------------------------------------------- */
 /* CONTROLADOR PEDIDOS                          */
 /* --------------------------------------------- */
 Route::get('/admin/pedido/nuevo', 'ControladorPedido@nuevo');
-
+Route::post('/admin/pedido/nuevo', 'ControladorPedido@guardar');
 
 /* --------------------------------------------- */
 /* CONTROLADOR POSTULACIONES                          */
 /* --------------------------------------------- */
 Route::get('/admin/postulacion/nuevo', 'ControladorPostulacion@nuevo');
-
+Route::post('/admin/postulacion/nuevo', 'ControladorPostulacion@guardar');
 
 /* --------------------------------------------- */
 /* CONTROLADOR SUCURSALES                          */
 /* --------------------------------------------- */
 Route::get('/admin/sucursal/nuevo', 'ControladorSucursal@nuevo');
-
+Route::post('/admin/sucursal/nuevo', 'ControladorSucursal@guardar');
 
 /* --------------------------------------------- */
 /* CONTROLADOR PROVEEDORES                        */
 /* --------------------------------------------- */
-Route::get('/admin/proveedor/nuevo', 'ControladorProveedir@nuevo');
+Route::get('/admin/proveedor/nuevo', 'ControladorProveedor@nuevo');
+Route::post('/admin/proveedor/nuevo', 'ControladorProveedor@guardar');
 
 
 
@@ -139,4 +142,4 @@ Route::get('/admin/proveedor/nuevo', 'ControladorProveedir@nuevo');
 /* CONTROLADOR CATEGORIAS                          */
 /* --------------------------------------------- */
 Route::get('/admin/categoria/nuevo', 'ControladorCategoria@nuevo');
-
+Route::post('/admin/categoria/nuevo', 'ControladorCategoria@guardar');
