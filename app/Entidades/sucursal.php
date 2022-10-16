@@ -10,7 +10,7 @@ class Sucursal extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idsucursal', 'nombre', 'direccion', 'telefono', 'horario', 'linkmapa', 
+        'idsucursal', 'nombre', 'direccion', 'telefono', 'horario', 'ubicacion', 
     ];
 
     protected $hidden = [
@@ -25,7 +25,7 @@ class Sucursal extends Model
                  direccion, 
                  telefono,
                  horario,
-                 linkmapa
+                 ubicacion
                 FROM sucursales ORDER BY nombre ASC";
 
         $lstRetorno = DB::select($sql);
@@ -40,7 +40,7 @@ class Sucursal extends Model
                  direccion, 
                  telefono,
                  horario,
-                 linkmapa
+                 ubicacion
                 FROM sucursales WHERE idsucursal = $idSucursal";
         $lstRetorno = DB::select($sql);
 
@@ -50,7 +50,7 @@ class Sucursal extends Model
             $this->direccion = $lstRetorno[0]->direccion;
             $this->telefono = $lstRetorno[0]->telefono;
             $this->horario = $lstRetorno[0]->horario;
-            $this->linkmapa = $lstRetorno[0]->linkmapa;      
+            $this->ubicacion = $lstRetorno[0]->ubicacion;      
             return $this;
         }
         return null;
@@ -62,7 +62,7 @@ class Sucursal extends Model
             direccion='$this->direccion',
             telefono='$this->telefono',
             horario='$this->horario',
-            linkmapa='$this->linkmapa',
+            linkmapa='$this->ubicacion',
       
             WHERE idsucursal=?";
         $affected = DB::update($sql, [$this->idsucursal]);
@@ -82,14 +82,14 @@ class Sucursal extends Model
                  direccion, 
                  telefono,
                  horario,
-                 linkmapa
+                 ubicacion
             ) VALUES (?, ?, ?,?,?);";
         $result = DB::insert($sql, [
             $this->nombre,
             $this->direccion,
             $this->telefono,
             $this->horario,
-            $this->linkmapa,
+            $this->ubicacion,
         ]);
         return $this->idsucursal = DB::getPdo()->lastInsertId();
     }
