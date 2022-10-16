@@ -41,7 +41,7 @@
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Fecha: *</label>
-                        <input type="text" id="txtFecha" name="txtFecha" class="form-control " value="" required>
+                        <input type="date" id="txtFecha" name="txtFecha" class="form-control " value="" required>
                   </div>
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
@@ -52,26 +52,44 @@
 
                   <div class="form-group col-6">
                         <label>Total: *</label>
-                        <input type="text" id="txtCantidad" name="txtCantidad" class="form-control" value="" required>
+                        <input type="text" id="txtTotal" name="txtTotal" class="form-control" value="" required>
                   </div>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Estado: *</label>
-                        <select value="" id="lstEstado" name="lstEstado" required class="form-control">Estado</select>
+                        <select value="" id="lstEstado" name="lstEstado" required class="form-control">
+                        <option value="" disabled selected >Seleccionar </option>
+                              @foreach( $aEstados as $estado)
+                              <option value="{{$estado->idestado}}"> {{$estado->nombre}}</option>
+
+                              @endforeach
+                        </select>
                   </div>
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Sucursal: *</label>
-                        <select value="" id="lstSucursal" name="lstSucursal" required class="form-control">Sucursal</select>
+                        <select value="" id="lstSucursal" name="lstSucursal" required class="form-control">
+                        <option value="" disabled selected >Seleccionar </option>
+                              @foreach( $aSucursales as $sucursal)
+                              <option value="{{$sucursal->idsucursal}}"> {{$sucursal->nombre}}</option>
+
+                              @endforeach
+                        </select>
                   </div>
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Cliente: *</label>
-                        <select value="" id="lstCliente" name="lstCliente" required class="form-control">CLiente</select>
+                        <select value="" id="lstCliente" name="lstCliente" required class="form-control">
+                        <option value="" disabled selected >Seleccionar </option>
+                              @foreach( $aClientes as $cliente)
+                              <option value="{{$cliente->idcliente}}"> {{$cliente->nombre}}</option>
+
+                              @endforeach
+                        </select>
                   </div>
 
             </div>

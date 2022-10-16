@@ -48,7 +48,7 @@ class Cliente extends Model
     public function obtenerPorId($idCliente)
     {
         $sql = "SELECT
-                idcliente,
+                 idcliente,
                  nombre,
                  apellido,
                  correo,
@@ -111,7 +111,7 @@ class Cliente extends Model
             $this->dni,
             $this->celular,
             $this->clave,
-            $this->direccion,
+            $this->direccion
         ]);
         return $this->idcliente = DB::getPdo()->lastInsertId();
     }

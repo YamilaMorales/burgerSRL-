@@ -17,6 +17,17 @@ class Pedido extends Model
 
     ];
 
+    public function cargarDesdeRequest($request) {
+        $this->idpedido = $request->input('id') != "0" ? $request->input('id') : $this->idpedido;
+        $this->fecha = $request->input('txtFecha');
+        $this->descripcion = $request->input('txtDescripcion');
+        $this->total = $request->input('txtTotal');
+        $this->fk_idestado = $request->input('lstEstado');
+        $this->fk_idsucursal = $request->input('lstSucursal');
+        $this->fk_idcliente = $request->input('lstCliente');
+    
+    }
+
     public function obtenerTodos()
     {
         $sql = "SELECT
@@ -91,7 +102,7 @@ class Pedido extends Model
             ) VALUES (?, ?, ?, ?, ?, ?);";
         $result = DB::insert($sql, [
             $this->fecha,
-            $this->descripciom,
+            $this->descripcion,
             $this->total,
             $this->fk_idsucursal,
             $this->fk_idcliente,
