@@ -15,7 +15,12 @@ class ControladorProducto extends Controller
       $aCategorias = $categoria->obtenerTodos();  
       return view("sistema.producto-nuevo", compact("titulo" , "aCategorias"));
     }
-
+    public function index()
+    {
+      $titulo = "Listado de productos";   
+      return view("sistema.producto-listar", compact("titulo"));
+    
+    }
 
     public function guardar(Request $request){
 
