@@ -1,31 +1,29 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Entidades\Categoria;
+use App\Entidades\Proveedor;
 use Illuminate\Http\Request;
 require app_path().'/start/constants.php';
 
-class ControladorCategoria extends Controller
+class ControladorProveedor extends Controller
 {
     public function nuevo()
     {
-      $titulo = "Nueva categoria";   
-      return view("sistema.categoria-nuevo", compact("titulo"));
+      $titulo = "Nueva proveedor";   
+      return view("sistema.proveedor-nuevo", compact("titulo"));
     }
 
     public function index()
     {
-      $titulo = "Listado de categorias";
-      $categoria = new Categoria();
-      $aCategorias = $categoria->obtenerTodos();   
-      return view("sistema.categoria-listar", compact("titulo", "aCategorias"));
+      $titulo = "Listado de proveedores";   
+      return view("sistema.proveedor-listar", compact("titulo"));
     }
     public function guardar(Request $request){
 
       try {
         //Define la entidad servicio
-        $titulo = "Modificar categoria";
-        $entidad = new Categoria();
+        $titulo = "Modificar proveedor";
+        $entidad = new Proveedor();
         $entidad->cargarDesdeRequest($request);
 
         //validaciones
@@ -46,8 +44,8 @@ class ControladorCategoria extends Controller
                 $msg["ESTADO"] = MSG_SUCCESS;
                 $msg["MSG"] = OKINSERT;
             }
-            $_POST["id"] = $entidad->idcategoria;
-            return view('sistema.categoria-listar', compact('titulo', 'msg'));
+            $_POST["id"] = $entidad->idproveedor;
+            return view('sistema.proveedor-listar', compact('titulo', 'msg'));
             }
         
         } catch (Exception $e) {
@@ -55,11 +53,11 @@ class ControladorCategoria extends Controller
             $msg["MSG"] = ERRORINSERT;
         }
       
-        $id = $entidad->idsucursal;
-        $categoria= new Categoria();
-        $categoria->obtenerPorId($id);
+        $id = $entidad->idproveedor;
+        $proveedor= new Proveedor();
+        $proveedor->obtenerPorId($id);
 
-    return view('sistema.categoria-nuevo', compact('msg', 'cliente', 'titulo',)) . '?id=' . $categoria->idcategoria;
+    return view('sistema.proveedor-nuevo', compact('msg', 'cliente', 'titulo',)) . '?id=' . $proveedor->idproveedor;
 
 } 
 }

@@ -10,12 +10,19 @@ class Categoria extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idcategoria', 'nombre',
+        'idcategoria', 'nombre'
     ];
 
     protected $hidden = [
 
     ];
+
+ public function cargarDesdeRequest($request) {
+        $this->idcategoria = $request->input('id') != "0" ? $request->input('id') : $this->idcategoria;
+        $this->nombre = $request->input('txtNombre');
+       
+       
+    }
 
     public function obtenerTodos()
     {
