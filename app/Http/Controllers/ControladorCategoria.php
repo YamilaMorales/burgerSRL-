@@ -15,10 +15,8 @@ class ControladorCategoria extends Controller
 
     public function index()
     {
-      $titulo = "Listado de categorias";
-      $categoria = new Categoria();
-      $aCategorias = $categoria->obtenerTodos();   
-      return view("sistema.categoria-listar", compact("titulo", "aCategorias"));
+      $titulo = "Listado de categorias";   
+      return view("sistema.categoria-listar", compact("titulo",));
     }
     public function guardar(Request $request){
 
