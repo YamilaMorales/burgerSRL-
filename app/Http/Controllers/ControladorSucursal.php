@@ -14,8 +14,11 @@ class ControladorSucursal extends Controller
       return view("sistema.sucursal-nuevo", compact("titulo"));
     }
 
-
-
+    public function index()
+    {
+      $titulo = "Listado de sucursales";   
+      return view("sistema.sucursal-listar", compact("titulo"));
+    }
     public function guardar(Request $request){
 
       try {

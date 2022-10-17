@@ -110,34 +110,34 @@ Route::get('/admin/clientes', 'ControladorCliente@index');
 /* --------------------------------------------- */
 Route::get('/admin/producto/nuevo', 'ControladorProducto@nuevo');
 Route::post('/admin/producto/nuevo', 'ControladorProducto@guardar');
-Route::get('/admin/productos', 'ControladorCliente@index');
+Route::get('/admin/productos', 'ControladorProducto@index');
 
 /* --------------------------------------------- */
 /* CONTROLADOR PEDIDOS                          */
 /* --------------------------------------------- */
 Route::get('/admin/pedido/nuevo', 'ControladorPedido@nuevo');
 Route::post('/admin/pedido/nuevo', 'ControladorPedido@guardar');
-Route::get('/admin/pedidos', 'ControladorCliente@index');
+Route::get('/admin/pedidos', 'ControladorPedido@index');
 /* --------------------------------------------- */
 /* CONTROLADOR POSTULACIONES                          */
 /* --------------------------------------------- */
 Route::get('/admin/postulacion/nuevo', 'ControladorPostulacion@nuevo');
 Route::post('/admin/postulacion/nuevo', 'ControladorPostulacion@guardar');
-Route::get('/admin/postulaciones', 'ControladorCliente@index');
+Route::get('/admin/postulaciones', 'ControladorPostulacion@index');
 
 /* --------------------------------------------- */
 /* CONTROLADOR SUCURSALES                          */
 /* --------------------------------------------- */
 Route::get('/admin/sucursal/nuevo', 'ControladorSucursal@nuevo');
 Route::post('/admin/sucursal/nuevo', 'ControladorSucursal@guardar');
-Route::get('/admin/sucursales', 'ControladorCliente@index');
+Route::get('/admin/sucursales', 'ControladorSucursal@index');
 
 /* --------------------------------------------- */
 /* CONTROLADOR PROVEEDORES                        */
 /* --------------------------------------------- */
 Route::get('/admin/proveedor/nuevo', 'ControladorProveedor@nuevo');
 Route::post('/admin/proveedor/nuevo', 'ControladorProveedor@guardar');
-Route::get('/admin/proveedores', 'ControladorCliente@index');
+Route::get('/admin/proveedores', 'ControladorProveedor@index');
 
 
 /* --------------------------------------------- */
@@ -145,4 +145,4 @@ Route::get('/admin/proveedores', 'ControladorCliente@index');
 /* --------------------------------------------- */
 Route::get('/admin/categoria/nuevo', 'ControladorCategoria@nuevo');
 Route::post('/admin/categoria/nuevo', 'ControladorCategoria@guardar');
-Route::get('/admin/categorias', 'ControladorCliente@index');
+Route::get('/admin/categorias', 'ControladorCategoria@index');
