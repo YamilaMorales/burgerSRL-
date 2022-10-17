@@ -24,11 +24,13 @@ class ControladorPedido extends Controller
       return view("sistema.pedido-nuevo", compact("titulo" , "aEstados" , "aSucursales" , "aClientes"));
     }
 
+    public function index()
+    {
+      $titulo = "Listado de pedidos";   
+      return view("sistema.pedido-listar", compact("titulo"));
+    }
 
     public function guardar(Request $request){
-
-      $pedido = new Pedido();
-      $pedido->cargarDesdeRequest($request);
 
       try {
         //Define la entidad servicio

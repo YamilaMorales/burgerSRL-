@@ -16,9 +16,6 @@ class ControladorPostulacion extends Controller
 
     public function guardar(Request $request){
 
-      $producto = new Postulacion();
-      $producto->cargarDesdeRequest($request);
-
       try {
         //Define la entidad servicio
         $titulo = "Modificar postulacion";

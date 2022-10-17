@@ -19,10 +19,8 @@ class ControladorProducto extends Controller
 
     public function guardar(Request $request){
 
-      $producto = new Producto();
-      $producto->cargarDesdeRequest($request);
-
       try {
+
         //Define la entidad servicio
         $titulo = "Modificar producto";
         $entidad = new Producto();
