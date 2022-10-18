@@ -54,7 +54,7 @@ class ControladorCliente extends Controller
                 $msg["MSG"] = ERRORINSERT;
             }
           
-            $id = $entidad->idcliente;
+            $id= $entidad->idcliente;
             $cliente = new Cliente();
             $cliente->obtenerPorId($id);
     
@@ -95,6 +95,15 @@ class ControladorCliente extends Controller
             "data" => $data,
         );
         return json_encode($json_data);
+    }
+
+
+    public function editar($idCliente){
+
+        $titulo = "Edición de cliente";
+        $cliente = new Cliente();
+        $cliente->obtenerPorId($idCliente);
+        return view( "sistema.cliente-nuevo" , compact( "titulo", "cliente"));
     }
 }
 
