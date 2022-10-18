@@ -53,12 +53,43 @@ class ControladorCategoria extends Controller
             $msg["MSG"] = ERRORINSERT;
         }
       
-        $id = $entidad->idsucursal;
+        $id = $entidad->idcategoria;
         $categoria= new Categoria();
         $categoria->obtenerPorId($id);
 
     return view('sistema.categoria-nuevo', compact('msg', 'cliente', 'titulo',)) . '?id=' . $categoria->idcategoria;
 
 } 
+
+
+public function cargarGrilla( Request $request){
+
+    $request = $_REQUEST;
+
+    $entidad = new Categoria();
+    $aCategorias = $entidad->obtenerFiltrado();
+
+    $data = array();
+    $cont = 0;
+
+    $inicio = $request['start'];
+    $registros_por_pagina = $request['length'];
+
+
+    for ($i = $inicio; $i < count($aCategorias) && $cont < $registros_por_pagina; $i++) {
+        $row = array();
+        $row[] ="<a href='/admin/categoria/" . $aCategorias[$i]->idcategoria . "'>" . $aCategorias[$i]->nombre . "</a>";
+        $cont++;
+        $data[] = $row;
+    }
+
+    $json_data = array(
+        "draw" => intval($request['draw']),
+        "recordsTotal" => count($aCategorias), //cantidad total de registros sin paginar
+        "recordsFiltered" => count($aCategorias), //cantidad total de registros en la paginacion
+        "data" => $data,
+    );
+    return json_encode($json_data);
+}
 }
 ?>

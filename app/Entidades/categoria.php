@@ -79,6 +79,32 @@ class Categoria extends Model
         return $this->idcategoria = DB::getPdo()->lastInsertId();
     }
 
+
+    public function obtenerFiltrado()
+    {
+        $request = $_REQUEST;
+        $columns = array(
+            0 => 'nombre'
+           
+        );
+        $sql = "SELECT DISTINCT
+                    idcategoria,
+                    nombre                  
+                    FROM categorias
+                   WHERE 1=1
+                ";
+
+        //Realiza el filtrado
+        if (!empty($request['search']['value'])) {
+            $sql .= " AND nombre LIKE '%" . $request['search']['value'] . "%' ";
+          
+        }
+        $sql .= " ORDER BY " . $columns[$request['order'][0]['column']] . "   " . $request['order'][0]['dir'];
+
+        $lstRetorno = DB::select($sql);
+
+        return $lstRetorno;
+    }
 }
     
 ?>

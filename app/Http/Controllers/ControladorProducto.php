@@ -85,9 +85,9 @@ public function cargarGrilla( Request $request){
     for ($i = $inicio; $i < count($aProductos) && $cont < $registros_por_pagina; $i++) {
         $row = array();
         $row[] ="<a href='/admin/producto/" . $aProductos[$i]->idproducto . "'>" . $aProductos[$i]->nombre . "</a>";
+        $row[] = $aProductos[$i]->precio;
         $row[] = $aProductos[$i]->cantidad;
-        $row[] = $aProductos[$i]->categoria;
-        $row[] = $aProductos[$i]->imagen;
+        $row[] = $aProductos[$i]->descripcion;
         $cont++;
         $data[] = $row;
     }
