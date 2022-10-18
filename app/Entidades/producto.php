@@ -121,10 +121,10 @@ class Producto extends Model
             3 => 'imagen',
         );
         $sql = "SELECT DISTINCT
-                    idcliente,
+                    idproducto,
                     nombre,
                     cantidad,
-                    categoria,
+                    fk_idcategoria,
                     imagen
                     
                     FROM productos

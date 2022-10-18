@@ -60,5 +60,38 @@ class ControladorProveedor extends Controller
     return view('sistema.proveedor-nuevo', compact('msg', 'cliente', 'titulo',)) . '?id=' . $proveedor->idproveedor;
 
 } 
+
+
+public function cargarGrilla(Request $request)
+{
+
+  $request = $_REQUEST;
+
+  $entidad = new Proveedor();
+  $aProveedores = $entidad->obtenerFiltrado();
+
+  $data = array();
+  $cont = 0;
+
+  $inicio = $request['start'];
+  $registros_por_pagina = $request['length'];
+
+
+  for ($i = $inicio; $i < count($aProveedores) && $cont < $registros_por_pagina; $i++) {
+    $row = array();
+    $row[] = "<a href='/admin/proveedor/" . $aProveedores[$i]->idsucursal . "'>" . $aProveedores[$i]->nombre . "</a>";
+    $row[] = $aProveedores[$i]->telefono;
+    $cont++;
+    $data[] = $row;
+  }
+
+  $json_data = array(
+    "draw" => intval($request['draw']),
+    "recordsTotal" => count($aProveedores), //cantidad total de registros sin paginar
+    "recordsFiltered" => count($aProveedores), //cantidad total de registros en la paginacion
+    "data" => $data,
+  );
+  return json_encode($json_data);
+}
 }
 ?>
