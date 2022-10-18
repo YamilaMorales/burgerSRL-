@@ -111,4 +111,36 @@ class Pedido extends Model
         return $this->idpedido = DB::getPdo()->lastInsertId();
     }
 
+
+    public function obtenerFiltrado()
+    {
+        $request = $_REQUEST;
+        $columns = array(
+            0 => 'fecha',
+            1 => 'descripcion',
+            2 => 'total',
+           
+        );
+        $sql = "SELECT DISTINCT
+                    idpedido,
+                    fecha,
+                    descripcion,
+                    total                   
+                    FROM pedidos
+                   WHERE 1=1
+                ";
+
+        //Realiza el filtrado
+        if (!empty($request['search']['value'])) {
+            $sql .= " AND fecha LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " OR descripcion LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " OR total LIKE '%" . $request['search']['value'] . "%' )";
+            
+        }
+        $sql .= " ORDER BY " . $columns[$request['order'][0]['column']] . "   " . $request['order'][0]['dir'];
+
+        $lstRetorno = DB::select($sql);
+
+        return $lstRetorno;
+    }
 }

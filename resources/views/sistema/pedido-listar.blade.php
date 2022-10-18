@@ -26,23 +26,23 @@ if (isset($msg)) {
 <table id="grilla" class="display">
     <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Cantidad</th>
-            <th>Productos</th>
-            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Descripcion</th>
+            <th>Total</th>
+           
         </tr>
     </thead>
 </table> 
 <script>
 	var dataTable = $('#grilla').DataTable({
 	    "processing": true,
-          "serverSide": true,
+        "serverSide": true,
 	    "bFilter": true,
 	    "bInfo": true,
 	    "bSearchable": true,
-          "pageLength": 25,
-          "order": [[ 0, "asc" ]],
-	    "ajax": "{{ route('menu.cargarGrilla') }}"
+        "pageLength": 25,
+        "order": [[ 0, "asc" ]],
+	    "ajax": "{{ route('pedidos.cargarGrilla') }}"
 	});
 </script>
 @endsection
