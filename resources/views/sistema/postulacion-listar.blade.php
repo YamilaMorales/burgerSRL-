@@ -30,7 +30,7 @@ if (isset($msg)) {
             <th>Apellido</th>
             <th>Celular</th>
             <th>Correo</th>
-            <th>CV</th>
+            <th>Curriculum</th>
         </tr>
     </thead>
 </table> 

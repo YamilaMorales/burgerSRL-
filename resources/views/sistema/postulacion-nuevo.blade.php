@@ -62,11 +62,25 @@
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
-                        <label for="file" >Curriculum: *</label>
-                        <input type="file" id="curriculum" name="archivo" class="form-control-file" value="" required>
+                        <label for="text" >Curriculum: *</label>
+                        <input type="text" id="txtCurriculum" name="txtCurriculum" class="form-control-file" value="" required>
                   </div>
             </div>
       </form>
+      <script> 
+  $("#form1").validate();
+
+  function guardar(){
+      if($("#form1").validate()){
+            modificado = false;
+            form1.submit();
+      } else {
+            $("modalguardar").modal('toggle');
+            msgShow("Corriga los errores e intente nuevamente.", "danger");
+            return false;
+      }
+  }
+</script>
 </div>
 
 @endsection

@@ -45,7 +45,7 @@ class Postulacion extends Model
     public function obtenerPorId($idPostulacion)
     {
         $sql = "SELECT
-                  idpostulacion,
+                   idpostulacion,
                    nombre, 
                    apellido, 
                    celular, 
@@ -113,15 +113,17 @@ class Postulacion extends Model
             0 => 'nombre',
             1 => 'apellido',
             2 => 'celular',
-            3 => 'cv',
+            3 => 'correo',
+            4 => 'curriculum',
         );
         $sql = "SELECT DISTINCT
-                    idcliente,
+                    idpostulacion,
                     nombre,
                     apellido,
                     celular,
+                    correo,
                     curriculum
-                    FROM clientes
+                    FROM postulaciones
                    WHERE 1=1
                 ";
 
@@ -130,7 +132,7 @@ class Postulacion extends Model
             $sql .= " AND nombre LIKE '%" . $request['search']['value'] . "%' ";
             $sql .= " OR apellido LIKE '%" . $request['search']['value'] . "%' ";
             $sql .= " OR celular LIKE '%" . $request['search']['value'] . "%' )";
-            $sql .= " OR cv LIKE '%" . $request['search']['value'] . "%' )";
+            $sql .= " OR curriculum LIKE '%" . $request['search']['value'] . "%' )";
         }
         $sql .= " ORDER BY " . $columns[$request['order'][0]['column']] . "   " . $request['order'][0]['dir'];
 

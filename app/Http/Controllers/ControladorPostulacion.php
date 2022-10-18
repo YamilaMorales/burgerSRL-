@@ -84,7 +84,7 @@ public function cargarGrilla(Request $request)
     $row[] = $aPostulacion[$i]->apellido;
     $row[] = $aPostulacion[$i]->celular;
     $row[] = $aPostulacion[$i]->correo;
-    $row[] = $aPostulacion[$i]->curriculum;
+    $row[] =  "<a href= ''> Descargar </a>";
     $cont++;
     $data[] = $row;
   }
