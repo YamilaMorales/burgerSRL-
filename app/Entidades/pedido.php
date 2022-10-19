@@ -117,12 +117,14 @@ class Pedido extends Model
         $request = $_REQUEST;
         $columns = array(
             0 => 'fecha',
-            1 => 'descripcion',
-            2 => 'total',
+            1 => 'fk_idcliente',
+            2 => 'descripcion',
+            3 => 'total',
            
         );
         $sql = "SELECT DISTINCT
                     idpedido,
+                    fk_idcliente,
                     fecha,
                     descripcion,
                     total                   
@@ -132,7 +134,8 @@ class Pedido extends Model
 
         //Realiza el filtrado
         if (!empty($request['search']['value'])) {
-            $sql .= " AND fecha LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " AND fk_idcliente LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " OR fecha LIKE '%" . $request['search']['value'] . "%' ";
             $sql .= " OR descripcion LIKE '%" . $request['search']['value'] . "%' ";
             $sql .= " OR total LIKE '%" . $request['search']['value'] . "%' )";
             

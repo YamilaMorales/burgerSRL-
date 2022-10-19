@@ -93,5 +93,13 @@ public function cargarGrilla(Request $request)
   );
   return json_encode($json_data);
 }
+
+public function editar($idProveedor){
+
+  $titulo = "Edición de proveedor";
+  $proveedor = new Proveedor();
+  $proveedor->obtenerPorId($idProveedor);
+  return view( "sistema.proveedor-nuevo" , compact( "titulo", "proveedor"));
+}
 }
 ?>

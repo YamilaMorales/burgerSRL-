@@ -91,7 +91,8 @@ class ControladorPedido extends Controller
 
     for ($i = $inicio; $i < count($aPedidos) && $cont < $registros_por_pagina; $i++) {
       $row = array();
-      $row[] = "<a href='/admin/pedido/" . $aPedidos[$i]->idpedido . "'>" . $aPedidos[$i]->fecha . "</a>";
+      $row[] = "<a href='/admin/pedido/" . $aPedidos[$i]->idpedido . "'>" . $aPedidos[$i]->fk_idcliente . "</a>";
+      $row[] = $aPedidos[$i]->fecha;
       $row[] = $aPedidos[$i]->descripcion;
       $row[] = $aPedidos[$i]->total;
       $cont++;
@@ -106,4 +107,18 @@ class ControladorPedido extends Controller
     );
     return json_encode($json_data);
   }
+
+  public function editar($idPedido){
+
+    $titulo = "Edición de pedido";
+    $pedido = new Pedido();
+    $estado = new Estado();
+    $sucursal = new Sucursal();
+    $cliente = new Cliente();
+    $aClientes = $cliente->obtenerTodos();
+    $aSucursales = $sucursal->obtenerTodos();
+    $aEstados = $estado->obtenerTodos();
+    $pedido->obtenerPorId($idPedido);
+    return view( "sistema.pedido-nuevo" , compact( "titulo", "pedido", "aClientes","aSucursal","aEstado"));
+}
 }

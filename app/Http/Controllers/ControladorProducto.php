@@ -100,5 +100,15 @@ public function cargarGrilla( Request $request){
     );
     return json_encode($json_data);
 }
+
+public function editar($idProducto){
+
+    $titulo = "Edición de producto";
+    $producto = new Producto();
+    $categoria = new Categoria();
+    $aCategorias = $categoria->obtenerTodos(); 
+    $producto->obtenerPorId($idProducto);
+    return view( "sistema.producto-nuevo" , compact( "titulo", "producto" , "aCategorias"));
+}
 }
 ?>

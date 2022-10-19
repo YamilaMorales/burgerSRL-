@@ -47,7 +47,7 @@ class Proveedor extends Model
         $lstRetorno = DB::select($sql);
 
         if (count($lstRetorno) > 0) {
-            $this->idcategoria = $lstRetorno[0]->idcategoria;
+            $this->idproveedor = $lstRetorno[0]->idproveedor;
             $this->nombre = $lstRetorno[0]->nombre;
             $this->telefono = $lstRetorno[0]->telefono;
 
