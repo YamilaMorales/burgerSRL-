@@ -79,7 +79,7 @@ public function cargarGrilla(Request $request)
 
   for ($i = $inicio; $i < count($aProveedores) && $cont < $registros_por_pagina; $i++) {
     $row = array();
-    $row[] = "<a href='/admin/proveedor/" . $aProveedores[$i]->idsucursal . "'>" . $aProveedores[$i]->nombre . "</a>";
+    $row[] = "<a href='/admin/proveedor/" . $aProveedores[$i]->idproveedor . "'>" . $aProveedores[$i]->nombre . "</a>";
     $row[] = $aProveedores[$i]->telefono;
     $cont++;
     $data[] = $row;
