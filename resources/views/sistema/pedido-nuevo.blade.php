@@ -41,18 +41,18 @@
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Fecha: *</label>
-                        <input type="date" id="txtFecha" name="txtFecha" class="form-control " value="" required>
+                        <input type="date" id="txtFecha" name="txtFecha" class="form-control " value="{{$pedido->fecha}}" required>
                   </div>
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Descripcion: *</label>
-                        <textarea name="txtDescripcion" id="txtDescripcion" cols="30" rows="20" class="form-control" value="" required></textarea>
+                        <textarea name="txtDescripcion" id="txtDescripcion" cols="30" rows="20" class="form-control" value="{{$pedido->descripcion}}" required></textarea>
                   </div>
 
                   <div class="form-group col-6">
                         <label>Total: *</label>
-                        <input type="text" id="txtTotal" name="txtTotal" class="form-control" value="" required>
+                        <input type="text" id="txtTotal" name="txtTotal" class="form-control" value="{{$pedido->total}}" required>
                   </div>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
@@ -74,6 +74,9 @@
                         <select value="" id="lstSucursal" name="lstSucursal" required class="form-control">
                         <option value="" disabled selected >Seleccionar </option>
                               @foreach( $aSucursales as $sucursal)
+                              $sucursal = new Sucursal;
+                              aSucursales = $sucursal->obetelerTodos();
+
                               <option value="{{$sucursal->idsucursal}}"> {{$sucursal->nombre}}</option>
 
                               @endforeach
