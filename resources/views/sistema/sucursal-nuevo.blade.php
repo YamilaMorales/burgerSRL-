@@ -41,29 +41,29 @@
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Nombre: *</label>
-                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="" required>
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="{{$sucursal->nombre}}" required>
                   </div>
                   <div class="form-group col-6">
                         <label>Direccion: *</label>
-                        <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" value="" required>
+                        <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" value="{{$sucursal->direccion}}" required>
                   </div>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Telefono: *</label>
-                        <input type="text" id="txtTelefono" name="txtTelefono" class="form-control" value="" required>
+                        <input type="text" id="txtTelefono" name="txtTelefono" class="form-control" value="{{$sucursal->telefono}}" required>
                   </div>
                   <div class="form-group col-6">
                         <label>Horario: *</label>
-                        <input type="text" id="txtHorario" name="txtHorario" class="form-control" value="" required>
+                        <input type="text" id="txtHorario" name="txtHorario" class="form-control" value="{{$sucursal->horario}}" required>
                   </div>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Ubicacion: *</label>
-                        <input type="text" id="txtUbicacion" name="txtUbicacion" class="form-control" value="" required>
+                        <input type="text" id="txtUbicacion" name="txtUbicacion" class="form-control" value="{{$sucursal->ubicacion}}" required>
                   </div>
 
             </div>
