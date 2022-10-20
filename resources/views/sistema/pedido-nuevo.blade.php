@@ -62,7 +62,7 @@
                         <select value="" id="lstEstado" name="lstEstado" required class="form-control">
                         <option value="" disabled selected >Seleccionar </option>
                               @foreach( $aEstados as $estado)
-                              <option value="{{$estado->idestado}}"> {{$estado->nombre}}</option>
+                              <option selected value="{{$estado->idestado}}"> {{$estado->nombre}}</option>
 
                               @endforeach
                         </select>
@@ -74,10 +74,8 @@
                         <select value="" id="lstSucursal" name="lstSucursal" required class="form-control">
                         <option value="" disabled selected >Seleccionar </option>
                               @foreach( $aSucursales as $sucursal)
-                              $sucursal = new Sucursal;
-                              aSucursales = $sucursal->obetelerTodos();
 
-                              <option value="{{$sucursal->idsucursal}}"> {{$sucursal->nombre}}</option>
+                              <option selected value="{{$sucursal->idsucursal}}"> {{$sucursal->nombre}}</option>
 
                               @endforeach
                         </select>
@@ -86,10 +84,10 @@
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Cliente: *</label>
-                        <select value="" id="lstCliente" name="lstCliente" required class="form-control">
+                        <select selected value="" id="lstCliente" name="lstCliente" required class="form-control">
                         <option value="" disabled selected >Seleccionar </option>
                               @foreach( $aClientes as $cliente)
-                              <option value="{{$cliente->idcliente}}"> {{$cliente->nombre}}</option>
+                              <option selected value="{{$cliente->idcliente}}"> {{$cliente->nombre}}</option>
 
                               @endforeach
                         </select>

@@ -97,4 +97,12 @@ public function cargarGrilla(Request $request)
   );
   return json_encode($json_data);
 }
+
+public function editar($idPostulacion){
+
+  $titulo = "Edición de postulaciones";
+  $postulacion = new Postulacion();
+  $postulacion->obtenerPorId($idPostulacion);
+  return view( "sistema.postulacion-nuevo" , compact( "titulo", "postulacion"));
+}
 }

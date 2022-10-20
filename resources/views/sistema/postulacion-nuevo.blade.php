@@ -41,23 +41,23 @@
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Nombre: *</label>
-                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="" required>
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="{{$postulacion->nombre}}" required>
                   </div>
                   <div class="form-group col-6">
                         <label>Apellido: *</label>
-                        <input type="text" id="txtApellido" name="txtApellido" class="form-control" value="" required>
+                        <input type="text" id="txtApellido" name="txtApellido" class="form-control" value="{{$postulacion->apellido}}" required>
                   </div>
 
                   <div class="form-group col-6">
                         <label>Correo: *</label>
-                        <input type="text" id="txtCorreo" name="txtCorreo" class="form-control" value="" required>
+                        <input type="text" id="txtCorreo" name="txtCorreo" class="form-control" value="{{$postulacion->correo}}" required>
                   </div>
 
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Celular: *</label>
-                        <input type="text" id="txtCelular" name="txtCelular" class="form-control" value="" required>
+                        <input type="text" id="txtCelular" name="txtCelular" class="form-control" value="{{$postulacion->celular}}" required>
                   </div>
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
