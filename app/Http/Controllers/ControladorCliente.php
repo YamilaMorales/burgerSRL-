@@ -9,8 +9,7 @@ class ControladorCliente extends Controller
 {
     public function nuevo()
     {
-     $cliente = new Cliente();
-
+      $cliente = new Cliente();
       $titulo = "Nuevo cliente";   
       return view("sistema.cliente-nuevo", compact("titulo" , "cliente"));
     }

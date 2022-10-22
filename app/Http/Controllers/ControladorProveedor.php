@@ -9,8 +9,9 @@ class ControladorProveedor extends Controller
 {
     public function nuevo()
     {
+      $proveedor = new Proveedor();
       $titulo = "Nuevo proveedor";   
-      return view("sistema.proveedor-nuevo", compact("titulo"));
+      return view("sistema.proveedor-nuevo", compact("titulo" , "proveedor"));
     }
 
     public function index()

@@ -10,10 +10,11 @@ class ControladorProducto extends Controller
 {
     public function nuevo()
     {
+      $producto = new Producto();
       $titulo = "Nuevo producto"; 
       $categoria = new Categoria();
       $aCategorias = $categoria->obtenerTodos();  
-      return view("sistema.producto-nuevo", compact("titulo" , "aCategorias"));
+      return view("sistema.producto-nuevo", compact("titulo" , "aCategorias" . "producto"));
     }
     public function index()
     {

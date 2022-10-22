@@ -15,6 +15,7 @@ class ControladorPedido extends Controller
 {
   public function nuevo()
   {
+    $pedido= new Pedido();
     $titulo = "Nuevo pedido";
     $estado = new Estado();
     $sucursal = new Sucursal();
@@ -23,7 +24,7 @@ class ControladorPedido extends Controller
     $aSucursales = $sucursal->obtenerTodos();
     $aEstados = $estado->obtenerTodos();
 
-    return view("sistema.pedido-nuevo", compact("titulo", "aEstados", "aSucursales", "aClientes"));
+    return view("sistema.pedido-nuevo", compact("titulo", "pedido", "aEstados", "aSucursales", "aClientes"));
   }
 
   public function index()
