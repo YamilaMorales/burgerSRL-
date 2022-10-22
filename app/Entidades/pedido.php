@@ -146,4 +146,24 @@ class Pedido extends Model
 
         return $lstRetorno;
     }
+
+    
+    public function existePedidoPorCliente($idCliente)
+    {
+        $sql = "SELECT
+                   idpedido,
+                   fecha, 
+                   descripcion,
+                   total, 
+                   fk_idsucursal, 
+                   fk_idcliente, 
+                   fk_idestado
+                FROM pedidos WHERE fk_idcliente = $idCliente";
+        $lstRetorno = DB::select($sql);
+
+        return (count($lstRetorno) > 0);
+        
+        
+        
+}
 }

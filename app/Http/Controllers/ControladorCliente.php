@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Entidades\Cliente;
+use App\Entidades\Pedido;
 use Illuminate\Http\Request;
 require app_path().'/start/constants.php';
 
@@ -62,8 +63,6 @@ class ControladorCliente extends Controller
         return view('sistema.cliente-nuevo', compact('msg', 'cliente', 'titulo',)) . '?id=' . $cliente->idcliente;
 
     } 
-    
-
 
     public function cargarGrilla( Request $request){
 
@@ -105,6 +104,28 @@ class ControladorCliente extends Controller
         $cliente = new Cliente();
         $cliente->obtenerPorId($idCliente);
         return view( "sistema.cliente-nuevo" , compact( "titulo", "cliente"));
+    }
+
+    public function eliminar(Request $request){
+    
+        $idCliente = $request->input("id");
+        $pedido = new Pedido();
+
+        //si el cliente tiene un pedido asociado no se puede eliminar.
+      if($pedido->existePedidoPorCliente($idCliente)){
+
+        $resultado["err"] = EXIT_FAILURE;
+        $resultado["mensaje"] = "No se puede eliminar un cliente con pedidos asociados.";
+      } else{
+        //Si no tiene pedido asociado se puede elimnar
+        $cliente = new Cliente();
+        $cliente->idcliente=$idCliente;
+        $cliente->eliminar();
+        $resultado["err"] = EXIT_SUCCESS;
+        $resultado["mensaje"] = "Registro eliminado exitosamente.";
+      }
+      return json_encode($resultado);
+
     }
 }
 
