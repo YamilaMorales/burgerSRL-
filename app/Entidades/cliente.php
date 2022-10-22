@@ -77,7 +77,7 @@ class Cliente extends Model
         return $lstRetorno;
     }
 
-    public function obtenerPorId($idCliente)
+    public function obtenerPorId($idcliente)
     {
         $sql = "SELECT
                  idcliente,
@@ -88,7 +88,7 @@ class Cliente extends Model
                  celular,
                  clave,
                  direccion
-                FROM clientes WHERE idcliente = $idCliente";
+                FROM clientes WHERE idcliente = $idcliente";
         $lstRetorno = DB::select($sql);
 
         if (count($lstRetorno) > 0) {
