@@ -29,7 +29,7 @@ class ControladorCliente extends Controller
             $entidad->cargarDesdeRequest($request);
 
             //validaciones
-            if ($entidad->nombre == "" || $entidad->apellido == "" || $entidad->dni == "" || $entidad->correo == "" || $entidad->celular == "" || $entidad->clave == "" || $entidad->direccion == "" ) {
+            if ($entidad->nombre == "" || $entidad->apellido == "" || $entidad->dni == "" || $entidad->correo == "" || $entidad->celular == "" || $entidad->direccion == "" ) {
                 $msg["ESTADO"] = MSG_ERROR;
                 $msg["MSG"] = "Complete todos los datos";
             } else {
