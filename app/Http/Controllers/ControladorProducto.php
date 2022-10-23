@@ -118,7 +118,7 @@ public function eliminar(Request $request){
     $idProducto = $request->input("id");
     $pedido = new Pedido();
 
-    //si el cliente tiene un pedido asociado no se puede eliminar.
+    //si el producto tiene pedidos asociados no se puede eliminar.
   if($pedido->existePedidoPorProducto($idProducto)){
 
     $resultado["err"] = EXIT_FAILURE;

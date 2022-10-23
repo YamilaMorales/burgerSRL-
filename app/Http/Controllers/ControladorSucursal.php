@@ -157,7 +157,7 @@ class ControladorSucursal extends Controller
         if ($pedido->existePedidoPorSucursal($idSucursal)) {
 
           $resultado["err"] = EXIT_FAILURE;
-          $resultado["mensaje"] = "No se puede eliminar un cliente con pedidos asociados.";
+          $resultado["mensaje"] = "No se puede eliminar una sucursal con pedidos asociados.";
         } else {
           //Si no tiene pedido asociado se puede elimnar
           $sucursal = new Sucursal();

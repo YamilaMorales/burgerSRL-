@@ -153,7 +153,7 @@ class ControladorCategoria extends Controller
                 if ($producto->existeProductoPorCategoria($idCategoria)) {
 
                     $resultado["err"] = EXIT_FAILURE;
-                    $resultado["mensaje"] = "No se puede eliminar un cliente con pedidos asociados.";
+                    $resultado["mensaje"] = "No se puede eliminar una categoria con productos asociados.";
                 } else {
                     //Si no tiene pedido asociado se puede elimnar
                     $categoria = new Categoria();

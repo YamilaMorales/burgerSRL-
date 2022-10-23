@@ -176,7 +176,7 @@ class ControladorPedido extends Controller
         if ($producto->existeProductosPorPedido($idPedido)) {
 
           $resultado["err"] = EXIT_FAILURE;
-          $resultado["mensaje"] = "No se puede eliminar un cliente con pedidos asociados.";
+          $resultado["mensaje"] = "No se puede eliminar un pedido con productos asociados.";
         } else {
           //Si no tiene pedido asociado se puede elimnar
           $pedido = new Pedido();
