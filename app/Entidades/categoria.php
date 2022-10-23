@@ -10,7 +10,7 @@ class Categoria extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idcategoria', 'nombre'
+        'idcategoria', 'nombre',
     ];
 
     protected $hidden = [
@@ -84,7 +84,7 @@ class Categoria extends Model
     {
         $request = $_REQUEST;
         $columns = array(
-            0 => 'nombre'
+            0 => 'nombre',
            
         );
         $sql = "SELECT DISTINCT

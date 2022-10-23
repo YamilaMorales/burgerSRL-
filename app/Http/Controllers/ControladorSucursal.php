@@ -110,7 +110,7 @@ public function eliminar(Request $request)
   $idSucursal = $request->input("id");
   $sucursal = new Sucursal();
 
-  $sucursal->idpostulacion = $idSucursal;
+  $sucursal->idsucursal = $idSucursal;
   $sucursal->eliminar();
   $resultado["err"] = EXIT_SUCCESS;
   $resultado["mensaje"] = "Registro eliminado exitosamente.";

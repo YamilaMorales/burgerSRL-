@@ -113,7 +113,7 @@ class Cliente extends Model
             dni='$this->dni',
             celular='$this->celular',
             clave='$this->clave',
-            clave='$this->direccion'
+            direccion='$this->direccion'
             WHERE idcliente=?";
         $affected = DB::update($sql, [$this->idcliente]);
     }

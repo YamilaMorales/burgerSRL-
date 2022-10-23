@@ -97,7 +97,7 @@ public function editar($idCategoria){
     $titulo = "Edición de categorias";
     $categoria = new Categoria();
     $categoria->obtenerPorId($idCategoria);
-    return view( "sistema.sucursal-nuevo" , compact( "titulo", "categoria"));
+    return view( "sistema.categoria-nuevo" , compact( "titulo", "categoria"));
   }
   public function eliminar(Request $request)
   {
@@ -105,7 +105,7 @@ public function editar($idCategoria){
     $idCategoria = $request->input("id");
     $categoria = new Categoria();
   
-    $categoria->idpostulacion = $idCategoria;
+    $categoria->idcategoria = $idCategoria;
     $categoria->eliminar();
     $resultado["err"] = EXIT_SUCCESS;
     $resultado["mensaje"] = "Registro eliminado exitosamente.";
