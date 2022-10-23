@@ -92,5 +92,25 @@ public function cargarGrilla( Request $request){
     );
     return json_encode($json_data);
 }
+public function editar($idCategoria){
+
+    $titulo = "Edición de categorias";
+    $categoria = new Categoria();
+    $categoria->obtenerPorId($idCategoria);
+    return view( "sistema.sucursal-nuevo" , compact( "titulo", "categoria"));
+  }
+  public function eliminar(Request $request)
+  {
+  
+    $idCategoria = $request->input("id");
+    $categoria = new Categoria();
+  
+    $categoria->idpostulacion = $idCategoria;
+    $categoria->eliminar();
+    $resultado["err"] = EXIT_SUCCESS;
+    $resultado["mensaje"] = "Registro eliminado exitosamente.";
+  
+    return json_encode($resultado);
+  }
 }
 ?>

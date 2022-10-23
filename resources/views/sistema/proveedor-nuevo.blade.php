@@ -2,7 +2,7 @@
 @section('titulo', "$titulo")
 @section('scripts')
 <script>
-      globalId = '<?php echo isset($proveedor->idproveedor) && $proveedor->idproveedor> 0 ? $proveedor->idproveedor: 0; ?>';
+      globalId = '<?php echo isset($proveedor->idproveedor) && $proveedor->idproveedor > 0 ? $proveedor->idproveedor : 0; ?>';
       <?php $globalId = isset($proveedor->idproveedor) ? $proveedor->idproveedor : "0"; ?>
 </script>
 @endsection
@@ -53,19 +53,41 @@
       </form>
 </div>
 <script>
+      $("#form1").validate();
 
-    $("#form1").validate();
+      function guardar() {
+            if ($("#form1").valid()) {
+                  modificado = false;
+                  form1.submit();
+            } else {
+                  $("#modalGuardar").modal('toggle');
+                  msgShow("Corrija los errores e intente nuevamente.", "danger");
+                  return false;
+            }
+      }
 
-    function guardar() {
-        if ($("#form1").valid()) {
-            modificado = false;
-            form1.submit();
-        } else {
-            $("#modalGuardar").modal('toggle');
-            msgShow("Corrija los errores e intente nuevamente.", "danger");
-            return false;
-        }
-    }
-    </script>
+      function eliminar() {
+            $.ajax({
+                  type: "GET",
+                  url: "{{ asset('admin/proveedor/eliminar') }}",
+                  data: {
+                        id: globalId
+                  },
+                  async: true,
+                  dataType: "json",
+                  success: function(data) {
+                        if (data.err = 0) {
+                              msgShow(data.mensaje, "success");
+                              $("#btnEnviar").hide();
+                              $("#btnEliminar").hide();
+                              $('#mdlEliminar').modal('toggle');
+                        } else {
+                              msgShow(data.mensaje, "success");
+                              $('#mdlEliminar').modal('toggle');
+                        }
+                  }
+            });
+      }
+</script>
 
 @endsection

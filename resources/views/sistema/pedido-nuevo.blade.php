@@ -124,7 +124,7 @@
                     $("#btnEliminar").hide();
                     $('#mdlEliminar').modal('toggle');
                 } else {
-                    msgShow(data.mensaje , "success");
+                    msgShow(data.mensaje , "succes");
                     $('#mdlEliminar').modal('toggle');
                 }
             }

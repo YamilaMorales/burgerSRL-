@@ -102,5 +102,17 @@ public function editar($idProveedor){
   $proveedor->obtenerPorId($idProveedor);
   return view( "sistema.proveedor-nuevo" , compact( "titulo", "proveedor"));
 }
+
+public function eliminar(Request $request)
+{
+
+  $idProveedor = $request->input("id");
+  $proveedor = new Proveedor();
+  $proveedor->idproveedor= $idProveedor;
+  $proveedor->eliminar();
+  $resultado["err"] = EXIT_SUCCESS;
+  $resultado["mensaje"] = "Registro eliminado exitosamente.";
+
+  return json_encode($resultado);
 }
-?>
+}

@@ -59,5 +59,25 @@
             return false;
         }
     }
+    function eliminar() {
+        $.ajax({
+            type: "GET",
+            url: "{{ asset('admin/categoria/eliminar') }}",
+            data: { id:globalId },
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                if (data.err = 0) {
+                    msgShow(data.mensaje , "success");
+                    $("#btnEnviar").hide();
+                    $("#btnEliminar").hide();
+                    $('#mdlEliminar').modal('toggle');
+                } else {
+                    msgShow(data.mensaje , "succes");
+                    $('#mdlEliminar').modal('toggle');
+                }
+            }
+        });
+      }
     </script>
 @endsection

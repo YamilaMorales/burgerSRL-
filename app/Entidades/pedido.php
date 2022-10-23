@@ -116,29 +116,36 @@ class Pedido extends Model
     {
         $request = $_REQUEST;
         $columns = array(
-            0 => 'idpedido',
-            1 => 'fk_idcliente',
-            2 => 'fecha',
-            3 => 'descripcion',
+            0 => 'fk_idcliente',
+            1 => 'fecha',
+            2 => 'fk_idsucursal',
+            3 => 'fk_idestado',
             4 => 'total',
 
         );
         $sql = "SELECT DISTINCT
-                    idpedido,
-                    fk_idcliente,
-                    fecha,
-                    descripcion,
-                    total                   
-                    FROM pedidos
+                    A.idpedido,
+                    A.fk_idestado,
+                    A.fk_idcliente,
+                    A.fecha,
+                    A.fk_idsucursal,
+                    A.total,
+                    B.nombre AS sucursal,
+                    C.nombre AS cliente,
+                    D.nombre AS estado                   
+                    FROM pedidos A
+                    INNER JOIN sucursales B ON A.fk_idsucursal = B.idsucursal
+                    INNER JOIN clientes C ON A.fk_idcliente = C.idcliente
+                    INNER JOIN estados D ON A.fk_idestado = D.idestado
                    WHERE 1=1
                 ";
 
         //Realiza el filtrado
         if (!empty($request['search']['value'])) {
-            $sql .= " AND idpedido LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " AND fecha LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " OR fk_idsucursal LIKE '%" . $request['search']['value'] . "%' ";
             $sql .= " OR fk_idcliente LIKE '%" . $request['search']['value'] . "%' ";
-            $sql .= " OR fecha LIKE '%" . $request['search']['value'] . "%' ";
-            $sql .= " OR descripcion LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " OR fk_idestado LIKE '%" . $request['search']['value'] . "%' ";
             $sql .= " OR total LIKE '%" . $request['search']['value'] . "%' )";
         }
         $sql .= " ORDER BY " . $columns[$request['order'][0]['column']] . "   " . $request['order'][0]['dir'];
