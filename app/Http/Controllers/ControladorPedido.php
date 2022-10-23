@@ -84,6 +84,7 @@ class ControladorPedido extends Controller
     $aPedidos = $entidad->obtenerFiltrado();
     $entidad = new Cliente();
     $aClientes = $entidad->obtenerFiltrado();
+    ;
     $data = array();
     $cont = 0;
 
@@ -93,10 +94,12 @@ class ControladorPedido extends Controller
 
     for ($i = $inicio; $i < count($aPedidos) && $cont < $registros_por_pagina; $i++) {
       $row = array();
-      $row[] = "<a href='/admin/pedido/" . $aClientes[$i]->idcliente . "'>" . $aClientes[$i]->nombre . "</a>";
+      $row[] = "<a href='/admin/pedido/" . $aPedidos[$i]->idpedido . "'>" . $aPedidos[$i]->idpedido . "</a>";
+      $row[] = $aPedidos[$i]->fk_idcliente;
       $row[] = $aPedidos[$i]->fecha;
       $row[] = $aPedidos[$i]->descripcion;
       $row[] = $aPedidos[$i]->total;
+      
       $cont++;
       $data[] = $row;
     }
