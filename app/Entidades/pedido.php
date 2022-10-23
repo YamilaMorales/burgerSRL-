@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entidades;
 
 use DB;
@@ -13,11 +14,10 @@ class Pedido extends Model
         'idpedido', 'fecha', 'descripcion', 'total', 'fk_idsucursal', 'fk_idcliente', 'fk_idestado',
     ];
 
-    protected $hidden = [
+    protected $hidden = [];
 
-    ];
-
-    public function cargarDesdeRequest($request) {
+    public function cargarDesdeRequest($request)
+    {
         $this->idpedido = $request->input('id') != "0" ? $request->input('id') : $this->idpedido;
         $this->fecha = $request->input('txtFecha');
         $this->descripcion = $request->input('txtDescripcion');
@@ -25,7 +25,6 @@ class Pedido extends Model
         $this->fk_idestado = $request->input('lstEstado');
         $this->fk_idsucursal = $request->input('lstSucursal');
         $this->fk_idcliente = $request->input('lstCliente');
-    
     }
 
     public function obtenerTodos()
@@ -70,7 +69,8 @@ class Pedido extends Model
         return null;
     }
 
-    public function guardar() {
+    public function guardar()
+    {
         $sql = "UPDATE pedidos SET
             fecha=$this->fecha,
             descripcion='$this->descripcion',
@@ -121,7 +121,7 @@ class Pedido extends Model
             2 => 'fecha',
             3 => 'descripcion',
             4 => 'total',
-           
+
         );
         $sql = "SELECT DISTINCT
                     idpedido,
@@ -140,7 +140,6 @@ class Pedido extends Model
             $sql .= " OR fecha LIKE '%" . $request['search']['value'] . "%' ";
             $sql .= " OR descripcion LIKE '%" . $request['search']['value'] . "%' ";
             $sql .= " OR total LIKE '%" . $request['search']['value'] . "%' )";
-            
         }
         $sql .= " ORDER BY " . $columns[$request['order'][0]['column']] . "   " . $request['order'][0]['dir'];
 
@@ -149,7 +148,7 @@ class Pedido extends Model
         return $lstRetorno;
     }
 
-    
+
     public function existePedidoPorCliente($idCliente)
     {
         $sql = "SELECT
@@ -164,8 +163,17 @@ class Pedido extends Model
         $lstRetorno = DB::select($sql);
 
         return (count($lstRetorno) > 0);
-        
-        
-        
-}
+    }
+    public function existePedidoPorProducto($idProducto)
+    {
+        $sql = "SELECT
+                   idcarrito_producto,
+                   fk_idproducto,
+                   fk_idcarrito,
+                   cantidad
+                FROM carrito_productos WHERE fk_idproducto = $idProducto";
+        $lstRetorno = DB::select($sql);
+
+        return (count($lstRetorno) > 0);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Entidades\Producto;
+use App\Entidades\Pedido;
 use Illuminate\Http\Request;
 use App\Entidades\Categoria;
 require app_path().'/start/constants.php';
@@ -111,5 +112,27 @@ public function editar($idProducto){
     $producto->obtenerPorId($idProducto);
     return view( "sistema.producto-nuevo" , compact( "titulo", "producto" , "aCategorias"));
 }
+
+public function eliminar(Request $request){
+    
+    $idProducto = $request->input("id");
+    $pedido = new Pedido();
+
+    //si el cliente tiene un pedido asociado no se puede eliminar.
+  if($pedido->existePedidoPorProducto($idProducto)){
+
+    $resultado["err"] = EXIT_FAILURE;
+    $resultado["mensaje"] = "No se puede eliminar un producto con pedidos asociados.";
+  } else{
+    //Si no tiene pedido asociado se puede elimnar
+   
+    $producto = new Producto();
+    $producto->idproducto=$idProducto;
+    $producto->eliminar();
+    $resultado["err"] = EXIT_SUCCESS;
+    $resultado["mensaje"] = "Registro eliminado exitosamente.";
+  }
+  return json_encode($resultado);
+
 }
-?>
+}
