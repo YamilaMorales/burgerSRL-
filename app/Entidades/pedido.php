@@ -183,4 +183,17 @@ class Pedido extends Model
 
         return (count($lstRetorno) > 0);
     }
+    public function existePedidoPorSucursal($idSucursal)
+    {
+        $sql = "SELECT
+                   idsucursal,
+                   nombre,
+                   direccion,
+                   telefono,
+                   ubicacion
+                FROM sucursales WHERE idsucursal = $idSucursal";
+        $lstRetorno = DB::select($sql);
+
+        return (count($lstRetorno) > 0);
+    }
 }

@@ -1,124 +1,168 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
+use App\Entidades\Sistema\Usuario;
+use App\Entidades\Sistema\Patente;
 use App\Entidades\Postulacion;
-require app_path().'/start/constants.php';
+
+require app_path() . '/start/constants.php';
 
 class ControladorPostulacion extends Controller
 {
-    public function nuevo()
-    {
-      $postulacion = new Postulacion();
-      $titulo = "Nueva postulacion";   
-      return view("sistema.postulacion-nuevo", compact("titulo","postulacion"));
-    }
-    public function index()
-    {
-      $titulo = "Listado de postulaciones";   
-      return view("sistema.postulacion-listar", compact("titulo"));
-    
-    }
-    public function guardar(Request $request){
+  public function nuevo()
+  {
+    $postulacion = new Postulacion();
+    $titulo = "Nueva postulacion";
 
-      try {
-        //Define la entidad servicio
-        $titulo = "Modificar postulacion";
-        $entidad = new Postulacion();
-        $entidad->cargarDesdeRequest($request);
+    if (Usuario::autenticado() == true) {
+      if (!Patente::autorizarOperacion("POSTULACIONALTA")) {
+        $codigo = "POSTULACIONALTA";
+        $mensaje = "No tiene permisos para la operación.";
+        return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
+      } else {
+        return view("sistema.postulacion-nuevo", compact("titulo", "postulacion"));
+      }
+    } else {
+      return redirect('admin/login');
+    }
+  }
+  public function index()
+  {
+    $titulo = "Listado de postulaciones";
 
-        //validaciones
-        if ($entidad->nombre == "" || $entidad->apellido== "" || $entidad->celular== "" || $entidad->correo == "" || $entidad->curriculum == "" ) {
-            $msg["ESTADO"] = MSG_ERROR;
-            $msg["MSG"] = "Complete todos los datos";
+    if (Usuario::autenticado() == true) {
+      if (!Patente::autorizarOperacion("POSTULACIOCONSULTA")) {
+        $codigo = "POSTULACIONCONSULTA";
+        $mensaje = "No tiene permisos para la operación.";
+        return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
+      } else {
+
+        return view("sistema.postulacion-listar", compact("titulo"));
+      }
+    } else {
+      return redirect('admin/login');
+    }
+  }
+  public function guardar(Request $request)
+  {
+
+    try {
+      //Define la entidad servicio
+      $titulo = "Modificar postulacion";
+      $entidad = new Postulacion();
+      $entidad->cargarDesdeRequest($request);
+
+      //validaciones
+      if ($entidad->nombre == "" || $entidad->apellido == "" || $entidad->celular == "" || $entidad->correo == "" || $entidad->curriculum == "") {
+        $msg["ESTADO"] = MSG_ERROR;
+        $msg["MSG"] = "Complete todos los datos";
+      } else {
+        if ($_POST["id"] > 0) {
+          //Es actualizacion
+          $entidad->guardar();
+
+          $msg["ESTADO"] = MSG_SUCCESS;
+          $msg["MSG"] = OKINSERT;
         } else {
-            if ($_POST["id"] > 0) {
-                //Es actualizacion
-                $entidad->guardar();
+          //Es nuevo
+          $entidad->insertar();
 
-                $msg["ESTADO"] = MSG_SUCCESS;
-                $msg["MSG"] = OKINSERT;
-            } else {
-                //Es nuevo
-                $entidad->insertar();
-
-                $msg["ESTADO"] = MSG_SUCCESS;
-                $msg["MSG"] = OKINSERT;
-            }
-            $_POST["id"] = $entidad->idpostulacion;
-            return view('sistema.postulacion-listar', compact('titulo', 'msg'));
-            }
-        
-        } catch (Exception $e) {
-            $msg["ESTADO"] = MSG_ERROR;
-            $msg["MSG"] = ERRORINSERT;
+          $msg["ESTADO"] = MSG_SUCCESS;
+          $msg["MSG"] = OKINSERT;
         }
-      
-        $id = $entidad->idpostulacion;
-        $postulacion = new Postulacion();
-        $postulacion->obtenerPorId($id);
+        $_POST["id"] = $entidad->idpostulacion;
+        return view('sistema.postulacion-listar', compact('titulo', 'msg'));
+      }
+    } catch (Exception $e) {
+      $msg["ESTADO"] = MSG_ERROR;
+      $msg["MSG"] = ERRORINSERT;
+    }
+
+    $id = $entidad->idpostulacion;
+    $postulacion = new Postulacion();
+    $postulacion->obtenerPorId($id);
 
     return view('sistema.postulacion-nuevo', compact('msg', 'cliente', 'titulo',)) . '?id=' . $postulacion->idpostulacion;
-
-} 
-
-
-
-public function cargarGrilla(Request $request)
-{
-
-  $request = $_REQUEST;
-
-  $entidad = new Postulacion();
-  $aPostulacion = $entidad->obtenerFiltrado();
-
-  $data = array();
-  $cont = 0;
-
-  $inicio = $request['start'];
-  $registros_por_pagina = $request['length'];
-
-
-  for ($i = $inicio; $i < count($aPostulacion) && $cont < $registros_por_pagina; $i++) {
-    $row = array();
-    $row[] = "<a href='/admin/postulacion/" . $aPostulacion[$i]->idpostulacion . "'>" . $aPostulacion[$i]->nombre . "</a>";
-    $row[] = $aPostulacion[$i]->apellido;
-    $row[] = $aPostulacion[$i]->celular;
-    $row[] = $aPostulacion[$i]->correo;
-    $row[] =  "<a href= ''> Descargar </a>";
-    $cont++;
-    $data[] = $row;
   }
 
-  $json_data = array(
-    "draw" => intval($request['draw']),
-    "recordsTotal" => count($aPostulacion), //cantidad total de registros sin paginar
-    "recordsFiltered" => count($aPostulacion), //cantidad total de registros en la paginacion
-    "data" => $data,
-  );
-  return json_encode($json_data);
-}
-
-public function editar($idPostulacion){
-
-  $titulo = "Edición de postulaciones";
-  $postulacion = new Postulacion();
-  $postulacion->obtenerPorId($idPostulacion);
-  return view( "sistema.postulacion-nuevo" , compact( "titulo", "postulacion"));
-}
 
 
-public function eliminar(Request $request)
-{
+  public function cargarGrilla(Request $request)
+  {
 
-  $idPostulacion = $request->input("id");
-  $postulacion = new Postulacion();
+    $request = $_REQUEST;
 
-  $postulacion->idpostulacion = $idPostulacion;
-  $postulacion->eliminar();
-  $resultado["err"] = EXIT_SUCCESS;
-  $resultado["mensaje"] = "Registro eliminado exitosamente.";
+    $entidad = new Postulacion();
+    $aPostulacion = $entidad->obtenerFiltrado();
 
-  return json_encode($resultado);
-}
+    $data = array();
+    $cont = 0;
+
+    $inicio = $request['start'];
+    $registros_por_pagina = $request['length'];
+
+
+    for ($i = $inicio; $i < count($aPostulacion) && $cont < $registros_por_pagina; $i++) {
+      $row = array();
+      $row[] = "<a href='/admin/postulacion/" . $aPostulacion[$i]->idpostulacion . "'>" . $aPostulacion[$i]->nombre . "</a>";
+      $row[] = $aPostulacion[$i]->apellido;
+      $row[] = $aPostulacion[$i]->celular;
+      $row[] = $aPostulacion[$i]->correo;
+      $row[] =  "<a href= ''> Descargar </a>";
+      $cont++;
+      $data[] = $row;
+    }
+
+    $json_data = array(
+      "draw" => intval($request['draw']),
+      "recordsTotal" => count($aPostulacion), //cantidad total de registros sin paginar
+      "recordsFiltered" => count($aPostulacion), //cantidad total de registros en la paginacion
+      "data" => $data,
+    );
+    return json_encode($json_data);
+  }
+
+  public function editar($idPostulacion)
+  {
+
+    $titulo = "Edición de postulaciones";
+    $postulacion = new Postulacion();
+    if (Usuario::autenticado() == true) {
+      if (!Patente::autorizarOperacion("POSTULACIONEDITAR")) {
+        $codigo = "POSTULACIONEDITAR";
+        $mensaje = "No tiene permisos para la operación.";
+        return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
+      } else {
+        $postulacion->obtenerPorId($idPostulacion);
+        return view("sistema.postulacion-nuevo", compact("titulo", "postulacion"));
+      }
+    } else {
+      return redirect('admin/login');
+    }
+  }
+
+
+  public function eliminar(Request $request)
+  {
+    if (Usuario::autenticado() == true) {
+      if (!Patente::autorizarOperacion("POSTULACIONELIMINAR")) {
+        $resultado["err"] = EXIT_FAILURE;
+        $resultado["mensaje"] =  "No tiene permisos para la operación.";
+      } else {
+        $idPostulacion = $request->input("id");
+        $postulacion = new Postulacion();
+
+        $postulacion->idpostulacion = $idPostulacion;
+        $postulacion->eliminar();
+        $resultado["err"] = EXIT_SUCCESS;
+        $resultado["mensaje"] = "Registro eliminado exitosamente.";
+      }
+    } else {
+      $resultado["err"] = EXIT_FAILURE;
+      $resultado["mensaje"] = "Usuario no autenticado.";
+    }
+    return json_encode($resultado);
+  }
 }

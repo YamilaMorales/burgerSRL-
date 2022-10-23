@@ -126,14 +126,13 @@ class ControladorCliente extends Controller
   public function editar($idCliente)
   {
     $titulo = "Edición de cliente";
+    $cliente = new Cliente();
     if (Usuario::autenticado() == true) {
       if (!Patente::autorizarOperacion("CLIENTEEDITAR")) {
         $codigo = "CLIENTEEDITAR";
         $mensaje = "No tiene permisos para la operación.";
         return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
       } else {
-
-        $cliente = new Cliente();
         $cliente->obtenerPorId($idCliente);
         return view("sistema.cliente-nuevo", compact("titulo", "cliente"));;
       }
