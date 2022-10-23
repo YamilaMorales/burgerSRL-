@@ -60,7 +60,7 @@
                   <div class="form-group col-6">
                         <label>Estado: *</label>
                         <select value="" id="lstEstado" name="lstEstado" required class="form-control">
-                        <option value="" disabled selected >Seleccionar </option>
+                              <option value="" disabled selected>Seleccionar </option>
                               @foreach( $aEstados as $estado)
                               <option selected value="{{$estado->idestado}}"> {{$estado->nombre}}</option>
 
@@ -72,7 +72,7 @@
                   <div class="form-group col-6">
                         <label>Sucursal: *</label>
                         <select value="" id="lstSucursal" name="lstSucursal" required class="form-control">
-                        <option value="" disabled selected >Seleccionar </option>
+                              <option value="" disabled selected>Seleccionar </option>
                               @foreach( $aSucursales as $sucursal)
 
                               <option selected value="{{$sucursal->idsucursal}}"> {{$sucursal->nombre}}</option>
@@ -85,7 +85,7 @@
                   <div class="form-group col-6">
                         <label>Cliente: *</label>
                         <select selected value="" id="lstCliente" name="lstCliente" required class="form-control">
-                        <option value="" disabled selected >Seleccionar </option>
+                              <option value="" disabled selected>Seleccionar </option>
                               @foreach( $aClientes as $cliente)
                               <option selected value="{{$cliente->idcliente}}"> {{$cliente->nombre}}</option>
 
@@ -97,18 +97,38 @@
       </form>
 </div>
 <script>
+      $("#form1").validate();
 
-    $("#form1").validate();
+      function guardar() {
+            if ($("#form1").valid()) {
+                  modificado = false;
+                  form1.submit();
+            } else {
+                  $("#modalGuardar").modal('toggle');
+                  msgShow("Corrija los errores e intente nuevamente.", "danger");
+                  return false;
+            }
 
-    function guardar() {
-        if ($("#form1").valid()) {
-            modificado = false;
-            form1.submit();
-        } else {
-            $("#modalGuardar").modal('toggle');
-            msgShow("Corrija los errores e intente nuevamente.", "danger");
-            return false;
-        }
-    }
-    </script>
+      }
+      function eliminar() {
+        $.ajax({
+            type: "GET",
+            url: "{{ asset('admin/pedido/eliminar') }}",
+            data: { id:globalId },
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                if (data.err = 0) {
+                    msgShow(data.mensaje , "success");
+                    $("#btnEnviar").hide();
+                    $("#btnEliminar").hide();
+                    $('#mdlEliminar').modal('toggle');
+                } else {
+                    msgShow(data.mensaje , "success");
+                    $('#mdlEliminar').modal('toggle');
+                }
+            }
+        });
+      }
+</script>
 @endsection

@@ -15,7 +15,7 @@ class ControladorPedido extends Controller
 {
   public function nuevo()
   {
-    $pedido= new Pedido();
+    $pedido = new Pedido();
     $titulo = "Nuevo pedido";
     $estado = new Estado();
     $sucursal = new Sucursal();
@@ -72,7 +72,7 @@ class ControladorPedido extends Controller
     $pedido = new Pedido();
     $pedido->obtenerPorId($id);
 
-    return view('sistema.pedido-nuevo', compact('msg', 'cliente', 'titulo',)) . '?id=' . $pedido->idpedido;
+    return view('sistema.pedido-nuevo', compact('msg', 'cliente', 'titulo')) . '?id=' . $pedido->idpedido;
   }
 
   public function cargarGrilla(Request $request)
@@ -93,7 +93,7 @@ class ControladorPedido extends Controller
 
     for ($i = $inicio; $i < count($aPedidos) && $cont < $registros_por_pagina; $i++) {
       $row = array();
-      $row[] ="<a href='/admin/pedido/" . $aClientes[$i]->idcliente . "'>" . $aClientes[$i]->nombre . "</a>";
+      $row[] = "<a href='/admin/pedido/" . $aClientes[$i]->idcliente . "'>" . $aClientes[$i]->nombre . "</a>";
       $row[] = $aPedidos[$i]->fecha;
       $row[] = $aPedidos[$i]->descripcion;
       $row[] = $aPedidos[$i]->total;
@@ -110,7 +110,8 @@ class ControladorPedido extends Controller
     return json_encode($json_data);
   }
 
-  public function editar($idPedido){
+  public function editar($idPedido)
+  {
 
     $titulo = "Edición de pedido";
     $pedido = new Pedido();
@@ -121,8 +122,21 @@ class ControladorPedido extends Controller
     $aSucursales = $sucursal->obtenerTodos();
     $aEstados = $estado->obtenerTodos();
     $pedido->obtenerPorId($idPedido);
-    return view( "sistema.pedido-nuevo" , compact( "titulo", "pedido", "aClientes","aSucursales","aEstados"));
-}
+    return view("sistema.pedido-nuevo", compact("titulo", "pedido", "aClientes", "aSucursales", "aEstados"));
+  }
 
 
+  public function eliminar(Request $request)
+  {
+
+    $idPedido = $request->input("id");
+    $pedido = new Pedido();
+
+    $pedido->idpedido = $idPedido;
+    $pedido->eliminar();
+    $resultado["err"] = EXIT_SUCCESS;
+    $resultado["mensaje"] = "Registro eliminado exitosamente.";
+
+    return json_encode($resultado);
+  }
 }
