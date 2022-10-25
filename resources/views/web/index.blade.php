@@ -10,14 +10,14 @@
             <div class="col-md-7 col-lg-6 ">
               <div class="detail-box">
                 <h1>
-                  Fast Food Restaurant
+                  BURGER SRL 
                 </h1>
                 <p>
-                  Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                Somos el imperio de las hamburguesas, llegamos para conquistar tu paladar, un reinado del sabor.
                 </p>
                 <div class="btn-box">
                   <a href="" class="btn1">
-                    Order Now
+                  Hace tu pedido.
                   </a>
                 </div>
               </div>
@@ -31,14 +31,14 @@
             <div class="col-md-7 col-lg-6 ">
               <div class="detail-box">
                 <h1>
-                  Fast Food Restaurant
+                  BURGER SRL
                 </h1>
                 <p>
-                  Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                  Siente el sabor en cada bocado.
                 </p>
                 <div class="btn-box">
                   <a href="" class="btn1">
-                    Order Now
+                  Hace tu pedido.
                   </a>
                 </div>
               </div>
@@ -52,14 +52,14 @@
             <div class="col-md-7 col-lg-6 ">
               <div class="detail-box">
                 <h1>
-                  Fast Food Restaurant
+                  BURGER SRL
                 </h1>
                 <p>
-                  Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad mollitia laborum quam quisquam esse error unde. Tempora ex doloremque, labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                Mejores ingredientes, mejor hamburguesa.
                 </p>
                 <div class="btn-box">
                   <a href="" class="btn1">
-                    Order Now
+                    Hace tu pedido.
                   </a>
                 </div>
               </div>
@@ -96,13 +96,13 @@
             </div>
             <div class="detail-box">
               <h5>
-                Tasty Thursdays
+                Martes
               </h5>
               <h6>
-                <span>20%</span> Off
+                <span>15%</span> Off
               </h6>
               <a href="">
-                Order Now <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                Hace tu pedido. <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                   <g>
                     <g>
                       <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
@@ -165,13 +165,13 @@
             </div>
             <div class="detail-box">
               <h5>
-                Pizza Days
+                Domingos
               </h5>
               <h6>
-                <span>15%</span> Off
+                <span>10%</span> Off
               </h6>
               <a href="">
-                Order Now <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                Hace tu pedido. <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                   <g>
                     <g>
                       <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248

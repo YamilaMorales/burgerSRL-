@@ -6,16 +6,16 @@
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          Our Menu
+          Nuestro Menu
         </h2>
       </div>
 
       <ul class="filters_menu">
-        <li class="active" data-filter="*">All</li>
+        <li class="active" data-filter="*">Todo</li>
         <li data-filter=".burger">Burger</li>
-        <li data-filter=".pizza">Pizza</li>
-        <li data-filter=".pasta">Pasta</li>
-        <li data-filter=".fries">Fries</li>
+        <li data-filter=".pizza">Starters</li>
+        <li data-filter=".pasta">Menu kids</li>
+        <li data-filter=".fries">Bebidas</li>
       </ul>
 
       <div class="filters-content">

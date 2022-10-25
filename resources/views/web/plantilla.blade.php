@@ -13,7 +13,7 @@
   <meta name="author" content="" />
   <link rel="shortcut icon" href="web/web/images/favicon.png" type="">
 
-  <title> Feane </title>
+  <title>BURGER SRL </title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="web/css/bootstrap.css" />
@@ -44,7 +44,7 @@
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="index.html">
             <span>
-              Feane
+              BURGER SRL
             </span>
           </a>
 
@@ -150,7 +150,7 @@
         <div class="col-md-4 footer-col">
           <div class="footer_contact">
             <h4>
-              Contact Us
+              Sucursales
             </h4>
             <div class="contact_link_box">
               <a href="">
@@ -177,10 +177,10 @@
         <div class="col-md-4 footer-col">
           <div class="footer_detail">
             <a href="" class="footer-logo">
-              Feane
+              BURGER SRL
             </a>
             <p>
-              Necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with
+              Seguinos en nuestras redes.
             </p>
             <div class="footer_social">
               <a href="">
@@ -203,13 +203,13 @@
         </div>
         <div class="col-md-4 footer-col">
           <h4>
-            Opening Hours
+            Horario
           </h4>
           <p>
-            Everyday
+            Lunes a Domingos.
           </p>
           <p>
-            10.00 Am -10.00 Pm
+            12.00 Am -01.00 Pm
           </p>
         </div>
       </div>
@@ -218,7 +218,7 @@
           &copy; <span id="displayYear"></span> All Rights Reserved By
           <a href="https://html.design/">Free Html Templates</a><br><br>
           &copy; <span id="displayYear"></span> Distributed By
-          <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+          <a href="https://themewagon.com/" target="_blank">BURGER SRL</a>
         </p>
       </div>
     </div>
