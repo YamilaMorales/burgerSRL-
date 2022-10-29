@@ -8,4 +8,6 @@ class ControladorWebHome extends Controller
     {
             return view("web.index");
     }
+
+    public fuction()
 }

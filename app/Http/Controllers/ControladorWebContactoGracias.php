@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class ControladorContactoGracias extends Controller
+class ControladorWebContactoGracias extends Controller
 {
     public function index()
     {
