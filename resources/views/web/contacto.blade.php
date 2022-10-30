@@ -40,4 +40,4 @@
   </section>
   <!-- end book section -->
 
-  @endsection("contenido")
+  @endsection
