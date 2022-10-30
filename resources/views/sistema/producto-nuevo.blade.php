@@ -47,16 +47,10 @@
                         <label>Cantidad: *</label>
                         <input type="text" id="txtCantidad" name="txtCantidad" class="form-control" value="{{$producto->cantidad}}" required>
                   </div>
-
-
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Descripcion: *</label>
                         <textarea name="txtDescripcion" id="txtDescripcion" cols="30" rows="20" class="form-control"  required>{{ $producto->descripcion }}</textarea>
                   </div>
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label for="lstCategoria"> Tipo de producto: *</label>
                         <select name="lstCategoria" id="lstCategoria" class="form-control"  >
@@ -71,16 +65,14 @@
                               @endforeach
                         </select>
                   </div>
-                  
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Precio: *</label>
                         <input type="text" id="txtPrecio" name="txtPrecio" class="form-control" value="{{$producto->precio}}" required>
                   </div>
                   <div class="form-group col-6">
                         <label for="fileImage">Imagen: *</label>
-                        <input type="file" id="archivo" name="imagen" class="form-control-file" value="" required>
+                        <input type="file" id="archivo" name="archivo" class="form-control-file"  required>
+                        <img src="" alt="">
                   </div>
             </div>
 

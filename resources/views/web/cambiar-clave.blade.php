@@ -10,15 +10,13 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form_container">
-                    <form action="method post">
+                    <form action="" method="POST">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                         <div>
-                            <input type="tex" class="form-control" placeholder="Correo:" />
+                            <input type="password" name="txtNuevaClave" id="txtNuevaClave" class="form-control" placeholder="Nueva contraseña:" />
                         </div>
                         <div>
-                            <input type="text" class="form-control" placeholder="Nueva contraseña:" />
-                        </div>
-                        <div>
-                            <input type="tex" class="form-control" placeholder="Repetir contraseña:" />
+                            <input type="password" name="txtRepetirClave" id="txtRepetirClave" class="form-control" placeholder="Repetir contraseña:" />
                         </div>
 
                         <div class="btn_box">
