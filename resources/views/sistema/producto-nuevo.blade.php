@@ -55,11 +55,11 @@
                         <label for="lstCategoria"> Tipo de producto: *</label>
                         <select name="lstCategoria" id="lstCategoria" class="form-control"  >
                               <option value="" disabled selected >Seleccionar </option>
-                              @foreach( $aCategorias as $categoria)
+                              @foreach( $aCategorias AS $categoria )
                               @if($categoria->idcategoria == $producto->fk_idcategoria)
-                              <option selected value="{{ $categoria->idcategoria }}">{{$categoria->nombre}}</option>
+                              <option selected value="{{ $categoria->idcategoria }}">{{ $categoria->nombre }}</option>
                               @else
-                              <option value="{{ $categoria->idcategoria }}">{{$categoria->nombre}}</option>
+                              <option value="{{ $categoria->idcategoria }}">{{ $categoria->nombre }}</option>
                               
                               @endif
                               @endforeach

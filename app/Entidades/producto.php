@@ -22,7 +22,7 @@ class Producto extends Model
         $this->nombre = $request->input('txtNombre');
         $this->cantidad = $request->input('txtCantidad');
         $this->precio = $request->input('txtPrecio');
-        $this->imagen = $request->input('imagen');
+        $this->imagen = $request->input('archivo');
         $this->fk_idcategoria = $request->input('lstCategoria');
         $this->descripcion = $request->input('txtDescripcion');
     
@@ -74,7 +74,7 @@ class Producto extends Model
         $sql = "UPDATE productos SET
             nombre='$this->nombre',
             cantidad=$this->cantidad,
-            precio=$this->precio,
+            precio='$this->precio',
             imagen='$this->imagen',
             fk_idcategoria=$this->fk_idcategoria,
             descripcion= '$this->descripcion'
@@ -115,29 +115,35 @@ class Producto extends Model
     {
         $request = $_REQUEST;
         $columns = array(
-            0 => 'nombre',
-            1 => 'precio',
-            2 => 'cantidad',
-            3 => 'descripcion',
+            0 => 'A.nombre',
+            1 => 'A.precio',
+            2 => 'A.cantidad',
+            3=>  'B.nombre',
+            4 => 'A.descripcion',
+           
         );
         $sql = "SELECT DISTINCT
-                    idproducto,
-                    nombre,
-                    precio,
-                    cantidad,
-                    descripcion
-                    
-                    FROM productos
+                    A.idproducto,
+                    A.nombre,
+                    A.precio,
+                    A.cantidad,
+                    A.descripcion,
+                    A.fk_idcategoria,
+                    B.nombre AS categoria
+                    FROM productos A
+                    INNER JOIN categorias B ON A.fk_idcategoria = B.idcategoria
                    WHERE 1=1
                 ";
 
         //Realiza el filtrado
         if (!empty($request['search']['value'])) {
-            $sql .= " AND nombre LIKE '%" . $request['search']['value'] . "%' ";
-            $sql .= " OR  precio LIKE '%" . $request['search']['value'] . "%' ";
-            $sql .= " OR cantidad LIKE '%" . $request['search']['value'] . "%' )";
-            $sql .= " OR descripcion LIKE '%" . $request['search']['value'] . "%' )";
+            $sql .= " AND A.nombre LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " OR  A.precio LIKE '%" . $request['search']['value'] . "%' ";
+            $sql .= " OR A.fk_idcategoria LIKE '%" . $request['search']['value'] . "%' )";
+            $sql .= " OR A.descripcion LIKE '%" . $request['search']['value'] . "%' )";
+    
         }
+        
         $sql .= " ORDER BY " . $columns[$request['order'][0]['column']] . "   " . $request['order'][0]['dir'];
 
         $lstRetorno = DB::select($sql);

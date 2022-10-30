@@ -84,7 +84,7 @@ class ControladorSucursal extends Controller
     $sucursal = new Sucursal();
     $sucursal->obtenerPorId($id);
 
-    return view('sistema.sucursal-nuevo', compact('msg', 'cliente', 'titulo',)) . '?id=' . $sucursal->idsucursal;
+    return view('sistema.sucursal-nuevo', compact('msg', 'sucursal', 'titulo',)) . '?id=' . $sucursal->idsucursal;
   }
   public function cargarGrilla(Request $request)
   {
@@ -127,7 +127,7 @@ class ControladorSucursal extends Controller
     $titulo = "Edición de sucursales";
     if (Usuario::autenticado() == true) {
       if (!Patente::autorizarOperacion("SUCURSALEDITAR")) {
-        $codigo = "PEDIDOEDITAR";
+        $codigo = "SUCURSALEDITAR";
         $mensaje = "No tiene permisos para la operación.";
         return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
       } else {

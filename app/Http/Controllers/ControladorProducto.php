@@ -42,7 +42,7 @@ if ($_FILES["archivo"]["error"] === UPLOAD_ERR_OK) { //Se adjunta imagen
 
 
             //validaciones
-            if ($entidad->nombre == "" || $entidad->cantidad == "" || $entidad->precio == "" || $entidad->descripcion == "" || $entidad->categoria == "" ) {
+            if ($entidad->nombre == "" || $entidad->cantidad == "" || $entidad->precio == "" || $entidad->descripcion == "" || $entidad->categoria == ""||$entidad->imagen == ""  ) {
                 $msg["ESTADO"] = MSG_ERROR;
                 $msg["MSG"] = "Complete todos los datos";
             } else {
@@ -106,6 +106,9 @@ if ($_FILES["archivo"]["error"] === UPLOAD_ERR_OK) { //Se adjunta imagen
           $row[] = $aProductos[$i]->precio;
           $row[] = $aProductos[$i]->cantidad;
           $row[] = $aProductos[$i]->descripcion;
+          $row[] = $aProductos[$i]->categoria;
+         
+          
           $cont++;
           $data[] = $row;
       }
