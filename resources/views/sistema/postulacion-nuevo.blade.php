@@ -63,7 +63,7 @@
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label for="text" >Curriculum: *</label>
-                        <input type="text" id="txtCurriculum" name="txtCurriculum" class="form-control-file" value="" required>
+                        <input type="text" id="txtCurriculum" name="txtCurriculum" class="form-control-file"  acept=".pdf, .word" value="" required>
                   </div>
             </div>
       </form>

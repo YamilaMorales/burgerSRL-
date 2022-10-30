@@ -8,7 +8,7 @@
 @endsection
 @section('breadcrumb')
 <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/admin/home">Inicio</a></li>
+      <li class="breadcrumb-item"><a href="/admin">Inicio</a></li>
       <li class="breadcrumb-item"><a href="/admin/pedidos">Pedidos</a></li>
       <li class="breadcrumb-item active">Modificar</li>
 </ol>
@@ -47,7 +47,7 @@
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Descripcion: *</label>
-                        <textarea name="txtDescripcion" id="txtDescripcion" cols="30" rows="20" class="form-control" value="{{$pedido->descripcion}}" required></textarea>
+                        <textarea name="txtDescripcion" id="txtDescripcion" cols="30" rows="20" class="form-control"required>{{$pedido->descripcion}}</textarea>
                   </div>
 
                   <div class="form-group col-6">
@@ -62,7 +62,7 @@
                         <select value="" id="lstEstado" name="lstEstado" required class="form-control">
                               <option value="" disabled selected>Seleccionar </option>
                               @foreach( $aEstados as $estado)
-                              <option selected value="{{$estado->idestado}}"> {{$estado->nombre}}</option>
+                              <option  value="{{$estado->idestado}}"> {{$estado->nombre}}</option>
 
                               @endforeach
                         </select>
@@ -87,7 +87,7 @@
                         <select selected value="" id="lstCliente" name="lstCliente" required class="form-control">
                               <option value="" disabled selected>Seleccionar </option>
                               @foreach( $aClientes as $cliente)
-                              <option selected value="{{$cliente->idcliente}}"> {{$cliente->nombre}}</option>
+                              <option value="{{$cliente->idcliente}}"> {{$cliente->nombre}}</option>
 
                               @endforeach
                         </select>

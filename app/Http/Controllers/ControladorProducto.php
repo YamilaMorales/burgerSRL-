@@ -24,85 +24,100 @@ class ControladorProducto extends Controller
     
     }
 
-    public function guardar(Request $request){
+    public function guardar(Request $request)
+    {
+        try {
+            //Define la entidad servicio
+            $titulo = "Modificar producto";
+            $entidad = new Producto();
+            $entidad->cargarDesdeRequest($request);
 
-      try {
+if ($_FILES["archivo"]["error"] === UPLOAD_ERR_OK) { //Se adjunta imagen
+              $extension = pathinfo($_FILES["archivo"]["name"], PATHINFO_EXTENSION);
+               $nombre = date("Ymdhmsi") . ".$extension";
+               $archivo = $_FILES["archivo"]["tmp_name"];
+               move_uploaded_file($archivo, env('APP_PATH') . "/public/files/$nombre"); //guardaelarchivo
+               $entidad->imagen = $nombre;
+           }
 
-        //Define la entidad servicio
-        $titulo = "Modificar producto";
-        $entidad = new Producto();
-        $entidad->cargarDesdeRequest($request);
 
-        //validaciones
-        if ($entidad->nombre == "" || $entidad->cantidad == "" || $entidad->precio == "" || $entidad->descripcion == "" || $entidad->categoria == "" ) {
-            $msg["ESTADO"] = MSG_ERROR;
-            $msg["MSG"] = "Complete todos los datos";
-        } else {
-            if ($_POST["id"] > 0) {
-                //Es actualizacion
-                $entidad->guardar();
-
-                $msg["ESTADO"] = MSG_SUCCESS;
-                $msg["MSG"] = OKINSERT;
+            //validaciones
+            if ($entidad->nombre == "" || $entidad->cantidad == "" || $entidad->precio == "" || $entidad->descripcion == "" || $entidad->categoria == "" ) {
+                $msg["ESTADO"] = MSG_ERROR;
+                $msg["MSG"] = "Complete todos los datos";
             } else {
-                //Es nuevo
-                $entidad->insertar();
+                if ($_POST["id"] > 0) {
+                    $productAnt = new Producto();
+                    $productAnt->obtenerPorId($entidad->idproducto);
 
-                $msg["ESTADO"] = MSG_SUCCESS;
-                $msg["MSG"] = OKINSERT;
+                    if($_FILES["archivo"]["error"] === UPLOAD_ERR_OK){
+                        //Eliminar imagen anterior
+                        @unlink(env('APP_PATH') . "/public/files/$productAnt->imagen");                          
+                    } else {
+                        $entidad->imagen = $productAnt->imagen;
+                    }
+
+                    //Es actualizacion
+                    $entidad->guardar();
+
+                    $msg["ESTADO"] = MSG_SUCCESS;
+                    $msg["MSG"] = OKINSERT;
+                } else {
+                    //Es nuevo
+                    $entidad->insertar();
+
+                    $msg["ESTADO"] = MSG_SUCCESS;
+                    $msg["MSG"] = OKINSERT;
+                }
+                $_POST["id"] = $entidad->idproducto;
+                return view('sistema.producto-listar', compact('titulo', 'msg'));
             }
-            $_POST["id"] = $entidad->idproducto;
-            return view('sistema.producto-listar', compact('titulo', 'msg'));
-            }
-        
         } catch (Exception $e) {
             $msg["ESTADO"] = MSG_ERROR;
             $msg["MSG"] = ERRORINSERT;
         }
-      
+
         $id = $entidad->idproducto;
         $producto = new Producto();
         $producto->obtenerPorId($id);
 
-    return view('sistema.producto-nuevo', compact('msg', 'cliente', 'titulo',)) . '?id=' . $producto->idproducto;
-
-} 
-
-
-
-public function cargarGrilla( Request $request){
-
-    $request = $_REQUEST;
-
-    $entidad = new Producto();
-    $aProductos = $entidad->obtenerFiltrado();
-
-    $data = array();
-    $cont = 0;
-
-    $inicio = $request['start'];
-    $registros_por_pagina = $request['length'];
-
-
-    for ($i = $inicio; $i < count($aProductos) && $cont < $registros_por_pagina; $i++) {
-        $row = array();
-        $row[] ="<a href='/admin/producto/" . $aProductos[$i]->idproducto . "'>" . $aProductos[$i]->nombre . "</a>";
-        $row[] = $aProductos[$i]->precio;
-        $row[] = $aProductos[$i]->cantidad;
-        $row[] = $aProductos[$i]->descripcion;
-        $cont++;
-        $data[] = $row;
+        return view('sistema.producto-nuevo', compact('msg', 'producto', 'titulo')) . '?id=' . $producto->idproducto;
     }
 
-    $json_data = array(
-        "draw" => intval($request['draw']),
-        "recordsTotal" => count($aProductos), //cantidad total de registros sin paginar
-        "recordsFiltered" => count($aProductos), //cantidad total de registros en la paginacion
-        "data" => $data,
-    );
-    return json_encode($json_data);
-}
 
+
+    public function cargarGrilla( Request $request){
+
+      $request = $_REQUEST;
+  
+      $entidad = new Producto();
+      $aProductos = $entidad->obtenerFiltrado();
+  
+      $data = array();
+      $cont = 0;
+  
+      $inicio = $request['start'];
+      $registros_por_pagina = $request['length'];
+  
+  
+      for ($i = $inicio; $i < count($aProductos) && $cont < $registros_por_pagina; $i++) {
+          $row = array();
+          $row[] ="<a href='/admin/producto/" . $aProductos[$i]->idproducto . "'>" . $aProductos[$i]->nombre . "</a>";
+          $row[] = $aProductos[$i]->precio;
+          $row[] = $aProductos[$i]->cantidad;
+          $row[] = $aProductos[$i]->descripcion;
+          $cont++;
+          $data[] = $row;
+      }
+  
+      $json_data = array(
+          "draw" => intval($request['draw']),
+          "recordsTotal" => count($aProductos), //cantidad total de registros sin paginar
+          "recordsFiltered" => count($aProductos), //cantidad total de registros en la paginacion
+          "data" => $data,
+      );
+      return json_encode($json_data);
+  }
 public function editar($idProducto){
 
     $titulo = "Edición de producto";
@@ -135,4 +150,5 @@ public function eliminar(Request $request){
   return json_encode($resultado);
 
 }
+
 }

@@ -8,7 +8,7 @@
 @endsection
 @section('breadcrumb')
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/home">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="/admin">Inicio</a></li>
     <li class="breadcrumb-item active">Clientes</a></li>
 </ol>
 <ol class="toolbar">

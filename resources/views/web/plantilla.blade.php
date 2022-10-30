@@ -150,7 +150,8 @@
         <div class="col-md-4 footer-col">
           <div class="footer_contact">
             <h4>
-              Sucursales
+              $aSucursales->$sucursal
+              @foreach ($aSucursales as $sucursal) {{$sucursal->nombre}} @endforeach
             </h4>
             <div class="contact_link_box">
               <a href="">

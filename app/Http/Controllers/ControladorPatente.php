@@ -71,8 +71,9 @@ class ControladorPatente extends Controller
                 $mensaje = "No tiene pemisos para la operacióN";
                 return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
             } else {
+                $titulo = "Nueva Patente";
                 $patente = new Patente();
-                return view('sistema.patente-nuevo', compact('patente'));
+                return view('sistema.patente-nuevo', compact('patente', 'titulo'));
             }
         } else {
             return redirect('admin/login');

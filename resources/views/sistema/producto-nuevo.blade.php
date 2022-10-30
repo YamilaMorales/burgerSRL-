@@ -35,7 +35,7 @@
             echo '<script>msgShow("' . $msg["MSG"] . '", "' . $msg["ESTADO"] . '")</script>';
       }
       ?>
-      <form id="form1" method="POST" class="py-3">
+      <form id="form1" method="POST" enctype="multipart/form-data" class="py-3">
             <div class="row">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
@@ -48,6 +48,30 @@
                         <input type="text" id="txtCantidad" name="txtCantidad" class="form-control" value="{{$producto->cantidad}}" required>
                   </div>
 
+
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+                  <div class="form-group col-6">
+                        <label>Descripcion: *</label>
+                        <textarea name="txtDescripcion" id="txtDescripcion" cols="30" rows="20" class="form-control"  required>{{ $producto->descripcion }}</textarea>
+                  </div>
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+                  <div class="form-group col-6">
+                        <label for="lstCategoria"> Tipo de producto: *</label>
+                        <select name="lstCategoria" id="lstCategoria" class="form-control"  >
+                              <option value="" disabled selected >Seleccionar </option>
+                              @foreach( $aCategorias as $categoria)
+                              @if($categoria->idcategoria == $producto->fk_idcategoria)
+                              <option selected value="{{ $categoria->idcategoria }}">{{$categoria->nombre}}</option>
+                              @else
+                              <option value="{{ $categoria->idcategoria }}">{{$categoria->nombre}}</option>
+                              
+                              @endif
+                              @endforeach
+                        </select>
+                  </div>
+                  
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
@@ -58,26 +82,8 @@
                         <label for="fileImage">Imagen: *</label>
                         <input type="file" id="archivo" name="imagen" class="form-control-file" value="" required>
                   </div>
-
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
-                  <div class="form-group col-6">
-                        <label>Descripcion: *</label>
-                        <textarea name="txtDescripcion" id="txtDescripcion" cols="30" rows="20" class="form-control" value="{{ $producto->descripcion }}" required></textarea>
-                  </div>
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
-                  <div class="form-group col-6">
-                        <label for="txtCategoria"> Tipo de producto: *</label>
-                        <select name="lstCategoria" id="lstCategoria" class="form-control"  >
-                              <option value="" disabled selected >Seleccionar </option>
-                              @foreach( $aCategorias as $categoria)
-                              <option value="{{ $categoria->idcategoria }}">{{$categoria->nombre}}</option>
-
-                              @endforeach
-                        </select>
-                  </div>
             </div>
+
       </form>
 </div>
 <script>

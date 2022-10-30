@@ -16,8 +16,8 @@ class ControladorProveedor extends Controller
     $proveedor = new Proveedor();
     $titulo = "Nuevo proveedor";
     if (Usuario::autenticado() == true) {
-      if (!Patente::autorizarOperacion("PROVEEDOROALTA")) {
-        $codigo = "PROVEEDORALTA";
+      if (!Patente::autorizarOperacion("PROVEEDORESALTA")) {
+        $codigo = "PROVEEDORESALTA";
         $mensaje = "No tiene permisos para la operación.";
         return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
       } else {
@@ -32,8 +32,8 @@ class ControladorProveedor extends Controller
   {
     $titulo = "Listado de proveedores";
     if (Usuario::autenticado() == true) {
-      if (!Patente::autorizarOperacion("PROVEEDORCONSULTA")) {
-        $codigo = "PROVEEDORCONSULTA";
+      if (!Patente::autorizarOperacion("PROVEEDORESCONSULTA")) {
+        $codigo = "PROVEEDORESCONSULTA";
         $mensaje = "No tiene permisos para la operación.";
         return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
       } else {
