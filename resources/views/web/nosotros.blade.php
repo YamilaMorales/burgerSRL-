@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form_container">
-                    <form action="method post">
+                    <form action="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                         <div>
                             <input type="text" class="form-control" placeholder="Nombre:" />
