@@ -59,9 +59,9 @@
                         </div>
 
                         <div class="btn_box">
-                            <button type="submit">
+                           <a href="/postulacion-gracias"> <button type="submit">
                                 Enviar postulación
-                            </button>
+                            </button></a>
                         </div>
                     </form>
                 </div>

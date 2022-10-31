@@ -56,7 +56,7 @@
                         <select name="lstCategoria" id="lstCategoria" class="form-control"  >
                         
                               <option value="" disabled selected >Seleccionar </option>
-                              @foreach( $aCategorias AS $categoria )
+                              @foreach($aCategorias AS $categoria)
                               @if($categoria->idcategoria == $producto->fk_idcategoria)
                               <option selected value="{{ $categoria->idcategoria }}">{{ $categoria->nombre }}</option>
                               @else
