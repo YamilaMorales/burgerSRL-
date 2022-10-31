@@ -22,7 +22,7 @@ class Producto extends Model
         $this->nombre = $request->input('txtNombre');
         $this->cantidad = $request->input('txtCantidad');
         $this->precio = $request->input('txtPrecio');
-        $this->imagen = $request->input('archivo');
+        $this->imagen = $request->input('imagen');
         $this->fk_idcategoria = $request->input('lstCategoria');
         $this->descripcion = $request->input('txtDescripcion');
     
@@ -120,7 +120,7 @@ class Producto extends Model
             2 => 'A.cantidad',
             3=>  'B.nombre',
             4 => 'A.descripcion',
-           
+            5=>'A.imagen',
         );
         $sql = "SELECT DISTINCT
                     A.idproducto,
