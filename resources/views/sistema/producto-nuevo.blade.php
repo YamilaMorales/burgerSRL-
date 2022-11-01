@@ -8,7 +8,7 @@
 @endsection
 @section('breadcrumb')
 <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/admin/home">Inicio</a></li>
+      <li class="breadcrumb-item"><a href="/admin">Inicio</a></li>
       <li class="breadcrumb-item"><a href="/admin/productos">Productos</a></li>
       <li class="breadcrumb-item active">Modificar</li>
 </ol>
@@ -70,10 +70,10 @@
                         <label>Precio: *</label>
                         <input type="text" id="txtPrecio" name="txtPrecio" class="form-control" value="{{$producto->precio}}" required>
                   </div>
-                  <div class="form-group col-6">
+                  <div class="form-group col-6 ">
                         <label for="fileImage">Imagen: *</label>
-                        <input type="file" id="archivo" name="archivo" class="form-control-file"  required>
-                        <img src="" alt="">
+                        <input type="file" id="archivo" name="archivo" class="form-control-file ">
+                        <img class="img-thumbnail" src="" alt="" >
                   </div>
             </div>
 

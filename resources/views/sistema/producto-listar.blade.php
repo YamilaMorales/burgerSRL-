@@ -31,7 +31,7 @@ if (isset($msg)) {
             <th>Cantidad</th>
             <th>Descripcion</th>
             <th>Categoria</th>
-            <th>Imagen</th>
+            <th >Imagen</th>
            
         </tr>
     </thead>
