@@ -43,7 +43,7 @@ class ControladorProducto extends Controller
 
 
             //validaciones
-            if ($entidad->nombre == "" || $entidad->cantidad == "" || $entidad->precio == "" || $entidad->descripcion == "" || $entidad->categoria == "" ) {
+            if ($entidad->nombre == "" || $entidad->cantidad == "" || $entidad->precio == "" || $entidad->descripcion == ""  ) {
                 $msg["ESTADO"] = MSG_ERROR;
                 $msg["MSG"] = "Complete todos los datos";
             } else {
@@ -111,7 +111,7 @@ class ControladorProducto extends Controller
             $row[] = $aProductos[$i]->cantidad;
             $row[] = $aProductos[$i]->descripcion;
             $row[] = $aProductos[$i]->categoria;
-            
+            $row[] = "<img src='/files/" . $aProductos[$i]->imagen . "'>";
 
 
             $cont++;

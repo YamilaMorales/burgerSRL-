@@ -10,7 +10,7 @@ class Producto extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idproducto', 'nombre', 'cantidad', 'precio', 'imagen', 'fk_idcategoria', 'descripcion',
+        'idproducto', 'nombre', 'cantidad', 'precio', 'imagen', 'fk_idcategoria', 'descripcion'
     ];
 
     protected $hidden = [
@@ -22,7 +22,6 @@ class Producto extends Model
         $this->nombre = $request->input('txtNombre');
         $this->cantidad = $request->input('txtCantidad');
         $this->precio = $request->input('txtPrecio');
-        //$this->imagen = $request->input('imagen');
         $this->fk_idcategoria = $request->input('lstCategoria');
         $this->descripcion = $request->input('txtDescripcion');
     
@@ -106,7 +105,7 @@ class Producto extends Model
             $this->precio,
             $this->imagen,
             $this->fk_idcategoria,
-            $this->descripcion,
+            $this->descripcion
         ]);
         return $this->idproducto = DB::getPdo()->lastInsertId();
     }
@@ -120,7 +119,7 @@ class Producto extends Model
             2 => 'A.cantidad',
             3=>  'B.nombre',
             4 => 'A.descripcion',
-            5=> 'A.imagen',
+            5=> 'A.imagen'
            
         );
         $sql = "SELECT DISTINCT
@@ -143,7 +142,7 @@ class Producto extends Model
             $sql .= " OR  A.precio LIKE '%" . $request['search']['value'] . "%' ";
             $sql .= " OR A.fk_idcategoria LIKE '%" . $request['search']['value'] . "%' )";
             $sql .= " OR A.descripcion LIKE '%" . $request['search']['value'] . "%' )";
-            $sql .= " OR A.imagen LIKE '%" . $request['search']['value'] . "%' )";
+           // $sql .= " OR A.imagen LIKE '%" . $request['search']['value'] . "%' )";
     
         }
         
