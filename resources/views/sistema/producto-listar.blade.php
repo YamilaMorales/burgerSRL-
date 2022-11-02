@@ -23,7 +23,7 @@ if (isset($msg)) {
     echo '<script>msgShow("' . $msg["MSG"] . '", "' . $msg["ESTADO"] . '")</script>';
 }
 ?>
-<table id="grilla" class="display">
+<table id="grilla" class="display"  >
     <thead>
         <tr>
             <th>Nombre</th>
@@ -31,7 +31,7 @@ if (isset($msg)) {
             <th>Cantidad</th>
             <th>Descripcion</th>
             <th>Categoria</th>
-            <th >Imagen</th>
+            <th>Imagen</th>
            
         </tr>
     </thead>
