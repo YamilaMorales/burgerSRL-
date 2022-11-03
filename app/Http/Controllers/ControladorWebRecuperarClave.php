@@ -22,49 +22,60 @@ class ControladorWebRecuperarClave extends Controller
 
     public function recuperar(Request $request){
         $titulo='Recupero de clave';
-        $email= $request->input('txtMail');
-
+        $correo= $request->input('txtCorreo');
+        $clave= rand(1000,9999);
         $cliente = new Cliente();
-        if($cliente->verificarExistenciaMail($email)){
-            //Envia  mail con las instrucciones
+        $cliente->obtenerPorCorreo($correo);
+        if($cliente->correo!= ""){
+            
 
             $data = "Instrucciones";
 
-            $mail = new PHPMailer(true);                              
+            $correo = new PHPMailer(true);                              
             try {
                 //Server settings
-                $mail->SMTPDebug = 0;                                 
-                $mail->isSMTP();                                     
-                $mail->Host = env('MAIL_HOST');  
-                $mail->SMTPAuth = true;                               
-                $mail->Username = env('MAIL_USERNAME');                 
-                $mail->Password = env('MAIL_PASSWORD');                           
-                $mail->SMTPSecure = env('MAIL_ENCRYPTION');                           
-                $mail->Port = env('MAIL_PORT');                                    
+                $correo->SMTPDebug = 0;                                 
+                $correo->isSMTP();                                     
+                $correo->Host = env('MAIL_HOST');  
+                $correo->SMTPAuth = true;                               
+                $correo->Username = env('MAIL_USERNAME');                 
+                $correo->Password = env('MAIL_PASSWORD');                           
+                $correo->SMTPSecure = env('MAIL_ENCRYPTION');                           
+                $correo->Port = env('MAIL_PORT');                                    
 
                 //Recipients
-                $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-                $mail->addAddress($email);               // Name is optional
-                $mail->addReplyTo('no-reply@fmed.uba.ar');
+                $correo->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+                $correo->addAddress($correo);               
+               
 
                 //Content
-                $mail->isHTML(true);
-                $mail->Subject = 'Recupero de clave';
-                $mail->Body    = "Haz clic en el siguiente enlace para cambiar la clave: 
+                $correo->isHTML(true);
+                $correo->Subject = 'Recupero de clave';
+                $correo->Body    = "Los datos de acceso son:
+                Usuario: $cliente->correo
+                Clave: $clave 
 
-                ". env("APP_URL") ."/cambio-clave/$email/" . csrf_token();
+                ";
+                $entidad= new Cliente();
+                $entidad->guardar();
+                $entidad->correo = $request->input("txtCorreo");
+                $entidad->clave = password_hash($request->input("txtClave"), PASSWORD_DEFAULT);
+               
 
-                $mail->send();
-
-                $mensaje = "Te hemos enviado las instrucciones al correo.";
-                return view('web.recuperarclave', compact('titulo', 'mensaje'));
+                $msg["ESTADO"] = MSG_SUCCESS;
+                $msg["MSG"] = "Registro Exitoso.";
+                //$mail->send();
+                $mensaje = "Tu nueva clave es $clave ";
+                
+                return view('web.recuperar-clave', compact('titulo', 'mensaje'));
 
             } catch (Exception $e) {
                 $mensaje = "Hubo un error al enviar el correo.";
-                return view('web.recuperarclave', compact('titulo', 'mensaje'));
+                return view('web.recuperar-clave', compact('titulo', 'mensaje'));
             }  
         } else {
-            return view('web.recuperarclave', compact('titulo', 'mensaje'));
+            $mensaje = "El email es incorrecto.";
+            return view('web.recuperar-clave', compact('titulo', 'mensaje'));
         }
     }
 

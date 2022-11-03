@@ -12,7 +12,7 @@
                   @if($aCarritos)
                   <div class="col-md-9">
                         <div class="row form_container">
-                              <table class="table table hover">
+                              <table class="table-dark table hover">
                                     <thead>
                                           @foreach ($aCarritos AS $carrito)
                                           <tr>
@@ -25,9 +25,7 @@
                                           </tr>
                                     </thead>
                                     <tbody>
-                                          <td>
-                                                <img src="" class="thumbnail">
-                                          </td>
+                                          
                                           <td>
                                                 {{$carrito->producto}}
                                           </td>
@@ -36,6 +34,12 @@
                                           </td>
                                           <td>
                                                 {{$carrito->precio}}
+                                          </td>
+                                          <td>
+                                                
+                                          </td>
+                                          <td>
+                                                <img src="(($carrito->imagen}}" class="thumbnail">
                                           </td>
                                           @endforeach
                                     </tbody>
@@ -55,7 +59,7 @@
 
             <div class="btn_box">
                   <a href="/takeaway">
-                        <button type="submit">Agregar productos </button>
+                        <button type="submit">Agregar productos</button>
                   </a>
             </div>
       </div>
