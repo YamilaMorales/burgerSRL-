@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Entidades\Cliente;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use Session;
+
 
 class ControladorWebRecuperarClave extends Controller
 {
@@ -31,35 +31,41 @@ class ControladorWebRecuperarClave extends Controller
 
             $data = "Instrucciones";
 
-            $correo = new PHPMailer(true);                              
+            $email = new PHPMailer(true);                              
             try {
                 //Server settings
-                $correo->SMTPDebug = 0;                                 
-                $correo->isSMTP();                                     
-                $correo->Host = env('MAIL_HOST');  
-                $correo->SMTPAuth = true;                               
-                $correo->Username = env('MAIL_USERNAME');                 
-                $correo->Password = env('MAIL_PASSWORD');                           
-                $correo->SMTPSecure = env('MAIL_ENCRYPTION');                           
-                $correo->Port = env('MAIL_PORT');                                    
+                $email->SMTPDebug = 0;                                 
+                $email->isSMTP();                                     
+                $email->Host = env('MAIL_HOST');  
+                $email->SMTPAuth = true;                               
+                $email->Username = env('MAIL_USERNAME');                 
+                $email->Password = env('MAIL_PASSWORD');                           
+                $email->SMTPSecure = env('MAIL_ENCRYPTION');                           
+                $email->Port = env('MAIL_PORT');                                    
 
                 //Recipients
-                $correo->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-                $correo->addAddress($correo);               
+                $email->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+                $email->addAddress($correo);               
                
 
                 //Content
-                $correo->isHTML(true);
-                $correo->Subject = 'Recupero de clave';
-                $correo->Body    = "Los datos de acceso son:
+                $email->isHTML(true);
+                $email->Subject = 'Recupero de clave';
+                $email->Body    = "Los datos de acceso son:
                 Usuario: $cliente->correo
                 Clave: $clave 
 
                 ";
-                $entidad= new Cliente();
-                $entidad->guardar();
-                $entidad->correo = $request->input("txtCorreo");
-                $entidad->clave = password_hash($request->input("txtClave"), PASSWORD_DEFAULT);
+                if ($_POST["id"] > 0) {
+                    //Es actualizacion
+                    $cliente->guardar();
+          
+                 
+                $cliente->correo = $request->input("txtCorreo");
+                $cliente->clave = password_hash($request->input("txtClave"), PASSWORD_DEFAULT);
+                $msg["ESTADO"] = MSG_SUCCESS;
+                $msg["MSG"] = OKINSERT;
+              }
                
 
                 $msg["ESTADO"] = MSG_SUCCESS;

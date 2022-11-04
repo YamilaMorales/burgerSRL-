@@ -7,21 +7,31 @@
                 Ingresar al sistema
             </h2>
         </div>
+        @if(isset($mensaje))
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-danger" role="alert">
+                {{ $mensaje }}
+                </div>
+               
+            </div>
+        </div>
+        @endif
         <div class="row">
             <div class="col-md-6">
                 <div class="form_container">
-                    <form action="method post">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                    <form action="" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                         <div>
-                            <input type="tex" class="form-control" placeholder="Usuario:" />
+                            <input type="tex" class="form-control" id="txtCorreo" name="txtCorreo" placeholder="Correo:" />
                         </div>
                         <div>
-                            <input type="text" class="form-control" placeholder="Contraseña:" />
+                            <input type="password" class="form-control" id="txtClave" name="txtClave" placeholder="Contraseña:" />
                         </div>
                         <div class="btn_box">
-                           <a href="/"> <button type="submit">
-                                Ingresar
-                            </button> </a>
+                             <button type="submit" name="btnIngresar">
+                                    Ingresar
+                                </button> 
                         </div>
                     </form>
                 </div>

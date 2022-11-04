@@ -25,7 +25,7 @@ class Cliente extends Model
         $this->correo = $request->input('txtCorreo');
         $this->dni = $request->input('txtDni');
         $this->celular = $request->input('txtCelular');
-        $this->clave = $request->input('txtClave');
+        $this->clave = password_hass($request->input('txtClave'),PASSWORD_DEFAULT);
         $this->direccion = $request->input('txtDireccion');
     }
     public function obtenerFiltrado()
@@ -159,7 +159,7 @@ class Cliente extends Model
                  celular,
                  clave,
                  direccion
-                FROM clientes WHERE correo = $correo";
+                FROM clientes WHERE correo = '$correo'";
         $lstRetorno = DB::select($sql);
 
         if (count($lstRetorno) > 0) {

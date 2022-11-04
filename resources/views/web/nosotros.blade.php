@@ -42,6 +42,7 @@
                 <div class="form_container">
                     <form action="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                    <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                         <div>
                             <input type="text" class="form-control" placeholder="Nombre:" />
                         </div>

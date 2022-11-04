@@ -29,13 +29,13 @@
 @endsection
 @section('contenido')
 <div class="panel-body">
-     
+
       <?php
       if (isset($msg)) {
             echo '<script>msgShow("' . $msg["MSG"] . '", "' . $msg["ESTADO"] . '")</script>';
       }
       ?>
-       <div id="msg"></div>
+      <div id="msg"></div>
       <form id="form1" method="POST" class="py-3">
             <div class="row">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
@@ -49,8 +49,7 @@
                         <input type="text" id="txtApellido" name="txtApellido" class="form-control" value="{{$cliente->apellido}}" required>
                   </div>
 
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+
                   <div class="form-group col-6">
                         <label>DNI: *</label>
                         <input type="text" id="txtDni" name="txtDni" class="form-control" value="{{$cliente->dni}}" required>
@@ -60,20 +59,16 @@
                         <input type="email" id="txtCorreo" name="txtCorreo" class="form-control" value="{{$cliente->correo}}" required>
                   </div>
 
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Celular: *</label>
                         <input type="text" id="txtCelular" name="txtCelular" class="form-control" value="{{$cliente->celular}}" required>
                   </div>
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+
                   <div class="form-group col-6">
                         <label>Clave: *</label>
                         <input type="password" id="txtClave" name="txtClave" class="form-control" value="" required>
                   </div>
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+
                   <div class="form-group col-6">
                         <label>Dirección: *</label>
                         <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" value="{{$cliente->direccion}}" required>
@@ -82,39 +77,41 @@
       </form>
 </div>
 <script>
+      $("#form1").validate();
 
-    $("#form1").validate();
-
-    function guardar() {
-        if ($("#form1").valid()) {
-            modificado = false;
-            form1.submit();
-        } else {
-            $("#modalGuardar").modal('toggle');
-            msgShow("Corrija los errores e intente nuevamente.", "danger");
-            return false;
-        }
-    }
-    function eliminar() {
-        $.ajax({
-            type: "GET",
-            url: "{{ asset('admin/cliente/eliminar') }}",
-            data: { id:globalId },
-            async: true,
-            dataType: "json",
-            success: function (data) {
-                if (data.err == 0) {
-                    msgShow(data.mensaje , "success");
-                    $("#btnEnviar").hide();
-                    $("#btnEliminar").hide();
-                    $('#mdlEliminar').modal('toggle');
-                } else {
-                    msgShow(data.mensaje , "danger");
-                    $('#mdlEliminar').modal('toggle');
-                }
+      function guardar() {
+            if ($("#form1").valid()) {
+                  modificado = false;
+                  form1.submit();
+            } else {
+                  $("#modalGuardar").modal('toggle');
+                  msgShow("Corrija los errores e intente nuevamente.", "danger");
+                  return false;
             }
-        });
       }
-    </script>
+
+      function eliminar() {
+            $.ajax({
+                  type: "GET",
+                  url: "{{ asset('admin/cliente/eliminar') }}",
+                  data: {
+                        id: globalId
+                  },
+                  async: true,
+                  dataType: "json",
+                  success: function(data) {
+                        if (data.err == 0) {
+                              msgShow(data.mensaje, "success");
+                              $("#btnEnviar").hide();
+                              $("#btnEliminar").hide();
+                              $('#mdlEliminar').modal('toggle');
+                        } else {
+                              msgShow(data.mensaje, "danger");
+                              $('#mdlEliminar').modal('toggle');
+                        }
+                  }
+            });
+      }
+</script>
 
 @endsection
