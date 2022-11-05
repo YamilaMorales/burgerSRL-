@@ -37,7 +37,7 @@
                   Siente el sabor en cada bocado.
                 </p>
                 <div class="btn-box">
-                  <a href="" class="btn1">
+                  <a href="/takeaway" class="btn1">
                   Hace tu pedido.
                   </a>
                 </div>
@@ -58,7 +58,7 @@
                 Mejores ingredientes, mejor hamburguesa.
                 </p>
                 <div class="btn-box">
-                  <a href="" class="btn1">
+                  <a href="/takeaway" class="btn1">
                     Hace tu pedido.
                   </a>
                 </div>

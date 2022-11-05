@@ -91,7 +91,7 @@ class Carrito extends Model
                   B.cantidad AS cantidad
                                        
                 FROM carritos A
-                    INNER JOIN productos B ON A.fk_idproducto = B.idproducto
+                INNER JOIN productos B ON A.fk_idproducto = B.idproducto
                     
                    WHERE fk_idcliente = $idCliente";
         $lstRetorno = DB::select($sql);
