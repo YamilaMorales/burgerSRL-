@@ -11,7 +11,7 @@ class Carrito extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idcliente', 'fk_idcliente', 'fk_idproducto'
+        'idcliente', 'fk_idcliente', 'fk_idproducto' , 'cantidad'
     ];
 
     protected $hidden = [];
@@ -24,7 +24,8 @@ class Carrito extends Model
         $sql = "SELECT
                  idcarrito,
                 fk_idcliente,
-                fk_idproducto
+                fk_idproducto,
+                cantidad
                 FROM carritos ORDER BY idcarrito ASC";
 
         $lstRetorno = DB::select($sql);
@@ -36,7 +37,8 @@ class Carrito extends Model
         $sql = "SELECT
                 idcarrito,
                 fk_idcliente,
-                fk_idproducto
+                fk_idproducto,
+                cantidad
                 FROM carritos WHERE idcarrito = $idCarrito";
         $lstRetorno = DB::select($sql);
 
@@ -44,6 +46,7 @@ class Carrito extends Model
             $this->idcarrito = $lstRetorno[0]->idcarrito;
             $this->fk_idcliente = $lstRetorno[0]->fk_idcliente;
             $this->fk_idproducto = $lstRetorno[0]->fk_idproducto;
+            $this->cantidad = $lstRetorno[0]->cantidad;
             return $this;
         }
         return null;
@@ -53,7 +56,8 @@ class Carrito extends Model
     {
         $sql = "UPDATE carritos SET
             fk_idcliente=$this->fk_idcliente,
-            fk_idproducto=$this->fk_idproducto
+            fk_idproducto=$this->fk_idproducto,
+            cantidad=$this->cantidad
           
             WHERE idcarrito=?";
         $affected = DB::update($sql, [$this->idcarrito]);
@@ -70,11 +74,13 @@ class Carrito extends Model
     {
         $sql = "INSERT INTO carritos (
                 fk_idcliente,
-                fk_idproducto
-            ) VALUES (?,?);";
+                fk_idproducto,
+                cantidad
+            ) VALUES (?,?,?);";
         $result = DB::insert($sql, [
             $this->fk_idcliente,
             $this->fk_idproducto,
+            $this->cantidad,
 
         ]);
         return $this->idcarrito = DB::getPdo()->lastInsertId();
@@ -86,9 +92,10 @@ class Carrito extends Model
                   A.idcarrito,
                   A.fk_idcliente,
                   A.fk_idproducto,
+                  A.cantidad,
                   B.nombre AS producto,
                   B.precio AS precio,
-                  B.cantidad AS cantidad
+                  B.imagen AS imagen
                                        
                 FROM carritos A
                 INNER JOIN productos B ON A.fk_idproducto = B.idproducto

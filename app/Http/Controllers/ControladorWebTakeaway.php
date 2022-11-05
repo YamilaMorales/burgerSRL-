@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Entidades\Sucursal;
 use App\Entidades\Producto;
+use App\Entidades\Carrito;
 use App\Entidades\Categoria;
 use Illuminate\Http\Request;
 use Session;
@@ -22,11 +23,44 @@ class ControladorWebTakeaway extends Controller
     }
 
 
-    public function insertar( Request $request)
-{   $idCliente = Session::get("idCliente");
-    $idProducto = $request->input("txtProducto");
-    $cantidad=$request->input("txtCantidad");
+    public function insertar( Request $request){   
+    
+      $idCliente = Session::get("idCliente");
+      $idProducto = $request->input("txtProducto");
+      $cantidad=$request->input("txtCantidad");
+      $sucursal = new Sucursal();
+      $aSucursales = $sucursal->obtenerTodos();  
+      $categoria = new Categoria();
+      $aCategorias= $categoria->obtenerTodos(); 
+      $producto = new Producto();
+      $aProductos = $producto->obtenerTodos();  
+    
+        if(isset($idCliente) && $idCliente > 0 ){
 
+             if(isset($cantidad) && $cantidad > 0){
+             //se agrega al carrito y da un msj
+             $carrito = new Carrito();
+             $carrito->fk_idcliente = $idCliente;
+             $carrito->fk_idproducto = $idProducto;
+
+             $msg["ESTADO"] = MSG_SUCCESS;
+             $msg["MSG"] = "El producto se agrego al carrito.";
+             return view ('web.takeaway' , compact('msg',"aCategorias", "aSucursales","aProductos"));
+
+             } else {
+            //msj 
+            $msg["ESTADO"] = MSG_ERROR;
+            $msg["MSG"] = "El producto no se agrego al carrito.";
+            return view ('web.takeaway' , compact('msg' , "aCategorias" , "aSucursales","aProductos"));
+            }
+
+            } else { 
+            $msg["ESTADO"] = MSG_ERROR;
+            $msg["MSG"] = "Debe iniciar sesion para realizar un pedido.";
+             return view ('web.takeaway' , compact('msg', "aCategorias", "aSucursales","aProductos"));
+
+           }
+        }
 
     }
-}
+
