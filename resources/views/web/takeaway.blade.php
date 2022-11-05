@@ -23,8 +23,8 @@
         <div class="col-sm-6 col-lg-4 all {{$producto->categoria}}" >
           <div class="box" style="height:450px;">
             <div>
-              <div class="img-box img-thumbnail" style="background:white;">
-                <img src="/files/{{ $producto->imagen }}" alt="">
+              <div class="img-box " style="background:white;">
+                <img src="/files/{{ $producto->imagen }}" alt=""  style="border-radius:30px;">
               </div>
               <div class="detail-box">
                 <h5>
