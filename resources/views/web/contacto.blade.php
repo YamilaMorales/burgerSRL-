@@ -1,9 +1,6 @@
 @extends("web.plantilla")
 @section('scripts')
-<script>
-      globalId = '<?php echo isset($cliente->idcliente) && $cliente->idcliente > 0 ? $cliente->idcliente : 0; ?>';
-      <?php $globalId = isset($cliente->idcliente) ? $cliente->idcliente : "0"; ?>
-</script>
+
 @endsection
 @section("contenido")
   <!-- book section -->
@@ -25,7 +22,7 @@
       <div id="msg"></div>
             <form action="" id="form1" method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-            <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+         
               <div>
                 <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre:" />
               </div>
@@ -40,9 +37,9 @@
               </div>
               
               <div class="btn_box">
-                <a href=""> <button>
+                 <button type="submit" name="btnEnviar">
                   ENVIAR
-                </button> </a>
+                </button>
               </div>
             </form>
           </div>
@@ -53,20 +50,5 @@
     </div>
   </section>
   <!-- end book section -->
-  <script>
-      $("#form1").validate();
-      cargarGrillaPermisos();
-      cargarGrilla();
 
-      function guardar() {
-            if ($("#form1").valid()) {
-                  modificado = false;
-                  form1.submit();
-            } else {
-                  $("#modalRecuperar").modal('toggle');
-                  msgShow("Corrija los errores e intente nuevamente.", "danger");
-                  return false;
-            }
-      }
-</script>
   @endsection

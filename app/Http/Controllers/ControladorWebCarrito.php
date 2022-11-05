@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Entidades\Sucursal;
 use App\Entidades\Carrito;
 use Illuminate\Http\Request;
+use Session; 
 
 class ControladorWebCarrito extends Controller
 {
     public function index()
     {
-        $idCliente = 5;
+        $idCliente =5;
+        // Session::get("idCliente");
         $carrito = new Carrito();
         $aCarritos = $carrito->obtenerPorCliente($idCliente);
         $sucursal = new Sucursal();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entidades\Cliente;
 use App\Entidades\Sucursal;
 use Illuminate\Http\Request;
+use Session;
 
 class ControladorWebLogin extends Controller
 {
@@ -25,11 +26,18 @@ class ControladorWebLogin extends Controller
         $cliente->obtenerPorCorreo($correo);
         if ($cliente->correo != "") {
             if (password_verify($clave, $cliente->clave)) {
-                return view("web.index", compact("aSucursales"));
+                Session::put("idCliente", $cliente->idcliente);
+                return view('web.index', compact("aSucursales"));
             } else {
                 $mensaje = "Clave o Correo incorrecto.";
-                return view("web.login", compact("aSucursales", "mensaje"));
+                return view('web.login', compact("aSucursales", "mensaje"));
             }
         }
+    }
+
+    public function logout()
+    {
+        Session::put("idCliente", "");
+        return redirect("/");
     }
 }

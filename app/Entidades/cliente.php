@@ -2,6 +2,7 @@
 namespace App\Entidades;
 
 
+
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,7 +26,7 @@ class Cliente extends Model
         $this->correo = $request->input('txtCorreo');
         $this->dni = $request->input('txtDni');
         $this->celular = $request->input('txtCelular');
-        $this->clave = password_hass($request->input('txtClave'),PASSWORD_DEFAULT);
+        $this->clave = password_hash($request->input('txtClave'),PASSWORD_DEFAULT);
         $this->direccion = $request->input('txtDireccion');
     }
     public function obtenerFiltrado()
