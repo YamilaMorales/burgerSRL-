@@ -33,6 +33,10 @@
                                     Ingresar
                                 </button> 
                         </div>
+                        <div class="col-md-12 p-2">
+                            <a href="/registrarse">¿No estas registrado?</a>
+                            <a href="recuperar-clave">¿Olvidaste tu contraseña?</a>
+                        </div>
                     </form>
                 </div>
             </div>

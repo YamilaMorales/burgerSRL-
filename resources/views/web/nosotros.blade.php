@@ -40,29 +40,28 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form_container">
-                    <form action="POST">
+                    <form action="" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                    <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                         <div>
-                            <input type="text" class="form-control" placeholder="Nombre:" />
+                            <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre:" />
                         </div>
                         <div>
-                            <input type="text" class="form-control" placeholder="Apellido:" />
+                            <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Apellido:" />
                         </div>
                         <div>
-                            <input type="tex" class="form-control" placeholder="Teléfono:" />
+                            <input type="tex" id="txtTelefono" name="txtTelefono" class="form-control" placeholder="Teléfono:" />
                         </div>
                         <div>
-                            <input type="tex" class="form-control" placeholder="Correo:" />
+                            <input type="email" class="form-control" id="txtCorreo" name="txtCorreo"  placeholder="Correo:" />
                         </div>
                         <div>
-                            <input type="file" class="form-control" placeholder="Curriculum:" />
+                            <input type="file" class="form-control" id="txtCurriculum" name="txtCurriculum" placeholder="Curriculum:" />
                         </div>
 
                         <div class="btn_box">
-                           <a href="/postulacion-gracias"> <button type="submit">
+                            <button name="btnEnviarPostulacion" type="submit">
                                 Enviar postulación
-                            </button></a>
+                            </button>
                         </div>
                     </form>
                 </div>

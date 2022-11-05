@@ -16,7 +16,7 @@
                 Somos el imperio de las hamburguesas, llegamos para conquistar tu paladar, un reinado del sabor.
                 </p>
                 <div class="btn-box">
-                  <a href="" class="btn1">
+                  <a href="/takeaway" class="btn1">
                   Hace tu pedido.
                   </a>
                 </div>

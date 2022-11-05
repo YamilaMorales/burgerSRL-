@@ -12,17 +12,16 @@ class ControladorWebRecuperarClave extends Controller
 {
     public function index()
     {
-        $sucursal = new Sucursal();
-        $titulo = "Sucursales"; 
+        $sucursal = new Sucursal(); 
         $aSucursales = $sucursal->obtenerTodos();  
-        return view("web.recuperar-clave", compact("titulo" , "aSucursales" , "sucursal"));
+        return view("web.recuperar-clave", compact(  "aSucursales" ));
             
     }
 
 
     public function recuperar(Request $request){
-        $titulo='Recupero de clave';
-        $correo= $request->input('txtCorreo');
+    
+     $correo= $request->input('txtCorreo');
         $clave= rand(1000,9999);
         $cliente = new Cliente();
         $cliente->obtenerPorCorreo($correo);
@@ -56,16 +55,13 @@ class ControladorWebRecuperarClave extends Controller
                 Clave: $clave 
 
                 ";
-                if ($_POST["id"] > 0) {
-                    //Es actualizacion
-                    $cliente->guardar();
-          
-                 
+            
+                $cliente->insertar();
                 $cliente->correo = $request->input("txtCorreo");
                 $cliente->clave = password_hash($request->input("txtClave"), PASSWORD_DEFAULT);
                 $msg["ESTADO"] = MSG_SUCCESS;
                 $msg["MSG"] = OKINSERT;
-              }
+              
                
 
                 $msg["ESTADO"] = MSG_SUCCESS;

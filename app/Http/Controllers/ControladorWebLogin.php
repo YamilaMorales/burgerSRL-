@@ -9,7 +9,7 @@ use Session;
 
 class ControladorWebLogin extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();

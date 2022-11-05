@@ -26,7 +26,7 @@ class Cliente extends Model
         $this->correo = $request->input('txtCorreo');
         $this->dni = $request->input('txtDni');
         $this->celular = $request->input('txtCelular');
-        $this->clave = password_hash($request->input('txtClave'),PASSWORD_DEFAULT);
+        $this->clave = password_hash($request->input('txtClave'), PASSWORD_DEFAULT);
         $this->direccion = $request->input('txtDireccion');
     }
     public function obtenerFiltrado()
@@ -144,7 +144,7 @@ class Cliente extends Model
             $this->dni,
             $this->celular,
             $this->clave,
-            $this->direccion,
+            $this->direccion
         ]);
         return $this->idcliente = DB::getPdo()->lastInsertId();
     }
