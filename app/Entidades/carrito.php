@@ -17,7 +17,7 @@ class Carrito extends Model
     protected $hidden = [];
     private $producto;
     private $precio;
-    private $cantidad;
+    private $imagen;
 
     public function obtenerTodos()
     {

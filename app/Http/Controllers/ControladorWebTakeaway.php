@@ -48,20 +48,20 @@ class ControladorWebTakeaway extends Controller
                 $carrito->fk_idproducto = $idProducto;
                 $carrito->cantidad = $cantidad;
                 $carrito->insertar();
-
+                
                 $msg["ESTADO"] = MSG_SUCCESS;
-                $msg["MSG"] = "El producto se agrego al carrito.";
+                $msg["MSG"] = "¡El producto se agregó correctamente al carrito!.";
                 return view('web.takeaway', compact('msg', "aCategorias", "aSucursales", "aProductos"));
             } else {
                 //msj 
-                $msg["ESTADO"] = MSG_ERROR;
-                $msg["MSG"] = "El producto no se agrego al carrito.";
-                return view('web.takeaway', compact('msg', "aCategorias", "aSucursales", "aProductos"));
+                $mensaje["ESTADO"] = MSG_ERROR;
+                $mensaje["MSG"] = "El producto no se agregó al carrito. Debe indicar la cantidad deseada.";
+                return view('web.takeaway', compact('mensaje', "aCategorias", "aSucursales", "aProductos"));
             }
         } else {
-            $msg["ESTADO"] = MSG_ERROR;
-            $msg["MSG"] = "Debe iniciar sesion para realizar un pedido.";
-            return view('web.login', compact('msg', "aCategorias", "aSucursales", "aProductos"));
+            $msg1["ESTADO"] = MSG_ERROR;
+            $msg1["MSG"] = "Debe iniciar sesión para realizar un pedido.";
+            return view('web.takeaway', compact('msg1', "aCategorias", "aSucursales", "aProductos"));
         }
     }
 }

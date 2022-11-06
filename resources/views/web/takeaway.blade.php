@@ -19,6 +19,36 @@
     </ul>
     
     <div class="filters-content">
+    @if(isset($msg))
+    <div class="row">
+      <div class="col-md-6">
+        <div class="alert alert-success" role="alert">
+          {{ $msg["MSG"] }}
+        </div>
+        
+      </div>
+    </div>
+    @endif
+    @if(isset($mensaje))
+    <div class="row">
+      <div class="col-md-6">
+        <div class="alert alert-danger" role="alert">
+          {{ $mensaje["MSG"] }}
+        </div>
+        
+      </div>
+    </div>
+    @endif
+    @if(isset($msg1))
+    <div class="row">
+      <div class="col-md-6">
+        <div class="alert alert-danger" role="alert">
+          {{ $msg1["MSG"] }}
+        </div>
+        
+      </div>
+    </div>
+    @endif
       <div class="row grid ">
         @foreach($aProductos AS $producto)
         <div class="col-sm-6 col-lg-4 all {{ $producto->categoria }}">
