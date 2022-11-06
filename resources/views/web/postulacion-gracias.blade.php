@@ -4,8 +4,8 @@
       <div class="container p-5">
             <div class="heading_container">
                   <h2>
-                        Gracias, pronto estarás recibiendo noticias nuestras.
-                  </h2>
+                  <span>Gracias por postularte,<h3> pronto estarás recibiendo noticias nuestras. </h3></span>
+                  </h2>   
             </div>
       </div>
 </section>

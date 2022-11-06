@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 use App\Entidades\Sucursal;
+use Illuminate\Http\Client\Request;
+
 class ControladorWebPostulacionGracias extends Controller
 {
     public function index()
     {
         $sucursal = new Sucursal();
-        $titulo = "Sucursales"; 
         $aSucursales = $sucursal->obtenerTodos();  
-        return view("web.postulacion-gracias", compact("titulo" , "aSucursales" , "sucursal"));
+        return view("web.postulacion-gracias", compact(  "aSucursales"  ));
             
     }
+
+   
 }

@@ -19,13 +19,12 @@
                                                 <th>Producto</th>
                                                 <th>Cantidad</th>
                                                 <th>Precio unitario</th>
-                                                <th>Total</th>
-                                                <th>Metodo de pago</th>
-                                                <th>Sucursal</th>
+                                                <th></th>
+
                                           </tr>
                                     </thead>
                                     <tbody>
-                                          
+
                                           <td>
                                                 {{$carrito->producto}}
                                           </td>
@@ -34,9 +33,6 @@
                                           </td>
                                           <td>
                                                 {{$carrito->precio}}
-                                          </td>
-                                          <td>
-                                                
                                           </td>
                                           <td>
                                                 <img src="(($carrito->imagen}}" class="thumbnail">
@@ -48,8 +44,24 @@
                               </table>
 
                         </div>
+
+                        <div class="row">
+                              <div class="col-md-9 p-2">
+                                    <label for="">Sucursal</label>
+
+                                    <select name="lstSucursal" id="lstSucursal">
+                                          <option value="" disabled selected>Seleccionar </option>
+                                          @foreach ( $aSucursales AS $sucursal)
+                                          <option value="{{ $sucursal->nombre }}">{{$sucursal->nombre}}</option>
+                                          @endforeach
+                                    </select>
+
+                              </div>
+
+                        </div>
                   </div>
             </div>
+
             @else
             <div class="col-md-12 heading_container">
                   <h4>No hay productos seleccionados</h4>

@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form_container">
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                         <div>
                             <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre:" />
@@ -49,13 +49,14 @@
                             <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Apellido:" />
                         </div>
                         <div>
-                            <input type="tex" id="txtTelefono" name="txtTelefono" class="form-control" placeholder="Teléfono:" />
+                            <input type="tex" id="txtCelular" name="txtCelular" class="form-control" placeholder="Teléfono de contacto:" />
                         </div>
                         <div>
                             <input type="email" class="form-control" id="txtCorreo" name="txtCorreo"  placeholder="Correo:" />
                         </div>
                         <div>
-                            <input type="file" class="form-control" id="txtCurriculum" name="txtCurriculum" placeholder="Curriculum:" />
+                            <input type="file" class="form-control" id="txtCurriculum" name="txtCurriculum" accept=".doc, .docx, .pdf" placeholder="Curriculum:" />
+                             <small class="d-block">Archivos admitidos .doc, .docx, .pfd </small>
                         </div>
 
                         <div class="btn_box">
