@@ -19,7 +19,7 @@ class ControladorWebRegistrarse extends Controller
     {
         $entidad = new Cliente;
         $entidad->nombre = $request->input("txtNombre");
-        $entidad->Apellido = $request->input("txtApellido");
+        $entidad->apellido = $request->input("txtApellido");
         $entidad->direccion = $request->input("txtDireccion");
         $entidad->clave = password_hash($request->input("txtClave"), PASSWORD_DEFAULT);
         $entidad->dni = $request->input("txtDni");
