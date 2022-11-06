@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Entidades\Sucursal;
-use Illuminate\Http\Client\Request;
+
 
 class ControladorWebPostulacionGracias extends Controller
 {

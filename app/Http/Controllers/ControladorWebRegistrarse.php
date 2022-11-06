@@ -12,29 +12,33 @@ class ControladorWebRegistrarse extends Controller
     public function index()
     {
         $sucursal = new Sucursal();
-        $titulo = "Sucursales";
-
         $aSucursales = $sucursal->obtenerTodos();
-        return view("web.registrarse", compact("titulo", "aSucursales", "sucursal"));
+        return view("web.registrarse", compact( "aSucursales"));
     }
     public function registrarse(Request $request)
     {
-        $titulo = "Nuevo Registro";
         $entidad = new Cliente;
         $entidad->nombre = $request->input("txtNombre");
+        $entidad->Apellido = $request->input("txtApellido");
+        $entidad->direccion = $request->input("txtDireccion");
         $entidad->clave = password_hash($request->input("txtClave"), PASSWORD_DEFAULT);
         $entidad->dni = $request->input("txtDni");
-        $entidad->telefono = $request->input("txtTelefono");
+        $entidad->celular = $request->input("txtCelular");
         $entidad->correo = $request->input("txtCorreo");
-        if ($entidad->nombre == "" || $entidad->apellido == "" || $entidad->telefono == "" || $entidad->direccion == "" || $entidad->correo) {
-            $msg["ESTADO"] = MSG_ERROR;
-            $msg["MSG"] = "Complete todos los datos";
+
+        $sucursal = new Sucursal();
+        $aSucursales = $sucursal->obtenerTodos();
+
+        if ($entidad->nombre == "" || $entidad->apellido == "" || $entidad->celular == "" || $entidad->direccion == "" || $entidad->correo == "" || $entidad->clave == "" || $entidad->dni == "") {
+            $mensaje["ESTADO"] = MSG_ERROR;
+            $mensaje["MSG"] = "Complete todos los datos";
+            return view("web.registrarse", compact( 'mensaje', 'aSucursales'));
         } else {
             $entidad->guardar();
 
             $msg["ESTADO"] = MSG_SUCCESS;
             $msg["MSG"] = "Registro Exitoso.";
-            return view("web.registrarse", compact('titulo', 'msg'));
+            return view("web.registrarse", compact('msg' ,  'aSucursales'));
         }
     }
 }

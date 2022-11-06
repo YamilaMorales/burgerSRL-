@@ -11,8 +11,7 @@ class ControladorWebCarrito extends Controller
 {
     public function index()
     {
-         $idCliente=5;
-        //Session::get("idCliente");
+        $idCliente=Session::get("idCliente");
         $carrito = new Carrito();
         $aCarritos = $carrito->obtenerPorCliente($idCliente);
         $sucursal = new Sucursal();

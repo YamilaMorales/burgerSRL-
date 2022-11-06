@@ -37,6 +37,7 @@ class Pedido extends Model
                    fk_idsucursal, 
                    fk_idcliente, 
                    fk_idestado
+                   
                 FROM pedidos ORDER BY fecha DESC";
 
         $lstRetorno = DB::select($sql);
