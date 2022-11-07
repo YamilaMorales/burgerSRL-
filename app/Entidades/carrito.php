@@ -11,7 +11,7 @@ class Carrito extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idcliente', 'fk_idcliente', 'fk_idproducto' , 'cantidad'
+        'idcliente', 'fk_idcliente', 'fk_idproducto', 'cantidad'
     ];
 
     protected $hidden = [];
@@ -80,7 +80,7 @@ class Carrito extends Model
         $result = DB::insert($sql, [
             $this->fk_idcliente,
             $this->fk_idproducto,
-            $this->cantidad,
+            $this->cantidad
 
         ]);
         return $this->idcarrito = DB::getPdo()->lastInsertId();

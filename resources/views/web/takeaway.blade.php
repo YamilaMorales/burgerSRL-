@@ -66,7 +66,7 @@
                 </p>
                 <div class="options ">
                   <h6>
-                    $ {{ number_format($producto->precio, 0,',' , '.') }}
+                     $ {{ number_format($producto->precio, 0,',' , '.') }}
                   </h6>
                   <form action="" method="POST">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
