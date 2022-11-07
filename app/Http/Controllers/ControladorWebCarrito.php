@@ -77,14 +77,15 @@ class ControladorWebCarrito extends Controller
 
     public function insertarPedido(Request $request)
     {
-       $pedido= new Pedido();
-       $sucursal = new Sucursal(); 
-       $aSucursales = $sucursal->obtenerTodos();  
+        $idCliente=Session::get("idCliente");
+        $sucursal = new Sucursal(); 
+        $aSucursales = $sucursal->obtenerTodos();
 
+       $pedido= new Pedido();
        $pedido->fecha= $request->input("txtNombre");
        $pedido->descripcion= $request->input("txtApellido");
        $pedido->total= $request->input("txtCelular");
-       $pedido->fk_idsucursal= $request->input("txtCorreo");
+       $pedido->fk_idsucursal= $request->input("");
        $pedido->fk_idcliente= "";
        $pedido->fk_idestado= $request->input("txtCorreo");
 
