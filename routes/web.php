@@ -43,6 +43,7 @@ Route::group(array('domain' => '127.0.0.1'), function () {
     Route::post('/registrarse', 'ControladorWebRegistrarse@registrarse');
     Route::get('/recuperar-clave', 'ControladorWebRecuperarClave@index');
     Route::post('/recuperar-clave', 'ControladorWebRecuperarClave@recuperar');
+    Route::get('/pedido-gracias', 'ControladorWebPedidoGracias@index');
 /* --------------------------------------------- */
 
     Route::get('/admin', 'ControladorHome@index');

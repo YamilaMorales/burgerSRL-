@@ -55,7 +55,7 @@
                                         ${{ number_format($carrito->precio, 0,',' , '.') }}
                                     </td>
 
-                                    <td><input type="number" name="txtCantidad" id="txtCantidad" class="form-control" style="width: 60px;" min="0" value=" {{ $carrito->cantidad }}">
+                                    <td><input type="number" name="txtCantidad" id="txtCantidad" class="form-control" style="width: 60px;" min="0" value="{{ $carrito->cantidad }}">
                                     </td>
 
                                     <td>

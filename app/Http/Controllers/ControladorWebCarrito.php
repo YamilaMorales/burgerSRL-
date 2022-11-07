@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entidades\Sucursal;
 use App\Entidades\Carrito;
+use App\Entidades\Pedido;
 use Illuminate\Http\Request;
 use Session; 
 
@@ -76,6 +77,21 @@ class ControladorWebCarrito extends Controller
 
     public function insertarPedido(Request $request)
     {
+       $pedido= new Pedido();
+       $sucursal = new Sucursal(); 
+       $aSucursales = $sucursal->obtenerTodos();  
+
+       $pedido->fecha= $request->input("txtNombre");
+       $pedido->descripcion= $request->input("txtApellido");
+       $pedido->total= $request->input("txtCelular");
+       $pedido->fk_idsucursal= $request->input("txtCorreo");
+       $pedido->fk_idcliente= "";
+       $pedido->fk_idestado= $request->input("txtCorreo");
+
+       $pedido->insertar();
+       
+       return view("web.postulacion-gracias", compact("aSucursales" ));
         
+
     }
 }
