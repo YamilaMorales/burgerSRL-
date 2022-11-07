@@ -9,15 +9,15 @@
             </h2>
         </div>
         @if(isset($msg))
-            <div class="row">
-                  <div class="col-md-6">
-                        <div class="alert alert-success" role="alert">
-                              {{ $msg["MSG"] }}
-                        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-success" role="alert">
+                    {{ $msg["MSG"] }}
+                </div>
 
-                  </div>
             </div>
-            @endif
+        </div>
+        @endif
         <div class="form-container">
             <div class="row">
                 @if($aCarritos)
@@ -39,12 +39,12 @@
                             </thead>
                             <tbody>
                                 <form action="" method="POST">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <td>
                                         {{$carrito->producto}}
                                     </td>
-                                    <td >
-                                       
+                                    <td>
+
                                         <input type="hidden" name="txtCarrito" id="txtCarrito" class="form-control" style="width: 50px;" value="{{ $carrito->idcarrito }}">
                                     </td>
                                     <td>
@@ -80,18 +80,20 @@
                                     @endforeach
 
 
-                                    <tr>
-
-                                        <td colspan="6" style="text-align: right;">
-
-                                            <a href="/takeaway"><button type="submit" class="btn btn-warning" style="background-color:#ffbe33; color:#ffffff; border-radius:45px;">Agregar productos</button></a>
-
-                                        </td>
-
-                                    </tr>
-
-
                                 </form>
+
+                                <tr>
+
+                                    <td colspan="6" style="text-align: right;">
+
+                                        <a href="/takeaway"><button type="submit" class="btn btn-warning" style="background-color:#ffbe33; color:#ffffff; border-radius:45px;">Agregar productos</button></a>
+
+                                    </td>
+
+                                </tr>
+
+
+
                             </tbody>
 
                         </table>
@@ -173,8 +175,12 @@
             @else
             <div class="col-md-12 heading_container">
                 <h4>No hay productos seleccionados</h4>
+                <div class="p-3">
+                <a href="/takeaway"><button type="submit" class="btn btn-warning" style="background-color:#ffbe33; color:#ffffff; border-radius:45px;">Agregar productos</button></a>
 
+                </div>
             </div>
+            
             @endif
 
 

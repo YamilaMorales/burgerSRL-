@@ -41,8 +41,7 @@ class ControladorWebCarrito extends Controller
     public function actualizar(Request $request)
     {
         $idCliente=Session::get("idCliente");
-        $carrito = new Carrito();
-        $aCarritos = $carrito->obtenerPorCliente($idCliente);
+    
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
         $cantidad = $request->input("txtCantidad");
@@ -52,7 +51,7 @@ class ControladorWebCarrito extends Controller
         $carrito->guardar();
         $msg["ESTADO"] = EXIT_SUCCESS;
         $msg["MSG"] = "Producto actualizado con exito.";
-        return view('web.carrito', compact('msg', 'aCarritos', 'aSucursales'));
+        return view('web.carrito', compact('msg',  'aSucursales'));
 
     }
 
