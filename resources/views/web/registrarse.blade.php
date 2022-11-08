@@ -10,16 +10,7 @@
                         Registrate
                   </h2>
             </div>
-            @if(isset($msg))
-            <div class="row">
-                  <div class="col-md-6">
-                        <div class="alert alert-success" role="alert">
-                              {{ $msg["MSG"] }}
-                        </div>
-
-                  </div>
-            </div>
-            @endif
+            
             @if(isset($mensaje))
             <div class="row">
                   <div class="col-md-6">
@@ -52,7 +43,7 @@
                                           <input type="tex" class="form-control" id="txtCelular" name="txtCelular" required placeholder="Teléfono de contacto:" />
                                     </div>
                                     <div>
-                                          <input type="tex" class="form-control" id="txtCorreo" name="txtCorre" required placeholder="Correo:" />
+                                          <input type="tex" class="form-control" id="txtCorreo" name="txtCorreo" required placeholder="Correo:" />
                                     </div>
                                     <div>
                                           <input type="tex" class="form-control" id="txtDireccion" name="txtDireccion"  required placeholder="Dirección:" />

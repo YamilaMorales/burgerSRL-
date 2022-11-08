@@ -7,6 +7,16 @@
                 Ingresar al sistema
             </h2>
         </div>
+        @if(isset($msg))
+            <div class="row">
+                  <div class="col-md-6">
+                        <div class="alert alert-success" role="alert">
+                              {{ $msg["MSG"] }}
+                        </div>
+
+                  </div>
+            </div>
+            @endif
         @if(isset($mensaje))
         <div class="row">
             <div class="col-md-6">

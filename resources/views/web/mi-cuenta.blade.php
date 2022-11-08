@@ -66,7 +66,7 @@
                                                       Total
                                                 </th>
                                           </tr>
-                                          @foreach ($aCarritos AS $carrito)
+                                          @foreach ($aPedidos AS $pedido)
                                     </thead>
                                    
                                     <tbody>
