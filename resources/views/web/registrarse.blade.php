@@ -40,25 +40,25 @@
                               <form action="" method="POST">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                                     <div>
-                                          <input type="tex" class="form-control" id="txtNombre" name="txtNombre" placeholder="Nombre" />
+                                          <input type="tex" class="form-control" id="txtNombre" name="txtNombre" required placeholder="Nombre" />
                                     </div>
                                     <div>
-                                          <input type="tex" class="form-control" id="txtApellido" name="txtApellido" placeholder="Apellido:" />
+                                          <input type="tex" class="form-control" id="txtApellido" name="txtApellido" required placeholder="Apellido:" />
                                     </div>
                                     <div>
-                                          <input type="tex" class="form-control" id="txtDni" name="txtDni" placeholder="DNI:" />
+                                          <input type="tex" class="form-control" id="txtDni" name="txtDni" required placeholder="DNI:" />
                                     </div>
                                     <div>
-                                          <input type="tex" class="form-control" id="txtCelular" name="txtCelular" placeholder="Teléfono de contacto:" />
+                                          <input type="tex" class="form-control" id="txtCelular" name="txtCelular" required placeholder="Teléfono de contacto:" />
                                     </div>
                                     <div>
-                                          <input type="tex" class="form-control" id="txtCorreo" name="txtCorre" placeholder="Correo:" />
+                                          <input type="tex" class="form-control" id="txtCorreo" name="txtCorre" required placeholder="Correo:" />
                                     </div>
                                     <div>
-                                          <input type="tex" class="form-control" id="txtDireccion" name="txtDireccion" placeholder="Dirección:" />
+                                          <input type="tex" class="form-control" id="txtDireccion" name="txtDireccion"  required placeholder="Dirección:" />
                                     </div>
                                     <div>
-                                          <input type="password" class="form-control" id="txtClave" name="txtClave" placeholder="Contraseña:" />
+                                          <input type="password" class="form-control" id="txtClave" name="txtClave" required placeholder="Contraseña:" />
                                     </div>
 
                                     <div class="btn_box">

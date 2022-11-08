@@ -33,8 +33,8 @@ class ControladorPostulacion extends Controller
     $titulo = "Listado de postulaciones";
 
     if (Usuario::autenticado() == true) {
-      if (!Patente::autorizarOperacion("POSTULACIOCONSULTA")) {
-        $codigo = "POSTULACIONCONSULTA";
+      if (!Patente::autorizarOperacion("POSTULANTECONSULTA")) {
+        $codigo = "POSTULANTECONSULTA";
         $mensaje = "No tiene permisos para la operación.";
         return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
       } else {
@@ -95,7 +95,7 @@ class ControladorPostulacion extends Controller
     $request = $_REQUEST;
 
     $entidad = new Postulacion();
-    $aPostulacion = $entidad->obtenerFiltrado();
+    $aPostulaciones = $entidad->obtenerFiltrado();
 
     $data = array();
     $cont = 0;
@@ -104,21 +104,21 @@ class ControladorPostulacion extends Controller
     $registros_por_pagina = $request['length'];
 
 
-    for ($i = $inicio; $i < count($aPostulacion) && $cont < $registros_por_pagina; $i++) {
+    for ($i = $inicio; $i < count($aPostulaciones) && $cont < $registros_por_pagina; $i++) {
       $row = array();
-      $row[] = "<a href='/admin/postulacion/" . $aPostulacion[$i]->idpostulacion . "'>" . $aPostulacion[$i]->nombre . "</a>";
-      $row[] = $aPostulacion[$i]->apellido;
-      $row[] = $aPostulacion[$i]->celular;
-      $row[] = $aPostulacion[$i]->correo;
-      $row[] =  "<a href= ''> Descargar </a>";
+      $row[] = "<a href='/admin/postulacion/" . $aPostulaciones[$i]->idpostulacion . "'>" . $aPostulaciones[$i]->nombre . "</a>";
+      $row[] = $aPostulaciones[$i]->apellido;
+      $row[] = $aPostulaciones[$i]->celular;
+      $row[] = $aPostulaciones[$i]->correo;
+      $row[] =  "<a href= '/files/" . $aPostulaciones[$i]->curriculum."'> Descargar </a>";
       $cont++;
       $data[] = $row;
     }
 
     $json_data = array(
       "draw" => intval($request['draw']),
-      "recordsTotal" => count($aPostulacion), //cantidad total de registros sin paginar
-      "recordsFiltered" => count($aPostulacion), //cantidad total de registros en la paginacion
+      "recordsTotal" => count($aPostulaciones), //cantidad total de registros sin paginar
+      "recordsFiltered" => count($aPostulaciones), //cantidad total de registros en la paginacion
       "data" => $data,
     );
     return json_encode($json_data);
@@ -130,8 +130,8 @@ class ControladorPostulacion extends Controller
     $titulo = "Edición de postulaciones";
     $postulacion = new Postulacion();
     if (Usuario::autenticado() == true) {
-      if (!Patente::autorizarOperacion("POSTULACIONEDITAR")) {
-        $codigo = "POSTULACIONEDITAR";
+      if (!Patente::autorizarOperacion("POSTULANTEEDITAR")) {
+        $codigo = "POSTULANTEEDITAR";
         $mensaje = "No tiene permisos para la operación.";
         return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
       } else {
@@ -147,7 +147,7 @@ class ControladorPostulacion extends Controller
   public function eliminar(Request $request)
   {
     if (Usuario::autenticado() == true) {
-      if (!Patente::autorizarOperacion("POSTULACIONELIMINAR")) {
+      if (!Patente::autorizarOperacion("POSTULANTEELIMINAR")) {
         $resultado["err"] = EXIT_FAILURE;
         $resultado["mensaje"] =  "No tiene permisos para la operación.";
       } else {

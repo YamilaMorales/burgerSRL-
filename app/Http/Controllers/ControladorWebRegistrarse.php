@@ -16,7 +16,11 @@ class ControladorWebRegistrarse extends Controller
         return view("web.registrarse", compact( "aSucursales"));
     }
     public function registrarse(Request $request)
-    {
+
+    { 
+        $sucursal = new Sucursal();
+        $aSucursales = $sucursal->obtenerTodos();
+
         $entidad = new Cliente;
         $entidad->nombre = $request->input("txtNombre");
         $entidad->apellido = $request->input("txtApellido");
@@ -26,15 +30,12 @@ class ControladorWebRegistrarse extends Controller
         $entidad->celular = $request->input("txtCelular");
         $entidad->correo = $request->input("txtCorreo");
 
-        $sucursal = new Sucursal();
-        $aSucursales = $sucursal->obtenerTodos();
-
         if ($entidad->nombre == "" || $entidad->apellido == "" || $entidad->celular == "" || $entidad->direccion == "" || $entidad->correo == "" || $entidad->clave == "" || $entidad->dni == "") {
             $mensaje["ESTADO"] = MSG_ERROR;
             $mensaje["MSG"] = "Complete todos los datos";
             return view("web.registrarse", compact( 'mensaje', 'aSucursales'));
         } else {
-            $entidad->guardar();
+            $entidad->insertar();
 
             $msg["ESTADO"] = MSG_SUCCESS;
             $msg["MSG"] = "Registro Exitoso.";

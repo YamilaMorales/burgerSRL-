@@ -55,7 +55,7 @@
                             <input type="email" class="form-control" id="txtCorreo" name="txtCorreo"  placeholder="Correo:" />
                         </div>
                         <div>
-                            <input type="file" class="form-control" id="txtCurriculum" name="txtCurriculum" accept=".doc, .docx, .pdf" placeholder="Curriculum:" />
+                            <input type="file" class="form-control" id="archivo" name="archivo" accept=".doc, .docx, .pdf" placeholder="Curriculum:" />
                              <small class="d-block">Archivos admitidos .doc, .docx, .pfd </small>
                         </div>
 
