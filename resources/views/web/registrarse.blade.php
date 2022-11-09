@@ -7,7 +7,7 @@
       <div class="container">
             <div class="heading_container">
                   <h2>
-                        Registrate
+                        Crea tu usuario
                   </h2>
             </div>
             
@@ -31,7 +31,7 @@
                               <form action="" method="POST">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                                     <div>
-                                          <input type="tex" class="form-control" id="txtNombre" name="txtNombre" required placeholder="Nombre" />
+                                          <input type="tex" class="form-control" id="txtNombre" name="txtNombre" required placeholder="Nombre:" />
                                     </div>
                                     <div>
                                           <input type="tex" class="form-control" id="txtApellido" name="txtApellido" required placeholder="Apellido:" />
@@ -53,8 +53,8 @@
                                     </div>
 
                                     <div class="btn_box">
-                                          <button type="submit" name="btnGuardar">
-                                                Guardar
+                                          <button type="submit" name="btnRegistrarse">
+                                                registrarse
                                           </button>
                                     </div>
                               </form>

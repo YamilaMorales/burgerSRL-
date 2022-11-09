@@ -138,7 +138,7 @@ class ControladorPedido extends Controller
   public function editar($idPedido)
   {
 
-    $titulo = "Edición de pedido";
+    
     $pedido = new Pedido();
     $estado = new Estado();
     $sucursal = new Sucursal();
@@ -152,10 +152,10 @@ class ControladorPedido extends Controller
       if (!Patente::autorizarOperacion("PEDIDOEDITAR")) {
         $codigo = "PEDIDOEDITAR";
         $mensaje = "No tiene permisos para la operación.";
-        return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
+        return view('sistema.pagina-error', compact( 'codigo', 'mensaje'));
       } else {
 
-        return view("sistema.pedido-nuevo", compact("titulo", "pedido", "aClientes", "aSucursales", "aEstados"));
+        return view("sistema.pedido-nuevo", compact( "pedido", "aClientes", "aSucursales", "aEstados"));
       }
     } else {
       return redirect('admin/login');

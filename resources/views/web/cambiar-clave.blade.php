@@ -7,16 +7,34 @@
                 Cambiar clave
             </h2>
         </div>
+        @if(isset($mensaje))
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-danger" role="alert">
+                    {{ $mensaje }}
+                </div>
+            </div>
+        </div>
+        @endif
+        @if(isset($mensaje))
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-success" role="alert">
+                    {{ $msg}}
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="row">
             <div class="col-md-6">
                 <div class="form_container">
                     <form action="" method="POST">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                         <div>
-                            <input type="password" name="txtNuevaClave" id="txtNuevaClave" class="form-control" placeholder="Nueva contraseña:" />
+                            <input type="password" name="txtClave1" id="txtClave1" class="form-control" placeholder="Nueva contraseña:" />
                         </div>
                         <div>
-                            <input type="password" name="txtRepetirClave" id="txtRepetirClave" class="form-control" placeholder="Repetir contraseña:" />
+                            <input type="password" name="txtClave2" id="txtClave2" class="form-control" placeholder="Repetir contraseña:" />
                         </div>
 
                         <div class="btn_box">

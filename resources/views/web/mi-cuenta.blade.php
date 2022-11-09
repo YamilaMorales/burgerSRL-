@@ -8,39 +8,47 @@
                   </h2>
             </div>
             <div class="row">
+           
                   <div class="col-md-6">
                         <div class="form_container">
+                      
                               <form action="" method="POST">
+                            
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                                    
                                     <div>
-                                          <input type="tex" class="form-control" id="txtNombre" name="txtNombre" placeholder="Nombre" />
+                                          <input type="tex" class="form-control" id="txtNombre" name="txtNombre" placeholder="Nombre" value="{{ $cliente->nombre }}"/>
                                     </div>
                                     <div>
-                                          <input type="tex" class="form-control" id="txtApellido" name="txtApellido" placeholder="Apellido:" />
+                                          <input type="tex" class="form-control" id="txtApellido" name="txtApellido" placeholder="Apellido:" value="{{ $cliente->apellido }}"/>
                                     </div>
                                     <div>
-                                          <input type="tex" class="form-control" id="txtDni" name="txtDni" placeholder="DNI:" />
+                                          <input type="tex" class="form-control" id="txtDni" name="txtDni" placeholder="DNI:" value="{{ $cliente->dni }}"/>
                                     </div>
                                     <div>
-                                          <input type="tex" class="form-control" id="txtCelular" name="txtCelular" placeholder="Celular de contacto:" />
+                                          <input type="tex" class="form-control" id="txtCelular" name="txtCelular" placeholder="Celular de contacto:" value="{{ $cliente->celular }}" />
                                     </div>
                                     <div>
-                                          <input type="tex" class="form-control" id="txtDireccion" name="txtDireccion" placeholder="Dirección:" />
+                                          <input type="tex" class="form-control" id="txtDireccion" name="txtDireccion" placeholder="Dirección:" value="{{ $cliente->direccion }}"/>
                                     </div>
                                     <div>
-                                          <input type="password" class="form-control" id="txtClave" name="txtClave" placeholder="Contraseña:" />
+                                          <input type="password" class="form-control" id="txtClave" name="txtClave" placeholder="Contraseña:" value="{{ $cliente->clave }}" />
                                     </div>
-
+                                   
+                                      
                                     <div class="btn_box">
                                           <button type="submit" name="btnGuardar">
                                                 Guardar
                                           </button>
                                     </div>
+                                    
                               </form>
+                             
                         </div>
 
-
+                     
                   </div>
+               
             </div>
             <div class="heading_container">
 
@@ -66,20 +74,20 @@
                                                       Total
                                                 </th>
                                           </tr>
-                                          @foreach ($aPedidos AS $pedido)
+                                       
                                     </thead>
                                    
                                     <tbody>
                                     
                                           <tr>
-                                             <td>{{ $carrito->producto}}</td>
+                                             <td></td>
                                           
                                           <td></td>
                                           
                                          
                                                
                                           </tr>
-                                          @endforeach
+                                        
                                     </tbody>
 
                                    
