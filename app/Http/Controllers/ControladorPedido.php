@@ -65,7 +65,12 @@ class ControladorPedido extends Controller
       $titulo = "Modificar pedido";
       $entidad = new Pedido();
       $entidad->cargarDesdeRequest($request);
-
+      $estado = new Estado();
+      $sucursal = new Sucursal();
+      $cliente = new Cliente();
+      $aClientes = $cliente->obtenerTodos();
+      $aSucursales = $sucursal->obtenerTodos();
+      $aEstados = $estado->obtenerTodos();
       //validaciones
       if ($entidad->fecha == "" || $entidad->descripcion == "" || $entidad->total == "" || $entidad->fk_idsucursal == "" || $entidad->fk_idcliente == "" || $entidad->fk_idestado == "") {
         $msg["ESTADO"] = MSG_ERROR;
@@ -96,7 +101,7 @@ class ControladorPedido extends Controller
     $pedido = new Pedido();
     $pedido->obtenerPorId($id);
 
-    return view('sistema.pedido-nuevo', compact('msg', 'cliente', 'titulo')) . '?id=' . $pedido->idpedido;
+    return view('sistema.pedido-nuevo', compact("msg","titulo", "pedido", "aEstados", "aSucursales", "aClientes")) . '?id=' . $pedido->idpedido;
   }
 
   public function cargarGrilla(Request $request)

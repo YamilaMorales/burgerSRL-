@@ -28,7 +28,7 @@ class ControladorWebMiCuenta extends Controller
     
             $pedido = new Pedido();
             $aPedidos = $pedido->pedidoPorCliente($idCliente);
-            return view("web.mi-cuenta", compact("aSucursales", "sucursal", "aPedidos", "cliente", "pedido"));
+            return view("web.mi-cuenta", compact("aSucursales", "sucursal", "aPedidos", "cliente"));
         } else {
             return redirect("/login");
         }
@@ -49,7 +49,7 @@ class ControladorWebMiCuenta extends Controller
 
         $pedido = new Pedido();
         $aPedidos = $pedido->pedidoPorCliente($idCliente);
-        
+
         $cliente->nombre = $request->input("txtNombre");
         $cliente->apellido = $request->input("txtApellido");
         $cliente->dni = $request->input("txtDni");
@@ -60,6 +60,6 @@ class ControladorWebMiCuenta extends Controller
 
 
        
-        return view("web.mi-cuenta", compact("aSucursales", "aPedidos", "cliente", "pedido"));
+        return view("web.mi-cuenta", compact("aSucursales", "aPedidos", "cliente"));
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entidades\Sucursal;
 use App\Entidades\Carrito;
+use App\Entidades\CarritoProducto;
 use App\Entidades\Pedido;
 use Illuminate\Http\Request;
 use Session; 
@@ -28,12 +29,12 @@ class ControladorWebCarrito extends Controller
 
         
         if(isset($_POST["btnEliminar"])){
-            $this->eliminar($request);
+          return $this->eliminar($request);
         } else if(isset($_POST["btnActualizar"])){
-            $this->actualizar($request);
+           return $this->actualizar($request);
 
         } else if(isset($_POST["btnFinalizar"])){
-            $this->insertarPedido($request);
+           return $this->insertarPedido($request);
         }
 
     }
@@ -49,10 +50,11 @@ class ControladorWebCarrito extends Controller
         $idCarrito = $request->input("txtCarrito");
         $idProducto = $request->input("txtProducto");
        
-        $carrito = new Carrito();
-        $aCarritos = $carrito->obtenerPorCliente($idCliente);
+       
+       
 
         $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
         $carrito->cantidad = $cantidad;
         $carrito->fk_idcliente =$idCliente;
         $carrito->fk_idproducto=$idCliente;
@@ -72,6 +74,8 @@ class ControladorWebCarrito extends Controller
        
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
 
         $idCarrito = $request->input("txtCarrito");
         $carrito = new Carrito();
@@ -87,18 +91,38 @@ class ControladorWebCarrito extends Controller
         $idCliente=Session::get("idCliente");
         $sucursal = new Sucursal(); 
         $aSucursales = $sucursal->obtenerTodos();
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
+
+      $total=0;
+      foreach ($aCarritos as $item) {
+        $total += $item->cantidad * $item->precio;
+      }
+
+        $sucursal = $request->input("lstSucursal");
+        $pago = $request->input("lstPago");
+        $fecha = date("Y-m-d");
 
        $pedido= new Pedido();
-       $pedido->fecha= $request->input("txtNombre");
-       $pedido->descripcion= $request->input("txtApellido");
-       $pedido->total= $request->input("txtCelular");
-       $pedido->fk_idsucursal= $request->input("");
-       $pedido->fk_idcliente= "";
-       $pedido->fk_idestado= $request->input("txtCorreo");
-
+       $pedido->fk_idsucursal = $sucursal;
+       $pedido->fk_idcliente = $idCliente;
+       $pedido->fk_idestado = 1;
+       $pedido->fecha = $fecha;
+       $pedido->total = $total;
+       $pedido->pago = $pago;
        $pedido->insertar();
        
-       return view("web.postulacion-gracias", compact("aSucursales" ));
+
+       $carrito_producto = new CarritoProducto();
+       foreach ( $aCarritos as $item){
+        $carrito_producto->fk_idproducto = $item->fk_idproducto;
+        $carrito_producto->fk_idpedido= $pedido->idpedido;
+        $carrito_producto->insertar();
+    
+       }
+         $carrito->eliminarPorCliente($idCliente);
+
+       return view("web.pedido-gracias", compact("aSucursales" , "aCarritos"));
         
 
     }

@@ -78,7 +78,7 @@
                         </thead>
                       
                         <tbody>
-                        @foreach ($aPedidos as $pedido)
+                        @foreach ($aPedidos AS $pedido)
                             <tr>
                                 <td> {{ $pedido->idpedido }}</td>
 
