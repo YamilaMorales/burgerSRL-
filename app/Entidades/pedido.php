@@ -15,6 +15,10 @@ class Pedido extends Model
     ];
 
     protected $hidden = [];
+    private $sucursal;
+    private $cliente;
+    private $estado;
+
 
     public function cargarDesdeRequest($request)
     {
