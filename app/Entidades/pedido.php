@@ -206,7 +206,7 @@ class Pedido extends Model
 
     public function pedidoPorCliente($idCliente)
     {
-        $sql = "SELECT
+        $sql = "SELECT 
                     A.idpedido,
                     A.fk_idestado,
                     A.fk_idcliente,

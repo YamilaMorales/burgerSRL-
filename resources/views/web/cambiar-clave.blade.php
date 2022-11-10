@@ -10,17 +10,17 @@
         @if(isset($mensaje))
         <div class="row">
             <div class="col-md-6">
-                <div class="alert alert-danger" role="alert">
-                    {{ $mensaje }}
+                <div class="alert alert-success" role="alert">
+                    {{ $mensaje["MSG"] }}
                 </div>
             </div>
         </div>
         @endif
-        @if(isset($mensaje))
+        @if(isset($msg))
         <div class="row">
             <div class="col-md-6">
-                <div class="alert alert-success" role="alert">
-                    {{ $msg}}
+                <div class="alert alert-danger" role="alert">
+                    {{ $msg ["MSG"] }}
                 </div>
             </div>
         </div>
