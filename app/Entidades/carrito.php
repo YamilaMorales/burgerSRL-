@@ -11,7 +11,7 @@ class Carrito extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idcliente', 'fk_idcliente', 'fk_idproducto', 'cantidad'
+        'idcarrito', 'fk_idcliente', 'fk_idproducto', 'cantidad',
     ];
 
     protected $hidden = [];
@@ -22,7 +22,7 @@ class Carrito extends Model
     public function obtenerTodos()
     {
         $sql = "SELECT
-                 idcarrito,
+                idcarrito,
                 fk_idcliente,
                 fk_idproducto,
                 cantidad
@@ -107,7 +107,7 @@ class Carrito extends Model
                 FROM carritos A
                 INNER JOIN productos B ON A.fk_idproducto = B.idproducto
                     
-                   WHERE fk_idcliente = $idCliente";
+                   WHERE fk_idcliente = '$idCliente'";
         $lstRetorno = DB::select($sql);
         return $lstRetorno;
     }

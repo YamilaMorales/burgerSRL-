@@ -107,7 +107,7 @@
 
                                     <td colspan="9" style="text-align: right;">
 
-                                        <a href="/takeaway"><button type="submit" class="btn btn-warning" style="background-color:#ffbe33; color:#ffffff; border-radius:45px;">Agregar productos</button></a>
+                                        <a href="/takeaway"><button  class="btn btn-warning" style="background-color:#ffbe33; color:#ffffff; border-radius:45px;">Agregar productos</button></a>
 
                                     </td>
 
@@ -127,6 +127,7 @@
                             <table class="table table hover">
 
                                 <form action="" method="POST">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>
