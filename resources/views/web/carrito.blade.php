@@ -107,7 +107,7 @@
 
                                     <td colspan="9" style="text-align: right;">
 
-                                        <a href="/takeaway"><button  class="btn btn-warning" style="background-color:#ffbe33; color:#ffffff; border-radius:45px;">Agregar productos</button></a>
+                                        <a href="/takeaway"><button class="btn btn-warning" style="background-color:#ffbe33; color:#ffffff; border-radius:45px;">Agregar productos</button></a>
 
                                     </td>
 
@@ -128,8 +128,11 @@
 
                                 <form action="" method="POST">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                                     <thead class="thead-dark">
+                                        
                                         <tr>
+
                                             <th>
                                                 Sucursal
                                             </th>
@@ -142,6 +145,12 @@
                                     </thead>
 
                                     <tbody>
+                                        <tr>
+
+
+
+
+                                        </tr>
                                         <tr>
                                             <td>
                                                 <select class="form-control" name="lstSucursal" id="lstSucursal">
@@ -162,6 +171,17 @@
 
                                                 </select>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <th> <label for="">Comentario:</label> </th>
+                                            <th></th>
+
+                                        </tr>
+                                        <tr>
+                                            <td class=""> <textarea name="txtDescripcion" id="txtDescripcion" cols="20" rows="2" class="form-control py-2">
+
+                                            </textarea></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
 

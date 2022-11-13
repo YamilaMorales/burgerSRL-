@@ -99,14 +99,13 @@ class ControladorWebCarrito extends Controller
 
         $sucursal = $request->input("lstSucursal");
         $pago = $request->input("lstPago");
-      
+        $descripcion = $request->input("txtDescripcion");
         $fecha=date('Y-m-d');
-
         $pedido = new Pedido();
         $pedido->fk_idsucursal = $sucursal;
         $pedido->fk_idcliente = $idCliente;
         $pedido->fk_idestado = 1;
-        $pedido->descripcion = "";
+        $pedido->descripcion = $descripcion;
         $pedido->fecha = $fecha;
         $pedido->total = $total;
         $pedido->pago = $pago;

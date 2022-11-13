@@ -10,6 +10,7 @@ use App\Entidades\Sistema\Usuario;
 use App\Entidades\Sistema\Patente;
 use App\Entidades\Sucursal;
 use App\Entidades\Cliente;
+use App\Entidades\PedidoProducto;
 use DateTime;
 
 require app_path() . '/start/constants.php';
@@ -28,8 +29,7 @@ class ControladorPedido extends Controller
     $aSucursales = $sucursal->obtenerTodos();
     $aEstados = $estado->obtenerTodos();
 
-    $fecha=new DateTime();
-    $fecha_actual=$fecha->format('y-m-d H:i:s');
+    
 
     if (Usuario::autenticado() == true) {
       if (!Patente::autorizarOperacion("PEDIDOALTA")) {
@@ -131,7 +131,7 @@ class ControladorPedido extends Controller
     for ($i = $inicio; $i < count($aPedidos) && $cont < $registros_por_pagina; $i++) {
       $row = array();
       $row[] = "<a href='/admin/pedido/" .  $aPedidos[$i]->idpedido . "'>" . $aPedidos[$i]->cliente .  "</a>";
-      $row[] = date_format(date_create ($aPedidos[$i]->fecha), 'd/m/Y');
+      $row[] = date_format(date_create ($aPedidos[$i]->fecha), 'd-m-Y');
       $row[] = $aPedidos[$i]->sucursal;
       $row[] = $aPedidos[$i]->estado;
       $row[] = number_format($aPedidos[$i]->total, 2, ",", ".");
@@ -161,6 +161,9 @@ class ControladorPedido extends Controller
     $aSucursales = $sucursal->obtenerTodos();
     $aEstados = $estado->obtenerTodos();
     $pedido->obtenerPorId($idPedido);
+
+    $aPedidoProductos = new PedidoProducto();
+    $aPedidoProducto->obteneerPorPedido($idPedido);
 
 
     if (Usuario::autenticado() == true) {
