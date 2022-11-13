@@ -31,8 +31,6 @@ class ControladorWebContacto extends Controller
 
         if ($nombre != "" && $correo != "" && $telefono != "" && $mensaje != "") {
 
-
-
             $data = "Instrucciones";
 
             $mail = new PHPMailer(true);
@@ -68,7 +66,7 @@ class ControladorWebContacto extends Controller
                 //$mail->send();
 
                 return view('web.contacto-gracias', compact("aSucursales"));
-                
+
             } catch (Exception $e) {
                 $mensaje["ESTADO"] = MSG_ERROR;
                 $mensaje["MSG"] = "Hubo un error al enviar el correo";

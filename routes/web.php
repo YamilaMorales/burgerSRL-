@@ -44,6 +44,9 @@ Route::group(array('domain' => '127.0.0.1'), function () {
     Route::get('/recuperar-clave', 'ControladorWebRecuperarClave@index');
     Route::post('/recuperar-clave', 'ControladorWebRecuperarClave@recuperar');
     Route::get('/pedido-gracias', 'ControladorWebPedidoGracias@index');
+    Route::get('/mercado-pago/aprobado/{idPedido}', 'ContrladorMercadoPago@aprobado');
+    Route::get('/mercado-pago/pendiente/{idPedido}', 'ContrladorMercadoPago@pendiente');
+    Route::get('/mercado-pago/error/{idPedido}', 'ContrladorMercadoPago@error');
 /* --------------------------------------------- */
 
     Route::get('/admin', 'ControladorHome@index');
