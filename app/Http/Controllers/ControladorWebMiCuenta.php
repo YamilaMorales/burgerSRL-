@@ -26,8 +26,8 @@ class ControladorWebMiCuenta extends Controller
             $sucursal = new Sucursal();
             $aSucursales = $sucursal->obtenerTodos();
     
-            $pedido = new Pedido();
-            $aPedidos = $pedido->pedidoPorCliente($idCliente);
+            $entidadPedido = new Pedido();
+            $aPedidos= $entidadPedido->pedidoPorCliente($idCliente);
             return view("web.mi-cuenta", compact("aSucursales", "sucursal", "aPedidos", "cliente"));
         } else {
             return redirect("/login");
@@ -47,9 +47,7 @@ class ControladorWebMiCuenta extends Controller
         $idCliente = Session::get("idCliente");
         $cliente->idcliente = $idCliente;
 
-        $pedido = new Pedido();
-        $aPedidos = $pedido->pedidoPorCliente($idCliente);
-
+       
         $cliente->nombre = $request->input("txtNombre");
         $cliente->apellido = $request->input("txtApellido");
         $cliente->dni = $request->input("txtDni");
@@ -60,6 +58,9 @@ class ControladorWebMiCuenta extends Controller
 
 
        
-        return view("web.mi-cuenta", compact("aSucursales", "aPedidos", "cliente"));
+        $entidadPedido = new Pedido();
+        $aPedidos = $entidadPedido->pedidoPorCliente($idCliente);
+
+        return view("web.mi-cuenta", compact("aSucursales", "aPedidos", "cliente","pedido"));
     }
 }

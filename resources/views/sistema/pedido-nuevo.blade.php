@@ -122,7 +122,7 @@
                     </tr>
                     @foreach ($aPedidoProductos as $producto)
                     <tr>
-                        <td><img src="/files/{{ $producto->imagen }}" class="img-thumbnail" style=" weidht: 90px;"></style> alt=""></td>
+                        <td><img src="/files/{{ $producto->imagen }}" class="img-thumbnail" style=" width: 90px;"></style> alt=""></td>
                         <td>{{ $producto->nombre }}</td>
                         <td> {{ $prodcuto->cantidad }} </td>
                     </tr>

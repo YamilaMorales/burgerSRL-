@@ -145,12 +145,7 @@
                                     </thead>
 
                                     <tbody>
-                                        <tr>
-
-
-
-
-                                        </tr>
+                                       
                                         <tr>
                                             <td>
                                                 <select class="form-control" name="lstSucursal" id="lstSucursal">

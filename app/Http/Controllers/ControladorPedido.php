@@ -10,7 +10,7 @@ use App\Entidades\Sistema\Usuario;
 use App\Entidades\Sistema\Patente;
 use App\Entidades\Sucursal;
 use App\Entidades\Cliente;
-use App\Entidades\PedidoProducto;
+use App\Entidades\Pedido_Producto;
 use DateTime;
 
 require app_path() . '/start/constants.php';
@@ -29,7 +29,9 @@ class ControladorPedido extends Controller
     $aSucursales = $sucursal->obtenerTodos();
     $aEstados = $estado->obtenerTodos();
 
-    
+
+    $fecha= new DateTime();
+    $fecha_actual = $fecha->format('Y-m-d'); 
 
     if (Usuario::autenticado() == true) {
       if (!Patente::autorizarOperacion("PEDIDOALTA")) {
@@ -76,8 +78,10 @@ class ControladorPedido extends Controller
       $aSucursales = $sucursal->obtenerTodos();
       $aEstados = $estado->obtenerTodos();
       //validaciones
-     
-  
+
+
+
+
       if ($entidad->fecha == "" || $entidad->descripcion == "" || $entidad->total == "" || $entidad->fk_idsucursal == "" || $entidad->fk_idcliente == "" || $entidad->fk_idestado == "") {
         $msg["ESTADO"] = MSG_ERROR;
         $msg["MSG"] = "Complete todos los datos";
@@ -106,8 +110,8 @@ class ControladorPedido extends Controller
     $id = $entidad->idpedido;
     $pedido = new Pedido();
     $pedido->obtenerPorId($id);
-  
-    return view('sistema.pedido-nuevo', compact("msg","titulo", "pedido", "aEstados", "aSucursales", "aClientes")) . '?id=' . $pedido->idpedido;
+
+    return view('sistema.pedido-nuevo', compact("msg", "titulo", "pedido", "aEstados", "aSucursales", "aClientes")) . '?id=' . $pedido->idpedido;
   }
 
   public function cargarGrilla(Request $request)
@@ -127,11 +131,11 @@ class ControladorPedido extends Controller
     $inicio = $request['start'];
     $registros_por_pagina = $request['length'];
 
-   
+
     for ($i = $inicio; $i < count($aPedidos) && $cont < $registros_por_pagina; $i++) {
       $row = array();
       $row[] = "<a href='/admin/pedido/" .  $aPedidos[$i]->idpedido . "'>" . $aPedidos[$i]->cliente .  "</a>";
-      $row[] = date_format(date_create ($aPedidos[$i]->fecha), 'd-m-Y');
+      $row[] = date_format(date_create($aPedidos[$i]->fecha), 'd-m-Y');
       $row[] = $aPedidos[$i]->sucursal;
       $row[] = $aPedidos[$i]->estado;
       $row[] = number_format($aPedidos[$i]->total, 2, ",", ".");
@@ -162,18 +166,30 @@ class ControladorPedido extends Controller
     $aEstados = $estado->obtenerTodos();
     $pedido->obtenerPorId($idPedido);
 
-    $aPedidoProductos = new PedidoProducto();
-    $aPedidoProducto->obteneerPorPedido($idPedido);
+    $entidadPedidoProductos = new Pedido_Producto();
+    $aPedidoProductos = $entidadPedidoProductos->obtenerPorPedido($idPedido);
 
 
     if (Usuario::autenticado() == true) {
       if (!Patente::autorizarOperacion("PEDIDOEDITAR")) {
         $codigo = "PEDIDOEDITAR";
         $mensaje = "No tiene permisos para la operación.";
-        return view('sistema.pagina-error', compact( 'codigo', 'mensaje'));
+        return view('sistema.pagina-error', compact('codigo', 'mensaje'));
       } else {
+        $titulo = "Modificar pedido";
+        $pedido = new Pedido();
+        $estado = new Estado();
+        $sucursal = new Sucursal();
+        $cliente = new Cliente();
+        $aClientes = $cliente->obtenerTodos();
+        $aSucursales = $sucursal->obtenerTodos();
+        $aEstados = $estado->obtenerTodos();
+        $pedido->obtenerPorId($idPedido);
 
-        return view("sistema.pedido-nuevo", compact( "pedido", "aClientes", "aSucursales", "aEstados","titulo"));
+        $entidadPedidoProducto = new Pedido_Producto();
+        $aPedidoProductos = $entidadPedidoProducto->obtenerPorPedido($idPedido);
+
+        return view("sistema.pedido-nuevo", compact("pedido", "aClientes", "aSucursales", "aEstados", "titulo","aPedidoProductos"));
       }
     } else {
       return redirect('admin/login');

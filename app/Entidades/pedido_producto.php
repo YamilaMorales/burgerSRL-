@@ -4,7 +4,7 @@ namespace App\Entidades;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
-class PedidoProducto extends Model
+class Pedido_Producto extends Model
 {
     protected $table = 'pedidos_productos';
     public $timestamps = false;
@@ -31,7 +31,24 @@ class PedidoProducto extends Model
         $lstRetorno = DB::select($sql);
         return $lstRetorno;
     }
+    public function obtenerPorPedido($idPedido)
+    {
+        $sql = "SELECT
+                A.idpedidoproducto, 
+                A.fk_idpedido, 
+                A.fk_idproducto, 
+                A.cantidad, 
+                A.precio_unitario,
+                B.nombre,
+                B.imagen
+                FROM pedidos_productos  A 
+                INNER JOIN productos B ON A.fk_idproducto = B.idproducto 
+                WHERE A.fk_idpedido = $idPedido
+                ORDER BY idpedidoproducto ASC";
 
+        $lstRetorno = DB::select($sql);
+        return $lstRetorno;
+    }
     public function obtenerPorId($idPedidoProducto)
     {
         $sql = "SELECT

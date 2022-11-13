@@ -43,7 +43,9 @@
                         </div>
 
                     </form>
-
+                    <div colspan="4" style="text-align: right;">
+                        <a  href="/cambiar-clave"> Cambiar Clave</a>
+                    </div>
                 </div>
 
 
@@ -76,15 +78,13 @@
                             </tr>
 
                         </thead>
-                      
+
                         <tbody>
-                        @foreach ($aPedidos AS $pedido)
+                            @foreach ($aPedidos as $pedido)
                             <tr>
-                                <td> {{ $pedido->idpedido }}</td>
+                                <td> {{ $pedido->idpedido }} </td>
 
-                                <td> {{ $pedido->total }}</td>
-
-
+                                <td> {{ $pedido->sucursal}}</td>
 
                             </tr>
 

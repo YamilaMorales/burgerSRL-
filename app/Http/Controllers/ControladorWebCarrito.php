@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entidades\Sucursal;
 use App\Entidades\Carrito;
-use App\Entidades\CarritoProducto;
+use App\Entidades\Pedido_Producto;
 use App\Entidades\Pedido;
 use Illuminate\Http\Request;
 use Session;
@@ -100,7 +100,8 @@ class ControladorWebCarrito extends Controller
         $sucursal = $request->input("lstSucursal");
         $pago = $request->input("lstPago");
         $descripcion = $request->input("txtDescripcion");
-        $fecha=date('Y-m-d');
+
+        $fecha= date("Y-m-d");
         $pedido = new Pedido();
         $pedido->fk_idsucursal = $sucursal;
         $pedido->fk_idcliente = $idCliente;
@@ -112,12 +113,12 @@ class ControladorWebCarrito extends Controller
         $pedido->insertar();
 
 
-        $carrito_producto = new CarritoProducto();
+        $pedidoProducto = new Pedido_Producto();
         foreach ($aCarritos as $item) {
-            $carrito_producto->fk_idproducto = $item->fk_idproducto;
-            $carrito_producto->fk_idpedido = $pedido->idpedido;
-            
-            $carrito_producto->insertar();
+            $pedidoProducto->fk_idproducto = $item->fk_idproducto;
+            $pedidoProducto->fk_idpedido = $pedido->idpedido;
+            $pedidoProducto->cantidad = $item->cantidad;
+            $pedidoProducto->insertar();
         }
         $carrito->eliminarPorCliente($idCliente);
 
