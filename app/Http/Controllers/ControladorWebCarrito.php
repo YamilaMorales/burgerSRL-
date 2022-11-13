@@ -99,7 +99,8 @@ class ControladorWebCarrito extends Controller
 
         $sucursal = $request->input("lstSucursal");
         $pago = $request->input("lstPago");
-        $fecha = date("Y-m-d");
+      
+        $fecha=date('Y-m-d');
 
         $pedido = new Pedido();
         $pedido->fk_idsucursal = $sucursal;
@@ -116,6 +117,7 @@ class ControladorWebCarrito extends Controller
         foreach ($aCarritos as $item) {
             $carrito_producto->fk_idproducto = $item->fk_idproducto;
             $carrito_producto->fk_idpedido = $pedido->idpedido;
+            
             $carrito_producto->insertar();
         }
         $carrito->eliminarPorCliente($idCliente);

@@ -111,7 +111,7 @@ class ControladorProducto extends Controller
             $row[] = $aProductos[$i]->cantidad;
             $row[] = $aProductos[$i]->descripcion;
             $row[] = $aProductos[$i]->categoria;
-            $row[] = "<img src='/files/" . $aProductos[$i]->imagen . "'>";
+            $row[] = "<img " . " class= 'img-thumbnail'" . " src='/files/" . $aProductos[$i]->imagen . "'>";
 
 
             $cont++;

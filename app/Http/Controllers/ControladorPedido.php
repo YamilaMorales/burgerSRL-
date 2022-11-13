@@ -10,6 +10,7 @@ use App\Entidades\Sistema\Usuario;
 use App\Entidades\Sistema\Patente;
 use App\Entidades\Sucursal;
 use App\Entidades\Cliente;
+use DateTime;
 
 require app_path() . '/start/constants.php';
 
@@ -26,6 +27,9 @@ class ControladorPedido extends Controller
     $aClientes = $cliente->obtenerTodos();
     $aSucursales = $sucursal->obtenerTodos();
     $aEstados = $estado->obtenerTodos();
+
+    $fecha=new DateTime();
+    $fecha_actual=$fecha->format('y-m-d H:i:s');
 
     if (Usuario::autenticado() == true) {
       if (!Patente::autorizarOperacion("PEDIDOALTA")) {
@@ -48,7 +52,7 @@ class ControladorPedido extends Controller
       if (!Patente::autorizarOperacion("PEDIDOCONSULTA")) {
         $codigo = "PEDIDOCONSULTA";
         $mensaje = "No tiene permisos para la operación.";
-        return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
+        return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje', "pedido", "aEstados", "aSucursales", "aClientes"));
       } else {
         return view("sistema.pedido-listar", compact("titulo"));
       }
@@ -72,6 +76,8 @@ class ControladorPedido extends Controller
       $aSucursales = $sucursal->obtenerTodos();
       $aEstados = $estado->obtenerTodos();
       //validaciones
+     
+  
       if ($entidad->fecha == "" || $entidad->descripcion == "" || $entidad->total == "" || $entidad->fk_idsucursal == "" || $entidad->fk_idcliente == "" || $entidad->fk_idestado == "") {
         $msg["ESTADO"] = MSG_ERROR;
         $msg["MSG"] = "Complete todos los datos";
@@ -100,7 +106,7 @@ class ControladorPedido extends Controller
     $id = $entidad->idpedido;
     $pedido = new Pedido();
     $pedido->obtenerPorId($id);
-
+  
     return view('sistema.pedido-nuevo', compact("msg","titulo", "pedido", "aEstados", "aSucursales", "aClientes")) . '?id=' . $pedido->idpedido;
   }
 
@@ -108,6 +114,8 @@ class ControladorPedido extends Controller
   {
 
     $request = $_REQUEST;
+
+
 
     $entidad = new Pedido();
     $aPedidos = $entidad->obtenerFiltrado();
@@ -119,14 +127,15 @@ class ControladorPedido extends Controller
     $inicio = $request['start'];
     $registros_por_pagina = $request['length'];
 
-
+   
     for ($i = $inicio; $i < count($aPedidos) && $cont < $registros_por_pagina; $i++) {
       $row = array();
       $row[] = "<a href='/admin/pedido/" .  $aPedidos[$i]->idpedido . "'>" . $aPedidos[$i]->cliente .  "</a>";
-      $row[] = $aPedidos[$i]->fecha;
+      $row[] = date_format(date_create ($aPedidos[$i]->fecha), 'd/m/Y');
       $row[] = $aPedidos[$i]->sucursal;
       $row[] = $aPedidos[$i]->estado;
       $row[] = number_format($aPedidos[$i]->total, 2, ",", ".");
+      $row[] = $aPedidos[$i]->pago;
       $cont++;
       $data[] = $row;
     }
@@ -143,7 +152,7 @@ class ControladorPedido extends Controller
   public function editar($idPedido)
   {
 
-    
+    $titulo = "Modificar pedido";
     $pedido = new Pedido();
     $estado = new Estado();
     $sucursal = new Sucursal();
@@ -153,6 +162,7 @@ class ControladorPedido extends Controller
     $aEstados = $estado->obtenerTodos();
     $pedido->obtenerPorId($idPedido);
 
+
     if (Usuario::autenticado() == true) {
       if (!Patente::autorizarOperacion("PEDIDOEDITAR")) {
         $codigo = "PEDIDOEDITAR";
@@ -160,7 +170,7 @@ class ControladorPedido extends Controller
         return view('sistema.pagina-error', compact( 'codigo', 'mensaje'));
       } else {
 
-        return view("sistema.pedido-nuevo", compact( "pedido", "aClientes", "aSucursales", "aEstados"));
+        return view("sistema.pedido-nuevo", compact( "pedido", "aClientes", "aSucursales", "aEstados","titulo"));
       }
     } else {
       return redirect('admin/login');

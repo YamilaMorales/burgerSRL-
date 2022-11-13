@@ -73,7 +73,7 @@
                   <div class="form-group col-6 ">
                         <label for="fileImage">Imagen: *</label>
                         <input type="file" id="archivo" name="archivo" class="form-control-file ">
-                        <img class="img-thumbnail" src="" alt="" >
+                        <img src="" alt="" class="img-thumbnail" style="width: 90px ;">
                   </div>
             </div>
 

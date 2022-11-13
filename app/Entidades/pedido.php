@@ -15,6 +15,7 @@ class Pedido extends Model
     ];
 
     protected $hidden = [];
+   
     private $sucursal;
     private $cliente;
     private $estado;
@@ -82,7 +83,7 @@ class Pedido extends Model
     public function guardar()
     {
         $sql = "UPDATE pedidos SET
-            fecha=$this->fecha,
+            fecha='$this->fecha',
             descripcion='$this->descripcion',
             total=$this->total,
             fk_idsucursal=$this->fk_idsucursal,
@@ -237,7 +238,7 @@ class Pedido extends Model
                     FROM pedidos A
                     INNER JOIN sucursales B ON A.fk_idsucursal = B.idsucursal
                     INNER JOIN estados C ON A.fk_idestado = C.idestado
-                   WHERE fk_idcliente = '$idCliente'
+                   WHERE fk_idcliente = '$idCliente' AND A.fk_idestado<> 2
                 ";
 
         $lstRetorno = DB::select($sql);

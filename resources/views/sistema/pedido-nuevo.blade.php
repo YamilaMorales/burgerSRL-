@@ -41,10 +41,9 @@
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label>Fecha: *</label>
-                        <input type="date" id="txtFecha" name="txtFecha" class="form-control " value="{{$pedido->fecha}}" required>
+                        <input type="date" id="txtFecha" name="txtFecha" class="form-control " value="{{ date_format(date_create($pedido->fecha),'Y-m-d') }}" required>
                   </div>
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+                  
                   <div class="form-group col-6">
                         <label>Descripcion: *</label>
                         <textarea name="txtDescripcion" id="txtDescripcion" cols="30" rows="20" class="form-control"required>{{$pedido->descripcion}}</textarea>
@@ -55,41 +54,57 @@
                         <input type="text" id="txtTotal" name="txtTotal" class="form-control" value="{{$pedido->total}}" required>
                   </div>
 
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+                  
                   <div class="form-group col-6">
                         <label>Estado: *</label>
                         <select value="" id="lstEstado" name="lstEstado" required class="form-control">
                               <option value="" disabled selected>Seleccionar </option>
                               @foreach( $aEstados as $estado)
+                              @if($estado->idestado == $pedido->fk_idestado)
+                              <option selected value="{{$estado->idestado}}"> {{$estado->nombre}}</option>
+                              @else 
                               <option  value="{{$estado->idestado}}"> {{$estado->nombre}}</option>
-
+                              @endif
                               @endforeach
                         </select>
                   </div>
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+                  
                   <div class="form-group col-6">
                         <label>Sucursal: *</label>
                         <select value="" id="lstSucursal" name="lstSucursal" required class="form-control">
                               <option value="" disabled selected>Seleccionar </option>
                               @foreach( $aSucursales as $sucursal)
+                              @if($sucursal->idsucursal == $pedido->fk_idsucursal)
 
                               <option selected value="{{$sucursal->idsucursal}}"> {{$sucursal->nombre}}</option>
-
+                               @else 
+                               <option  value="{{$sucursal->idsucursal}}"> {{$sucursal->nombre}}</option>
+                               @endif
                               @endforeach
                         </select>
                   </div>
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
-                  <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
+                  
                   <div class="form-group col-6">
                         <label>Cliente: *</label>
                         <select selected value="" id="lstCliente" name="lstCliente" required class="form-control">
                               <option value="" disabled selected>Seleccionar </option>
                               @foreach( $aClientes as $cliente)
-                              <option value="{{$cliente->idcliente}}"> {{$cliente->nombre}}</option>
-
+                              @if($cliente->idcliente == $pedido->fk_idcliente)
+                              <option selected value="{{$cliente->idcliente}}"> {{$cliente->nombre}}</option>
+                               @else
+                               <option value="{{$cliente->idcliente}}"> {{$cliente->nombre}}</option>
+                               @endif
                               @endforeach
+                        </select>
+                  </div>
+                  <div class="form-group col-6">
+                        <label>Metodo de pago: *</label>
+                        <select selected value="" id="lstPago" name="lstPago" class="form-control">
+                              <option value="" disabled selected>Seleccionar </option>
+                              
+                              <option <?php echo $pedido->pago == "Efectivo"? "selected" : ""; ?> value="Efectivo"> Efectivo</option>
+                              <option <?php echo $pedido->pago == "MercadoPago"? "selected" : ""; ?> value="MercadoPago"> Mercado Pago</option>
+                             
                         </select>
                   </div>
 
