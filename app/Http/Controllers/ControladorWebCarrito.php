@@ -97,9 +97,7 @@ class ControladorWebCarrito extends Controller
     {
 
         $idCliente = Session::get("idCliente");
-        $cliente = new Cliente();
-        $cliente->obtenerPorId($idCliente);
-
+     
         $idSucursal = $request->input("lstSucursal");
         $pago = $request->input("lstPago");
         $descripcion = $request->input("txtDescripcion");
@@ -119,8 +117,6 @@ class ControladorWebCarrito extends Controller
             foreach ($aCarritos as $item) {
                 $total += $item->cantidad * $item->precio;
             }
-
-
 
             $fecha = date("Y-m-d");
 
