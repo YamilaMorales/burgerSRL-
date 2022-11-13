@@ -11,29 +11,35 @@
           Envianos un mensaje
         </h2>
       </div>
+      @if(isset($mensaje))
+            <div class="row">
+                  <div class="col-md-6">
+                        <div class="alert alert-danger" role="alert">
+                              {{ $mensaje["MSG"] }}
+                        </div>
+
+                  </div>
+            </div>
+            @endif
       <div class="row">
         <div class="col-md-6">
           <div class="form_container">
-          <?php
-      if (isset($msg)) {
-            echo '<script>msgShow("' . $msg["MSG"] . '", "' . $msg["ESTADO"] . '")</script>';
-      }
-      ?>
+       
       <div id="msg"></div>
             <form action=""  method="POST">
             <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
          
               <div>
-                <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre:" />
+                <input type="text" id="txtNombre" name="txtNombre" class="form-control" required placeholder="Nombre:" />
               </div>
               <div>
-                <input type="text" id="txtTelefono" name="txtTelefono" class="form-control" placeholder="Teléfono:" />
+                <input type="text" id="txtTelefono" name="txtTelefono" class="form-control" required placeholder="Teléfono:" />
               </div>
               <div>
-                <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="Email:" />
+                <input type="email" class="form-control" id="txtCorreo" name="txtCorreo" required placeholder="Correo:" />
               </div>
               <div>
-                <textarea name="text" id="text" cols="20" rows="10" class="form-control" placeholder="Escribe aquí tu mensaje:" ></textarea>
+                <textarea name="txtMensaje" id="txtMensaje" cols="20" rows="10" class="form-control" required placeholder="Escribe aquí tu mensaje:" ></textarea>
               </div>
               
               <div class="btn_box">

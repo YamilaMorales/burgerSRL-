@@ -36,27 +36,27 @@ class ControladorWebRecuperarClave extends Controller
 
             $data = "Instrucciones";
 
-            $email = new PHPMailer(true);
+            $mail = new PHPMailer(true);
             try {
                 //Server settings
-                $email->SMTPDebug = 0;
-                $email->isSMTP();
-                $email->Host = env('MAIL_HOST');
-                $email->SMTPAuth = true;
-                $email->Username = env('MAIL_USERNAME');
-                $email->Password = env('MAIL_PASSWORD');
-                $email->SMTPSecure = env('MAIL_ENCRYPTION');
-                $email->Port = env('MAIL_PORT');
+                $mail->SMTPDebug = 0;
+                $mail->isSMTP();
+                $mail->Host = env('MAIL_HOST');
+                $mail->SMTPAuth = true;
+                $mail->Username = env('MAIL_USERNAME');
+                $mail->Password = env('MAIL_PASSWORD');
+                $mail->SMTPSecure = env('MAIL_ENCRYPTION');
+                $mail->Port = env('MAIL_PORT');
 
                 //Recipients
-                $email->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-                $email->addAddress($correo);
+                $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+                $mail->addAddress($correo);
 
 
                 //Content
-                $email->isHTML(true);
-                $email->Subject = 'Recupero de clave';
-                $email->Body    = "Los datos de acceso son:
+                $mail->isHTML(true);
+                $mail->Subject = 'Recupero de clave';
+                $mail->Body    = "Los datos de acceso son:
                 Usuario: $cliente->correo
                 Clave: $clave 
 

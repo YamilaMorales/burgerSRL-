@@ -11,7 +11,7 @@ use App\Entidades\Sistema\Patente;
 use App\Entidades\Sucursal;
 use App\Entidades\Cliente;
 use App\Entidades\Pedido_Producto;
-use DateTime;
+
 
 require app_path() . '/start/constants.php';
 
@@ -30,9 +30,7 @@ class ControladorPedido extends Controller
     $aEstados = $estado->obtenerTodos();
 
 
-    $fecha= new DateTime();
-    $fecha_actual = $fecha->format('Y-m-d'); 
-
+ 
     if (Usuario::autenticado() == true) {
       if (!Patente::autorizarOperacion("PEDIDOALTA")) {
         $codigo = "PEDIDOALTA";
@@ -124,7 +122,7 @@ class ControladorPedido extends Controller
     $entidad = new Pedido();
     $aPedidos = $entidad->obtenerFiltrado();
     $entidad = new Cliente();
-    $aClientes = $entidad->obtenerFiltrado();;
+    
     $data = array();
     $cont = 0;
 
