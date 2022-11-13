@@ -15,7 +15,7 @@ class ControladorMercadoPago extends Controller{
         $pedido->fk_idestado = 4;
         $pedido->guardar();
 
-        return redirect( '/mi-cuenta');
+        return redirect( '/pedido-gracias');
 
       }
 
@@ -26,7 +26,7 @@ class ControladorMercadoPago extends Controller{
             $pedido->obtenerPorId($idPedido);
             $pedido->fk_idestado = 5;
             $pedido->guardar();
-            return redirect( '/mi-cuenta');
+            return redirect( '/pedido-gracias');
     
       }
 
@@ -36,7 +36,7 @@ class ControladorMercadoPago extends Controller{
             $pedido->obtenerPorId($idPedido);
             $pedido->fk_idestado = 3;
             $pedido->guardar();
-            return redirect( '/mi-cuenta');
+            return redirect( '/pedido-gracias');
     
       }
 }

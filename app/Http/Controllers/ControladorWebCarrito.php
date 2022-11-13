@@ -66,6 +66,7 @@ class ControladorWebCarrito extends Controller
         $carrito->fk_idcliente = $idCliente;
         $carrito->fk_idproducto = $idCliente;
         $carrito->guardar();
+
         $msg["ESTADO"] = EXIT_SUCCESS;
         $msg["MSG"] = "Producto actualizado con exito.";
         return view('web.carrito', compact('msg',  'aSucursales', 'aCarritos'));
@@ -96,6 +97,9 @@ class ControladorWebCarrito extends Controller
     {
 
         $idCliente = Session::get("idCliente");
+        $cliente = new Cliente();
+        $cliente->obtenerPorId($idCliente);
+
         $idSucursal = $request->input("lstSucursal");
         $pago = $request->input("lstPago");
         $descripcion = $request->input("txtDescripcion");
@@ -119,7 +123,6 @@ class ControladorWebCarrito extends Controller
 
 
             $fecha = date("Y-m-d");
-
 
             $pedido = new Pedido();
             $pedido->fk_idsucursal = $idSucursal;
@@ -157,15 +160,14 @@ class ControladorWebCarrito extends Controller
 
 
         $idCliente = Session::get("idCliente");
-        $cliente = new Cliente($idCliete);
-
+        $cliente = new Cliente();
+        $cliente->obtenerPorId($idCliente);
         $idSucursal = $request->input("lstSucursal");
         $pago = $request->input("lstPago");
         $descripcion = $request->input("txtDescripcion");
 
 
-        $sucursal = new Sucursal();
-        $aSucursales = $sucursal->obtenerTodos();
+     
         $carrito = new Carrito();
         $aCarritos = $carrito->obtenerPorCliente($idCliente);
 
@@ -175,7 +177,6 @@ class ControladorWebCarrito extends Controller
         }
 
         $fecha = date("Y-m-d");
-
 
         //armado del producto item
 
