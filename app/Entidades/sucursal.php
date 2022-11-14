@@ -72,7 +72,7 @@ class Sucursal extends Model
             direccion='$this->direccion',
             telefono='$this->telefono',
             horario='$this->horario',
-            linkmapa='$this->ubicacion'
+            ubicacion='$this->ubicacion'
       
             WHERE idsucursal=?";
         $affected = DB::update($sql, [$this->idsucursal]);

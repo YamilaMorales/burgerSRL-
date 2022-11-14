@@ -106,6 +106,7 @@ class ControladorWebCarrito extends Controller
 
 
             $this->procesarMercadoPago($request);
+            
         } else {
 
             $sucursal = new Sucursal();
