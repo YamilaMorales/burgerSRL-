@@ -11,15 +11,12 @@ class Pedido extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idpedido', 'fecha', 'descripcion', 'total', 'fk_idsucursal', 'fk_idcliente', 'fk_idestado', 'pago',
+        'idpedido', 'fecha', 'descripcion', 'total', 'fk_idsucursal', 'fk_idcliente', 'fk_idestado', 'pago'
     ];
 
     protected $hidden = [];
    
-    private $sucursal;
-    private $cliente;
-    private $estado;
-
+  
 
     public function cargarDesdeRequest($request)
     {
@@ -121,7 +118,7 @@ class Pedido extends Model
             $this->fk_idsucursal,
             $this->fk_idcliente,
             $this->fk_idestado,
-            $this->pago,
+            $this->pago
         ]);
         return $this->idpedido = DB::getPdo()->lastInsertId();
     }
@@ -136,7 +133,7 @@ class Pedido extends Model
             2 => 'fk_idsucursal',
             3 => 'fk_idestado',
             4 => 'total',
-            5 => 'pago',
+            5 => 'pago'
 
         );
         $sql = "SELECT DISTINCT

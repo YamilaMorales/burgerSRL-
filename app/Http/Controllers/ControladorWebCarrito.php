@@ -64,7 +64,7 @@ class ControladorWebCarrito extends Controller
         $aCarritos = $carrito->obtenerPorCliente($idCliente);
         $carrito->cantidad = $cantidad;
         $carrito->fk_idcliente = $idCliente;
-        $carrito->fk_idproducto = $idCliente;
+        $carrito->fk_idproducto = $idProducto;
         $carrito->guardar();
 
         $msg["ESTADO"] = EXIT_SUCCESS;
@@ -97,22 +97,27 @@ class ControladorWebCarrito extends Controller
     {
 
         $idCliente = Session::get("idCliente");
-     
         $idSucursal = $request->input("lstSucursal");
         $pago = $request->input("lstPago");
         $descripcion = $request->input("txtDescripcion");
+       
+       
 
         if ($pago == "MercadoPago") {
 
 
             $this->procesarMercadoPago($request);
-            
+
         } else {
+
 
             $sucursal = new Sucursal();
             $aSucursales = $sucursal->obtenerTodos();
+
             $carrito = new Carrito();
             $aCarritos = $carrito->obtenerPorCliente($idCliente);
+            
+           
 
             $total = 0;
             foreach ($aCarritos as $item) {
@@ -120,7 +125,7 @@ class ControladorWebCarrito extends Controller
             }
 
             $fecha = date("Y-m-d");
-
+            $idSucursal = $request->input("lstSucursal");
             $pedido = new Pedido();
             $pedido->fk_idsucursal = $idSucursal;
             $pedido->fk_idcliente = $idCliente;
@@ -151,12 +156,13 @@ class ControladorWebCarrito extends Controller
     public function procesarMercadoPago($request)
     {
 
-        SKD::setClientId(config("payment-methods.mercadopago.client"));
-        SKD::setClientSecret(config("payment-methods.mercadopago.secret"));
-        SKD::setAccessToken($access_token); // es el token de la cuenta de MP donde se depositara el pago
+        SDK::setClientId(config("payment-methods.mercadopago.client"));
+        SDK::setClientSecret(config("payment-methods.mercadopago.secret"));
+        SDK::setAccessToken($access_token); // es el token de la cuenta de MP donde se depositara el pago
 
 
         $idCliente = Session::get("idCliente");
+
         $cliente = new Cliente();
         $cliente->obtenerPorId($idCliente);
         $idSucursal = $request->input("lstSucursal");

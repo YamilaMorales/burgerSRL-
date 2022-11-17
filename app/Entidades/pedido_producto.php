@@ -10,7 +10,7 @@ class Pedido_Producto extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'idpedidoproducto', 'fk_idpedido', 'fk_idproducto', 'cantidad', 'precio_unitario',
+        'idpedidoproducto', 'fk_idpedido', 'fk_idproducto', 'cantidad', 
     ];
 
     protected $hidden = [
@@ -24,7 +24,7 @@ class Pedido_Producto extends Model
                 fk_idpedido, 
                 fk_idproducto, 
                 cantidad, 
-                precio_unitario
+               
 
                 FROM pedidos_productos ORDER BY nombre ASC";
 
@@ -38,7 +38,6 @@ class Pedido_Producto extends Model
                 A.fk_idpedido, 
                 A.fk_idproducto, 
                 A.cantidad, 
-                A.precio_unitario,
                 B.nombre,
                 B.imagen
                 FROM pedidos_productos  A 
@@ -66,8 +65,7 @@ class Pedido_Producto extends Model
             $this->fk_idpedido = $lstRetorno[0]->fk_idpedido;
             $this->fk_idproducto = $lstRetorno[0]->fk_idproducto;
             $this->cantidad= $lstRetorno[0]->cantidad;
-            $this->precio_unitario = $lstRetorno[0]->precio_unitario;
-      
+           
             return $this;
         }
         return null;
@@ -77,8 +75,8 @@ class Pedido_Producto extends Model
         $sql = "UPDATE pedidos_productos SET
             fk_idpedido=$this->fk_idpedido,
             fk_idproducto =$this->fk_idproducto ,
-            cantidad=$this->cantidad,
-            precio_unitario=$this->precio_unitario
+            cantidad=$this->cantidad
+            
            
             WHERE idpedidoproducto=?";
         $affected = DB::update($sql, [$this->idpedidoproducto]);
@@ -96,15 +94,15 @@ class Pedido_Producto extends Model
         $sql = "INSERT INTO pedidos_productos (
                 fk_idpedido, 
                 fk_idproducto, 
-                cantidad, 
-                precio_unitario
+                cantidad
+                
 
-            ) VALUES (?, ?, ?, ?);";
+            ) VALUES (?, ?, ?);";
         $result = DB::insert($sql, [
             $this->fk_idpedido,
             $this->fk_idproducto,
-            $this->cantidad,
-            $this->precio_unitario,
+            $this->cantidad
+           
             
         ]);
         return $this->idpedidoproducto = DB::getPdo()->lastInsertId();
