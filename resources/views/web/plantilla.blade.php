@@ -160,9 +160,9 @@
                         </h4>
                         <div class="contact_link_box">
                         @foreach ($aSucursales as $sucursal) 
-                        <a href="">
+                        <a target="_blank" href ="{{$sucursal->ubicacion}}">
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                
+                         
                                 <span>
                                 {{$sucursal->nombre}}
                                 </span>
