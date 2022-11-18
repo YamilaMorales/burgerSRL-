@@ -15,7 +15,7 @@
     
       <li class="active" data-filter="*">Todo</li>
       @foreach ($aCategorias AS $categoria)
-      <li data-filter="{{$categoria->nombre}}">{{ $categoria->nombre }}</li>
+      <li data-filter=".{{$categoria->nombre}}">{{ $categoria->nombre }}</li>
       @endforeach
     </ul>
     
