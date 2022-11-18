@@ -151,7 +151,7 @@
                                                 <select class="form-control" name="lstSucursal" id="lstSucursal">
                                                     <option value="" disabled selected>Seleccionar </option>
                                                     @foreach ( $aSucursales AS $sucursal)
-                                                    <option value="{{ $sucursal->nombre }}">{{$sucursal->nombre}}</option>
+                                                    <option value="{{ $sucursal->idsucursal }}">{{$sucursal->nombre}}</option>
                                                     @endforeach
                                                 </select>
                                             </td>
