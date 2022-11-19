@@ -34,11 +34,7 @@
                                     <th>Cantidad</th>
                                     <th></th>
                                     <th>Subtotal</th>
-
                                 </tr>
-
-
-
                             </thead>
                             <tbody>
 
