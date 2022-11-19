@@ -68,13 +68,13 @@
 
                             <tr>
 
-                                <th>
-                                    Sucursal
-                                    Pedido
-                                    Estado
-                                    Fecha
-                                    Total
-                                </th>
+                                <th> Sucursal </th>
+                                <th> Nº Pedido</th>  
+                                <th>Estado</th>
+                                <th>Fecha</th>  
+                                <th>Total</th> 
+                                <th>Método de pago</th> 
+                            
                             </tr>
 
                         </thead>
@@ -82,10 +82,12 @@
                         <tbody>
                             @foreach ($aPedidos as $pedido)
                             <tr>
-                                <td> {{ $pedido->idpedido }} </td>
-
-                                <td> {{ $pedido->sucursal}}</td>
-
+                                <td> {{ $pedido->sucursal }} </td>
+                                <td> {{ $pedido->idpedido }}</td>
+                                <td> {{ $pedido->estado }}</td>
+                                <td>{{ date_format(date_create("$pedido->fecha"),'d M Y') }}</td>
+                                <td> {{ $pedido->total }}</td>
+                                <td> {{ $pedido->pago }}</td>
                             </tr>
 
                         </tbody>
