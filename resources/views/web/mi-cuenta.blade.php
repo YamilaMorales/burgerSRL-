@@ -34,29 +34,29 @@
                         <div>
                             <input type="password" class="form-control" id="txtClave" name="txtClave" placeholder="Contraseña:" value="{{ $cliente->clave }}" />
                         </div>
+                        <div colspan="4" style="text-align: right; ">
+                           <u> <a style="color:black; " class="p-2" href="/cambiar-clave"> Cambiar Clave</a></u>
+                        </div>
 
-
-                        <div class="btn_box">
+                        <div class="btn_box" >
                             <button type="submit" name="btnGuardar">
                                 Guardar
                             </button>
                         </div>
 
                     </form>
-                    <div colspan="4" style="text-align: right;">
-                        <a  href="/cambiar-clave"> Cambiar Clave</a>
-                    </div>
+
                 </div>
 
 
             </div>
 
         </div>
-        <div class="heading_container">
+        <div class="heading_container p-3">
 
-            <div class="container col-md-6 p-3">
+            <div class="container col-md-6">
 
-                <div>
+                <div class="p-3">
                     <h1>Mis pedidos</h1>
                 </div>
                 <div>
@@ -69,12 +69,12 @@
                             <tr>
 
                                 <th> Sucursal </th>
-                                <th> Nº Pedido</th>  
+                                <th> Nº Pedido</th>
                                 <th>Estado</th>
-                                <th>Fecha</th>  
-                                <th>Total</th> 
-                                <th>Método de pago</th> 
-                            
+                                <th>Fecha</th>
+                                <th>Total</th>
+                                <th>Método de pago</th>
+
                             </tr>
 
                         </thead>

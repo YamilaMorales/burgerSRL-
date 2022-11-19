@@ -44,9 +44,9 @@
                             </button>
                         </div>
                     </form>
-                    <div class="col-md-12 p-2">
-                        <a href="/registrarse">¿No estas registrado? ¡Registrate!</a>
-                        <a href="/recuperar-clave">¿Olvidaste tu contraseña?</a>
+                    <div class="col-md-12 pt-4"  >
+                        <u><a class="p-2" style="color:black; " href="/registrarse">¿No estas registrado? ¡Registrate!</a></u>
+                      <u>  <a class="p-2" style="color:black; " href="/recuperar-clave">¿Olvidaste tu contraseña?</a></u>
                     </div>
 
                 </div>

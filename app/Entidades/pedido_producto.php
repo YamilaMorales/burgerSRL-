@@ -23,7 +23,7 @@ class Pedido_Producto extends Model
                 idpedidoproducto, 
                 fk_idpedido, 
                 fk_idproducto, 
-                cantidad, 
+                cantidad
                
 
                 FROM pedidos_productos ORDER BY nombre ASC";
@@ -39,9 +39,12 @@ class Pedido_Producto extends Model
                 A.fk_idproducto, 
                 A.cantidad, 
                 B.nombre,
-                B.imagen
+                B.descripcion,
+                B.imagen,
+                C.descripcion AS comentario
                 FROM pedidos_productos  A 
-                INNER JOIN productos B ON A.fk_idproducto = B.idproducto 
+                INNER JOIN productos B ON A.fk_idproducto = B.idproducto
+                INNER JOIN pedidos C ON A.fk_idpedido = C.idpedido 
                 WHERE A.fk_idpedido = $idPedido
                 ORDER BY idpedidoproducto ASC";
 
@@ -54,8 +57,8 @@ class Pedido_Producto extends Model
                 idpedidoproducto, 
                 fk_idpedido, 
                 fk_idproducto, 
-                cantidad, 
-                precio_unitario
+                cantidad
+                
 
                 FROM pedidos_productos WHERE idpedidoproducto = $idPedidoProducto";
         $lstRetorno = DB::select($sql);

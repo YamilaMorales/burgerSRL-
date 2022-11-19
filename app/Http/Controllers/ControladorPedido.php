@@ -133,7 +133,7 @@ class ControladorPedido extends Controller
     for ($i = $inicio; $i < count($aPedidos) && $cont < $registros_por_pagina; $i++) {
       $row = array();
       $row[] = "<a href='/admin/pedido/" .  $aPedidos[$i]->idpedido . "'>" . $aPedidos[$i]->cliente .  "</a>";
-      $row[] = date_format(date_create($aPedidos[$i]->fecha), 'd-m-Y');
+      $row[] = date_format(date_create($aPedidos[$i]->fecha),'d M Y');
       $row[] = $aPedidos[$i]->sucursal;
       $row[] = $aPedidos[$i]->estado;
       $row[] = number_format($aPedidos[$i]->total, 2, ",", ".");

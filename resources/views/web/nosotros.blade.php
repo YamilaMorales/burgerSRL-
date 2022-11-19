@@ -19,7 +19,7 @@
                         </h2>
                     </div>
                     <p>
-                        Burger SRL nace con la idea de volcar más de 10 años de experiencia gastronómica para generar Revolución y cambios. Ofrecemos la mejor hamburguesa del mercado, desarrollada con un blend de carnes y condimentos que sumados dan como resultado una hamburguesa con mucho sabor que la diferencia de la que hoy está en el mercado.
+                        Burger SRL nace con la idea de volcar más de 10 años de experiencia gastronómica para generar revolución y cambios. Ofrecemos la mejor hamburguesa del mercado, desarrollada con un blend de carnes y condimentos que sumados dan como resultado una hamburguesa con mucho sabor que la diferencia de la que hoy está en el mercado.
                     </p>
 
                 </div>
