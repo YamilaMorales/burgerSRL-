@@ -153,33 +153,61 @@
     <footer class="footer_section">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 footer-col">
-                    <div class="footer_contact">
-                        <h4>
-                            Sucursales
-                        </h4>
-                        <div class="contact_link_box">
-                            @foreach ($aSucursales as $sucursal)
-                            <a target="_blank" href="{{$sucursal->ubicacion}}">
-                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <div class="col-md-12 footer-col">
 
-                                <span>
-                                    {{$sucursal->nombre}}
-                                </span>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                <span>
-                                    {{$sucursal->telefono}}
-                                </span>
-                            </a>
-                            @endforeach
-                            </span>
-                            </a>
+                    <div class="footer_contact">
+
+                        <div class="col-md-12 footer-col">
+                            <h1 style="text-align: center;">
+                                Sucursales
+                            </h1>
+                        </div>
+
+                        <div class="row">
+                            <div class="contact_link_box col-md-12" style="text-align: center;">
+                                @foreach ($aSucursales as $sucursal)
+                                <ul>
+
+                                    <div class="col-md-12 ">
+                                        <a target="_blank" href="{{$sucursal->ubicacion}}">
+                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+
+                                            <span>
+                                                {{$sucursal->nombre}}
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-12">
+
+                                        <a href="">
+                                            <i class="fa fa-phone" aria-hidden="true"></i>
+                                            <span>
+                                                {{$sucursal->telefono}}
+                                            </span>
+                                        </a>
+
+                                    </div>
+                                    <div class="col-md-12 ">
+
+                                        <a href="">
+                                            <i class="" aria-hidden="true"></i>
+                                            <span>
+                                                {{$sucursal->horario}}
+                                            </span>
+                                        </a>
+
+                                    </div>
+
+                                </ul>
+                                @endforeach
+
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 footer-col ">
+                <div class="col-md-12 footer-col">
                     <div class="footer_detail">
                         <a href="" class="footer-logo">
                             BURGER SRL
@@ -191,27 +219,14 @@
                             <a href="">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                             </a>
-                          
                             <a href="">
                                 <i class="fa fa-instagram" aria-hidden="true"></i>
                             </a>
-                           
+
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 footer-col">
-                    <h4>
-                        Horario
-                    </h4>
-                    <p>
-                        @foreach ($aSucursales as $sucursal) {{$sucursal->horario}}
-                    </p>
-                    <p>
-                        @endforeach
-                    </p>
-                </div>
             </div>
-           
         </div>
     </footer>
     <!-- footer section -->
