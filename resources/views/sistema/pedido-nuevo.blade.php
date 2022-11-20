@@ -112,10 +112,11 @@
         @if($pedido->idpedido > 0)
         <div class="row">
 
-            <div class="col-12">
+            <div class="col-md-12">
                 <label for="">Detalles del pedido:</label>
                 <table class="table table hover border">
                     <tr>
+                        <th>N Pedido</th>
                         <th>Producto</th>
                         <th>Cantidad</th>
                         <th>Descripción</th>
@@ -124,6 +125,7 @@
                     </tr>
                     @foreach ($aPedidoProductos as $producto)
                     <tr>
+                        <td>{{$producto->fk_idpedido}}</td>
                        <td>{{ $producto->nombre }}</td>
                        <td> {{ $producto->cantidad }} </td>
                        <td>{{ $producto->descripcion }}</td>
