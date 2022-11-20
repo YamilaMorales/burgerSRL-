@@ -31,9 +31,7 @@
 
 
                     <div class="col-md-6">
-                        <div>
-                            <input type="tex" class="form-control" id="txtCelular" name="txtCelular" placeholder="Celular de contacto:" value="{{ $cliente->celular }}" />
-                        </div>
+                       
                         <div>
                             <input type="tex" class="form-control" id="txtDireccion" name="txtDireccion" placeholder="Dirección:" value="{{ $cliente->direccion }}" />
                         </div>

@@ -11,7 +11,7 @@
     <meta name="keywords" content="" />
     <meta name="description" content="Te esperamos en cualquiera de nuestras sucursales para disfrutar de las mejores hamburguesas." />
     <meta name="author" content="" />
-    <link rel="shortcut icon" href="web/web/images/favicon.png" type="">
+    <link rel="shortcut icon" href="web/images/favicon.png" type="">
 
     <title>BURGER SRL </title>
 
@@ -54,16 +54,16 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav  mx-auto ">
-                            <li class="nav-item  <?php echo (Request::path() == "" )? "active" : "";?>">
+                            <li class="nav-item  <?php echo (Request::path() == "") ? "active" : ""; ?>">
                                 <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
                             </li>
-                            <li class="nav-item  <?php echo (Request::path() == "takeaway" )? "active" : "";?>">
+                            <li class="nav-item  <?php echo (Request::path() == "takeaway") ? "active" : ""; ?>">
                                 <a class="nav-link" href="/takeaway">Takeaway</a>
                             </li>
-                            <li class="nav-item <?php echo (Request::path() == "nosotros" )? "active" : "";?>">
+                            <li class="nav-item <?php echo (Request::path() == "nosotros") ? "active" : ""; ?>">
                                 <a class="nav-link" href="/nosotros">Nosotros</a>
                             </li>
-                            <li class="nav-item <?php echo (Request::path() == "contacto" )? "active" : "";?>">
+                            <li class="nav-item <?php echo (Request::path() == "contacto") ? "active" : ""; ?>">
                                 <a class="nav-link" href="/contacto">Contacto</a>
                             </li>
                         </ul>
@@ -159,12 +159,12 @@
                             Sucursales
                         </h4>
                         <div class="contact_link_box">
-                        @foreach ($aSucursales as $sucursal) 
-                        <a target="_blank" href ="{{$sucursal->ubicacion}}">
+                            @foreach ($aSucursales as $sucursal)
+                            <a target="_blank" href="{{$sucursal->ubicacion}}">
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                         
+
                                 <span>
-                                {{$sucursal->nombre}}
+                                    {{$sucursal->nombre}}
                                 </span>
                             </a>
                             <a href="">
@@ -191,18 +191,11 @@
                             <a href="">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                             </a>
-                            <a href="">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-linkedin" aria-hidden="true"></i>
-                            </a>
+                          
                             <a href="">
                                 <i class="fa fa-instagram" aria-hidden="true"></i>
                             </a>
-                            <a href="">
-                                <i class="fa fa-pinterest" aria-hidden="true"></i>
-                            </a>
+                           
                         </div>
                     </div>
                 </div>
@@ -211,18 +204,14 @@
                         Horario
                     </h4>
                     <p>
-                    @foreach ($aSucursales as $sucursal) {{$sucursal->horario}}
+                        @foreach ($aSucursales as $sucursal) {{$sucursal->horario}}
                     </p>
                     <p>
-                    @endforeach
+                        @endforeach
                     </p>
                 </div>
             </div>
-            <div class="footer-info">
-                <p>
-
-                </p>
-            </div>
+           
         </div>
     </footer>
     <!-- footer section -->

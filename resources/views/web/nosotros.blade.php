@@ -37,11 +37,14 @@
                 Trabaja con nosotros.
             </h2>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form_container">
-                    <form action="" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+
+
+        <div class="form_container">
+            <form action="" method="POST" enctype="multipart/form-data">
+
+                <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
+                <div class="row">
+                    <div class="col-md-6">
                         <div>
                             <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre:" />
                         </div>
@@ -51,25 +54,31 @@
                         <div>
                             <input type="tex" id="txtCelular" name="txtCelular" class="form-control" placeholder="Teléfono de contacto:" />
                         </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        
                         <div>
-                            <input type="email" class="form-control" id="txtCorreo" name="txtCorreo"  placeholder="Correo:" />
+                            <input type="email" class="form-control" id="txtCorreo" name="txtCorreo" placeholder="Correo:" />
                         </div>
                         <div>
                             <input type="file" class="form-control" id="archivo" name="archivo" accept=".doc, .docx, .pdf" placeholder="Curriculum:" />
-                             <small class="d-block">Archivos admitidos .doc, .docx, .pfd </small>
+                            <small class="d-block">Archivos admitidos .doc, .docx, .pfd </small>
                         </div>
-
-                        <div class="btn_box">
-                            <button name="btnEnviarPostulacion" type="submit">
-                                Enviar postulación
-                            </button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+                <div class="btn_box" style="text-align:  center;">
+                    <button name="btnEnviarPostulacion" type="submit">
+                        Enviar postulación
+                    </button>
+                </div>
+
+            </form>
 
         </div>
+
     </div>
+
 </section>
 <!-- end book section -->
 <!-- client section -->
@@ -92,7 +101,7 @@
                             <h6>
                                 Lucila Perez
                             </h6>
-                            
+
                         </div>
                         <div class="img-box">
                             <img src="web/images/client1.jpg" alt="" class="box-img">
@@ -108,7 +117,7 @@
                             <h6>
                                 Martin Holdder
                             </h6>
-                            
+
                         </div>
                         <div class="img-box">
                             <img src="web/images/client2.jpg" alt="" class="box-img">
