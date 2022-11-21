@@ -145,7 +145,7 @@ class ControladorSucursal extends Controller
 
 
     if (Usuario::autenticado() == true) {
-      if (!Patente::autorizarOperacion("SUCURSALELIMINAR")) {
+      if (!Patente::autorizarOperacion("SUCURSALBAJA")) {
         $resultado["err"] = EXIT_FAILURE;
         $resultado["mensaje"] =  "No tiene permisos para la operación.";
       } else {

@@ -32,7 +32,7 @@
 <!-- book section -->
 <section class="book_section layout_padding">
     <div class="container">
-        <div class="heading_container">
+        <div class="heading_container p-3">
             <h2>
                 Trabaja con nosotros.
             </h2>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="btn_box" style="text-align:  center;">
+                <div class="btn_box p-3" style="text-align:  center;">
                     <button name="btnEnviarPostulacion" type="submit">
                         Enviar postulación
                     </button>
@@ -83,52 +83,6 @@
 <!-- end book section -->
 <!-- client section -->
 
-<section class="client_section layout_padding-bottom pt-4">
-    <div class="container">
-        <div class="heading_container heading_center psudo_white_primary mb_45">
-            <h2>
-                Nuestros Clientes
-            </h2>
-        </div>
-        <div class="carousel-wrap row ">
-            <div class="owl-carousel client_owl-carousel">
-                <div class="item">
-                    <div class="box">
-                        <div class="detail-box">
-                            <p>
-                                Las hamburguesas y papas fritas caseras más ricas y sanas.
-                            </p>
-                            <h6>
-                                Lucila Perez
-                            </h6>
 
-                        </div>
-                        <div class="img-box">
-                            <img src="web/images/client1.jpg" alt="" class="box-img">
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="box">
-                        <div class="detail-box">
-                            <p>
-                                Hamburguesa rica, abundante y jugosa. El pan una delicia.
-                            </p>
-                            <h6>
-                                Martin Holdder
-                            </h6>
-
-                        </div>
-                        <div class="img-box">
-                            <img src="web/images/client2.jpg" alt="" class="box-img">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- end client section -->
 
 @endsection

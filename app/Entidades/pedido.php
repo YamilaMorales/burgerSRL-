@@ -175,16 +175,15 @@ class Pedido extends Model
     public function existePedidoPorCliente($idCliente)
     {
         $sql = "SELECT
-                   idpedido,
-                   fecha, 
-                   descripcion,
-                   total, 
-                   fk_idsucursal, 
-                   fk_idcliente, 
-                   fk_idestado,
-                   pago
-                    FROM pedidos 
-                 WHERE fk_idcliente = $idCliente";
+                idcliente,
+                 nombre,
+                 apellido,
+                 correo,
+                 dni,
+                 celular,
+                 clave,
+                 direccion
+                FROM clientes WHERE idcliente = $idCliente";
         $lstRetorno = DB::select($sql);
 
         return (count($lstRetorno) > 0);
@@ -192,11 +191,14 @@ class Pedido extends Model
     public function existePedidoPorProducto($idProducto)
     {
         $sql = "SELECT
-                   idcarrito_producto,
-                   fk_idproducto,
-                   fk_idcarrito,
-                   cantidad
-                FROM carrito_productos WHERE fk_idproducto = '$idProducto'";
+                 idproducto,
+                  nombre,
+                  cantidad,
+                  precio, 
+                  imagen,
+                  fk_idcategoria,
+                  descripcion
+                FROM productos WHERE idproducto = $idProducto";
         $lstRetorno = DB::select($sql);
 
         return (count($lstRetorno) > 0);
@@ -209,12 +211,13 @@ class Pedido extends Model
                    direccion,
                    telefono,
                    ubicacion
-                FROM sucursales WHERE idsucursal = '$idSucursal'";
+                FROM sucursales WHERE idsucursal = $idSucursal";
         $lstRetorno = DB::select($sql);
 
         return (count($lstRetorno) > 0);
     }
 
+  
 
 
 

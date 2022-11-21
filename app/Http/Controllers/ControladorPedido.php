@@ -202,23 +202,16 @@ class ControladorPedido extends Controller
         $resultado["err"] = EXIT_FAILURE;
         $resultado["mensaje"] =  "No tiene permisos para la operación.";
       } else {
-        $idPedido = $request->input("id");
-        $producto = new Producto();
-        //si la el pedido tiene un producto asociado no se puede eliminar.
-        if ($producto->existeProductosPorPedido($idPedido)) {
-
-          $resultado["err"] = EXIT_FAILURE;
-          $resultado["mensaje"] = "No se puede eliminar un pedido con productos asociados.";
-        } else {
-          //Si no tiene pedido asociado se puede elimnar
+         $idPedido = $request->input("id");
           $pedido = new Pedido();
+          
           $pedido->idpedido = $idPedido;
           $pedido->eliminar();
           $resultado["err"] = EXIT_SUCCESS;
           $resultado["mensaje"] = "Registro eliminado exitosamente.";
         }
       }
-    } else {
+    else {
       $resultado["err"] = EXIT_FAILURE;
       $resultado["mensaje"] = "Usuario no autenticado.";
     }

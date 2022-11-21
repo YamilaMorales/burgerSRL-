@@ -63,7 +63,8 @@
                   <input type="hidden" id="id" name="id" class="form-control" value="{{$globalId}}" required>
                   <div class="form-group col-6">
                         <label for="text" >Curriculum: *</label>
-                        <input type="text" id="txtCurriculum" name="txtCurriculum" class="form-control-file"  acept=".pdf, .word" value="" required>
+                        <input type="file" class="" id="txtCurriculum" name="txtCurriculum" accept=".doc, .docx, .pdf" required />
+                            <small class="d-block">Archivos admitidos .doc, .docx, .pfd </small>
                   </div>
             </div>
       </form>

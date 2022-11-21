@@ -12,9 +12,9 @@
 
 
         <ul class="filters_menu">
-            <li class="active" data-filter="*">Todo</li>
+            <li class="" data-filter="*"></li>
             @foreach ($aCategorias AS $categoria)
-            <li data-filter=".{{ $categoria->nombre }}">{{ $categoria->nombre }}</li>
+            <li class="" data-filter=".{{ $categoria->nombre }}">{{ $categoria->nombre }}</li>
             @endforeach
         </ul>
 
@@ -49,7 +49,7 @@
                 </div>
             </div>
             @endif
-            <div class="row grid ">
+            <div class="row grid">
                 @foreach($aProductos AS $producto)
                 <div class="col-sm-6 col-lg-4 all {{ $producto->categoria }}">
                     <div class="box" style="height:450px;">
