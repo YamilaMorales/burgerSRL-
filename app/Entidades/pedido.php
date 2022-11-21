@@ -196,7 +196,7 @@ class Pedido extends Model
                    fk_idproducto,
                    fk_idcarrito,
                    cantidad
-                FROM carrito_productos WHERE fk_idproducto = $idProducto";
+                FROM carrito_productos WHERE fk_idproducto = '$idProducto'";
         $lstRetorno = DB::select($sql);
 
         return (count($lstRetorno) > 0);
@@ -209,7 +209,7 @@ class Pedido extends Model
                    direccion,
                    telefono,
                    ubicacion
-                FROM sucursales WHERE idsucursal = $idSucursal";
+                FROM sucursales WHERE idsucursal = '$idSucursal'";
         $lstRetorno = DB::select($sql);
 
         return (count($lstRetorno) > 0);

@@ -198,7 +198,7 @@ class ControladorPedido extends Controller
   public function eliminar(Request $request)
   {
     if (Usuario::autenticado() == true) {
-      if (!Patente::autorizarOperacion("PEDIDOELIMINAR")) {
+      if (!Patente::autorizarOperacion("PEDIDOBAJA")) {
         $resultado["err"] = EXIT_FAILURE;
         $resultado["mensaje"] =  "No tiene permisos para la operación.";
       } else {

@@ -71,7 +71,7 @@ class Proveedor extends Model
                 idproveedor,
                 nombre,
                 telefono
-                FROM proveedores WHERE idproveedor = $idProveedor";
+                FROM proveedores WHERE idproveedor = '$idProveedor'";
         $lstRetorno = DB::select($sql);
 
         if (count($lstRetorno) > 0) {
@@ -106,7 +106,7 @@ class Proveedor extends Model
             ) VALUES (?,?);";
         $result = DB::insert($sql, [
             $this->nombre,
-            $this->telefono,
+            $this->telefono
             
         ]);
         return $this->idproveedor = DB::getPdo()->lastInsertId();
