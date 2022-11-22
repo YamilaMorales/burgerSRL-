@@ -66,7 +66,7 @@
 
                   <div class="form-group col-6">
                         <label>Clave: *</label>
-                        <input type="password" id="txtClave" name="txtClave" class="form-control" value="" required>
+                        <input type="password" id="txtClave" name="txtClave" class="form-control" value="{{$cliente->clave}}" required>
                   </div>
 
                   <div class="form-group col-6">

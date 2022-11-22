@@ -142,34 +142,38 @@ class ControladorCliente extends Controller
     }
 
     public function eliminar(Request $request)
-    {
+  {
 
-        if (Usuario::autenticado() == true) {
-            if (!Patente::autorizarOperacion("CLIENTEELIMINAR")) {
-                $resultado["err"] = EXIT_FAILURE;
-                $resultado["mensaje"] =  "No tiene permisos para la operación.";
-            } else {
-                $idCliente = $request->input("id");
-                $pedido = new Pedido();
 
-                //si el cliente tiene un pedido asociado no se puede eliminar.
-                if ($pedido->existePedidoPorCliente($idCliente)) {
 
-                    $resultado["err"] = EXIT_FAILURE;
-                    $resultado["mensaje"] = "No se puede eliminar un cliente con pedidos asociados.";
-                } else {
-                    //Si no tiene pedido asociado se puede elimnar
-                    $cliente = new Cliente();
-                    $cliente->idcliente = $idCliente;
-                    $cliente->eliminar();
-                    $resultado["err"] = EXIT_SUCCESS;
-                    $resultado["mensaje"] = "Registro eliminado exitosamente.";
-                }
-            }
+    if (Usuario::autenticado() == true) {
+      if (!Patente::autorizarOperacion("CLIENTEELIMINAR")) {
+        $resultado["err"] = EXIT_FAILURE;
+        $resultado["mensaje"] =  "No tiene permisos para la operación.";
+      } else {
+
+        $idCliente = $request->input("id");
+
+        $pedido = new Pedido();
+        //si la sucursal tiene un pedido asociado no se puede eliminar.
+        if ($pedido->existePedidoPorCliente($idCliente)) {
+
+          $resultado["err"] = EXIT_FAILURE;
+          $resultado["mensaje"] = "No se puede eliminar una sucursal con pedidos asociados.";
         } else {
-            $resultado["err"] = EXIT_FAILURE;
-            $resultado["mensaje"] = "Usuario no autenticado.";
+          //Si no tiene pedido asociado se puede elimnar
+          
+          $cliente = new Cliente();
+          $cliente->idcliente = $idCliente;
+          $cliente->eliminar();
+          $resultado["err"] = EXIT_SUCCESS;
+          $resultado["mensaje"] = "Registro eliminado exitosamente.";
         }
-        return json_encode($resultado);
+      }
+    } else {
+      $resultado["err"] = EXIT_FAILURE;
+      $resultado["mensaje"] = "Usuario no autenticado.";
     }
+    return json_encode($resultado);
+  }
 }

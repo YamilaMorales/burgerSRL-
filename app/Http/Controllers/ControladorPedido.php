@@ -195,6 +195,7 @@ class ControladorPedido extends Controller
   }
 
 
+
   public function eliminar(Request $request)
   {
     if (Usuario::autenticado() == true) {
@@ -202,16 +203,23 @@ class ControladorPedido extends Controller
         $resultado["err"] = EXIT_FAILURE;
         $resultado["mensaje"] =  "No tiene permisos para la operación.";
       } else {
-         $idPedido = $request->input("id");
-          $pedido = new Pedido();
-          
-          $pedido->idpedido = $idPedido;
-          $pedido->eliminar();
-          $resultado["err"] = EXIT_SUCCESS;
-          $resultado["mensaje"] = "Registro eliminado exitosamente.";
-        }
-      }
-    else {
+       
+        $idPedido = $request->input("id");
+        $pedidoProdcuto= new Pedido_Producto();
+        if ($pedidoProdcuto->existeProductoPorPedido($idPedido)) {
+
+            $resultado["err"] = EXIT_FAILURE;
+            $resultado["mensaje"] = "No se puede eliminar un pedido con productos asociados.";
+          } else {
+            //Si no tiene producto asociado se puede elimnar
+    
+            $pedido = new Pedido();
+        $pedido->idpedido = $idPedido;
+        $pedido->eliminar();
+        $resultado["err"] = EXIT_SUCCESS;
+        $resultado["mensaje"] = "Registro eliminado exitosamente.";
+      }}
+    } else {
       $resultado["err"] = EXIT_FAILURE;
       $resultado["mensaje"] = "Usuario no autenticado.";
     }

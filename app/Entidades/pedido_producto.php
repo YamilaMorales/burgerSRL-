@@ -111,6 +111,18 @@ class Pedido_Producto extends Model
         return $this->idpedidoproducto = DB::getPdo()->lastInsertId();
     }
 
+    public function existeProductoPorPedido($idPedido)
+    {
+        $sql = "SELECT
+                fk_idpedido, 
+                fk_idproducto, 
+                cantidad
+                
+                FROM pedidos_productos WHERE fk_idpedido = $idPedido";
+        $lstRetorno = DB::select($sql);
+
+        return (count($lstRetorno) > 0);
+    }
 }
     
 ?>
