@@ -123,13 +123,14 @@ class ControladorProveedor extends Controller
   {
 
     $titulo = "Edición de proveedor";
-    $proveedor = new Proveedor();
+   
     if (Usuario::autenticado() == true) {
       if (!Patente::autorizarOperacion("PROVEEDOREDITAR")) {
         $codigo = "PROVEEDOREDITAR";
         $mensaje = "No tiene permisos para la operación.";
         return view('sistema.pagina-error', compact('titulo', 'codigo', 'mensaje'));
       } else {
+        $proveedor = new Proveedor();
         $proveedor->obtenerPorId($idProveedor);
         return view("sistema.proveedor-nuevo", compact("titulo", "proveedor"));
       }
