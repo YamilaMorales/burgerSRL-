@@ -7,7 +7,16 @@
                 Mis datos
             </h2>
         </div>
+        @if(isset($mensaje))
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-success" role="alert">
+                    {{ $mensaje["MSG"] }}
+                </div>
 
+            </div>
+        </div>
+        @endif
 
         <div class="form_container">
 
@@ -27,16 +36,18 @@
                             <input type="tex" class="form-control" id="txtDni" name="txtDni" placeholder="DNI:" value="{{ $cliente->dni }}" />
                         </div>
                     </div>
-
-
-
                     <div class="col-md-6">
-                       
                         <div>
                             <input type="tex" class="form-control" id="txtDireccion" name="txtDireccion" placeholder="Dirección:" value="{{ $cliente->direccion }}" />
                         </div>
                         <div>
+                            <input type="tex" class="form-control" id="txtCelular" name="txtCelular" placeholder="Celular:" value="{{ $cliente->celular }}" />
+                        </div>
+                        <div>
                             <input type="password" class="form-control" id="txtClave" name="txtClave" placeholder="Contraseña:" value="{{ $cliente->clave }}" />
+                        </div>
+                        <div>
+                            <input type="hidden" class="form-control" id="txtCorreo" name="txtCorreo"  value="{{ $cliente->correo }}" />
                         </div>
                         <div colspan="4" style="text-align: right; ">
                             <u> <a style="color:black; " class="p-2" href="/cambiar-clave"> Cambiar Clave</a></u>
@@ -55,62 +66,62 @@
 
 
 
-        
 
-            @if($aPedidos)
-            <div class=" py-3">
 
-                <div class="col-md-12">
+        @if($aPedidos)
+        <div class=" py-3">
 
-                    <div class="py-3">
-                        <h1>Mis pedidos</h1>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+            <div class="col-md-12">
 
-                            <table class="table table-hover">
+                <div class="py-3">
+                    <h1>Mis pedidos</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
 
-                                <thead class="thead-dark">
-                                   <tr>
-                                        <th> Sucursal </th>
-                                        <th> Nº Pedido</th>
-                                        <th>Estado</th>
-                                        <th>Fecha</th>
-                                        <th>Total</th>
-                                        <th>Método de pago</th>
-                                    </tr>
-                                </thead>
+                        <table class="table table-hover">
 
-                                <tbody>
-                                    @foreach ($aPedidos as $pedido)
-                                    <tr>
-                                        <td> {{ $pedido->sucursal }} </td>
-                                        <td> {{ $pedido->idpedido }}</td>
-                                        <td> {{ $pedido->estado }}</td>
-                                        <td>{{ date_format(date_create("$pedido->fecha"),'d M Y') }}</td>
-                                        <td> {{ $pedido->total }}</td>
-                                        <td> {{ $pedido->pago }}</td>
-                                    </tr>
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th> Sucursal </th>
+                                    <th> Nº Pedido</th>
+                                    <th>Estado</th>
+                                    <th>Fecha</th>
+                                    <th>Total</th>
+                                    <th>Método de pago</th>
+                                </tr>
+                            </thead>
 
-                                </tbody>
-                                @endforeach
+                            <tbody>
+                                @foreach ($aPedidos as $pedido)
+                                <tr>
+                                    <td> {{ $pedido->sucursal }} </td>
+                                    <td> {{ $pedido->idpedido }}</td>
+                                    <td> {{ $pedido->estado }}</td>
+                                    <td>{{ date_format(date_create("$pedido->fecha"),'d M Y') }}</td>
+                                    <td> ${{ number_format($pedido->total, 0,',' , '.') }}</td>
+                                    <td> {{ $pedido->pago }}</td>
+                                </tr>
 
-                            </table>
-                        </div>
+                            </tbody>
+                            @endforeach
+
+                        </table>
                     </div>
                 </div>
             </div>
-            @else
+        </div>
+        @else
 
-            <div class="col-md-12 heading_container m-3 p-5 ">
-                <h5 style=>No hay pedidos activos.</h5>
-                <div class="p-3">
-                    <a href="/takeaway"><button type="submit" class="btn btn-warning" style="background-color:#ffbe33; color:#ffffff; border-radius:45px;">Hace tu pedido.</button></a>
+        <div class="col-md-12 heading_container m-3 p-5 ">
+            <h5 style=>No hay pedidos activos.</h5>
+            <div class="p-3">
+                <a href="/takeaway"><button type="submit" class="btn btn-warning" style="background-color:#ffbe33; color:#ffffff; border-radius:45px;">Hace tu pedido.</button></a>
 
-                </div>
             </div>
+        </div>
 
-            @endif
+        @endif
 
 
 

@@ -8,7 +8,7 @@ use App\Entidades\Sucursal;
 use App\Entidades\Cliente;
 use Illuminate\Http\Request;
 use Session;
-
+require app_path() . '/start/constants.php';
 
 class ControladorWebMiCuenta extends Controller
 {
@@ -44,9 +44,11 @@ class ControladorWebMiCuenta extends Controller
         $cliente = new Cliente();
 
 
+      
         $idCliente = Session::get("idCliente");
         $cliente->idcliente = $idCliente;
-
+        $entidadPedido = new Pedido();
+        $aPedidos = $entidadPedido->pedidoPorCliente($idCliente);
        
         $cliente->nombre = $request->input("txtNombre");
         $cliente->apellido = $request->input("txtApellido");
@@ -54,13 +56,14 @@ class ControladorWebMiCuenta extends Controller
         $cliente->celular = $request->input("txtCelular");
         $cliente->correo = $request->input("txtCorreo");
         $cliente->direccion = $request->input("txtDireccion");
+        $cliente->clave = $request->input("txtClave");
         $cliente->guardar();
 
-
+          
        
-        $entidadPedido = new Pedido();
-        $aPedidos = $entidadPedido->pedidoPorCliente($idCliente);
-
-        return view("web.mi-cuenta", compact("aSucursales", "aPedidos", "cliente","pedido"));
+        $mensaje["ESTADO"] = MSG_SUCCESS;
+        $mensaje["MSG"] = "Datos actualizados correctamente.";
+        
+        return view("web.mi-cuenta", compact("aSucursales", "aPedidos", "cliente",'mensaje'));
     }
 }
