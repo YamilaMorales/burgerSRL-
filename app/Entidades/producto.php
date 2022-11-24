@@ -41,7 +41,7 @@ class Producto extends Model
 
                 FROM productos A 
                 INNER JOIN  categorias B ON A.fk_idcategoria = B.idcategoria
-                ORDER BY nombre ASC";
+                ORDER BY idproducto ASC";
 
         $lstRetorno = DB::select($sql);
         return $lstRetorno;
