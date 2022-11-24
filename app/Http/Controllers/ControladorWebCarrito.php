@@ -54,13 +54,15 @@ class ControladorWebCarrito extends Controller
 
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
+
+   
+        $idCliente = Session::get("idCliente");
+
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
+            
         $cantidad = $request->input("txtCantidad");
         $idCarrito = $request->input("txtCarrito");
         $idProducto = $request->input("txtProducto");
-        $idCliente = Session::get("idCliente");
-
-        
-      
         $carrito->idcarrito= $idCarrito;
         $carrito->cantidad = $cantidad;
         $carrito->fk_idcliente = $idCliente;
@@ -69,7 +71,8 @@ class ControladorWebCarrito extends Controller
 
         $msg["ESTADO"] = EXIT_SUCCESS;
         $msg["MSG"] = "Producto actualizado con exito.";
-        return view('web.carrito', compact('msg',  'aSucursales'));
+      
+        return view('web.carrito', compact('msg',  'aSucursales', 'aCarritos' ));
     }
 
 
