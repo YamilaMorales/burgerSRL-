@@ -50,12 +50,11 @@
             </div>
             @endif
             <div class="row grid">
-                @foreach($aProductos AS $producto)
-                <div class="col-sm-6 col-lg-4 all {{ $producto->categoria }}">
+                @foreach($aProductos AS $producto)                <div class="col-sm-6 col-lg-4 all {{ $producto->categoria }}">
                     <div class="box" style="height:450px;">
                         <div>
                             <div class="img-box " style="background:white;">
-                                <img src="/files/{{ $producto->imagen }}" alt="" style="border-radius:30px;">
+                                <img src="/files/{{ $producto->imagen }}" alt="" style="border-radius:25px;">
                             </div>
                             <div class="detail-box">
                                 <h5>
