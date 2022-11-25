@@ -154,7 +154,7 @@
         <!-- Section: Social media -->
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
             <!-- Left -->
-            <div class="col-md-12 footer-col">
+            <div class="col-md-12 footer-col  mx-auto mb-md-0 mb-4">
                 <h1 style="text-align: center;">
                     Sucursales
                 </h1>
@@ -167,7 +167,7 @@
         <!-- Section: Social media -->
 
         <!-- Section: Links  -->
-        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom ">
             <div class="container text-center text-md-start mt-3">
                 <!-- Grid row -->
                 <div class="row mt-3">
