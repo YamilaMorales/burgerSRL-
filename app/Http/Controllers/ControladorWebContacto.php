@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Entidades\Sucursal;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use App\Entidades\Carrito;
+use Session;
+
 
 require app_path() . '/start/constants.php';
 class ControladorWebContacto extends Controller
@@ -14,7 +17,10 @@ class ControladorWebContacto extends Controller
     {
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
-        return view("web.contacto", compact("aSucursales", "sucursal"));
+        $idCliente = Session::get("idCliente");
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
+        return view("web.contacto", compact("aSucursales", "sucursal","aCarritos"));
     }
 
     public function enviar(Request $request)
@@ -23,6 +29,9 @@ class ControladorWebContacto extends Controller
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
 
+        $idCliente = Session::get("idCliente");
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
 
         $nombre = $request->input("txtNombre");
         $telefono = $request->input("txtTelefono");
@@ -65,18 +74,18 @@ class ControladorWebContacto extends Controller
 
                 //$mail->send();
 
-                return view('web.contacto-gracias', compact("aSucursales"));
+                return view('web.contacto-gracias', compact("aSucursales","aCarritos"));
 
             } catch (Exception $e) {
                 $mensaje["ESTADO"] = MSG_ERROR;
                 $mensaje["MSG"] = "Hubo un error al enviar el correo";
-                return view("web.contacto", compact('mensaje', 'aSucursales'));
+                return view("web.contacto", compact('mensaje', 'aSucursales','aCarritos'));
             }
         } else {
 
             $mensaje["ESTADO"] = MSG_ERROR;
             $mensaje["MSG"] = "Complete todos los datos";
-            return view("web.contacto", compact('mensaje', 'aSucursales'));
+            return view("web.contacto", compact('mensaje', 'aSucursales','aCarritos'));
         }
     }
 }

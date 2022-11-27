@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entidades\Pedido;
 use App\Entidades\Sucursal;
+use App\Entidades\Carrito;
 
 use App\Entidades\Cliente;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class ControladorWebMiCuenta extends Controller
 
 
         $idCliente = Session::get("idCliente");
+       
 
         if ($idCliente != "") {
             $cliente = new Cliente();
@@ -26,9 +28,12 @@ class ControladorWebMiCuenta extends Controller
             $sucursal = new Sucursal();
             $aSucursales = $sucursal->obtenerTodos();
     
+            $carrito = new Carrito();
+            $aCarritos = $carrito->obtenerPorCliente($idCliente);
+
             $entidadPedido = new Pedido();
             $aPedidos= $entidadPedido->pedidoPorCliente($idCliente);
-            return view("web.mi-cuenta", compact("aSucursales", "sucursal", "aPedidos", "cliente"));
+            return view("web.mi-cuenta", compact("aSucursales", "sucursal", "aPedidos", "cliente", "aCarritos"));
         } else {
             return redirect("/login");
         }
@@ -41,11 +46,12 @@ class ControladorWebMiCuenta extends Controller
 
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
-        $cliente = new Cliente();
 
-
-      
         $idCliente = Session::get("idCliente");
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
+
+        $cliente = new Cliente();
         $cliente->idcliente = $idCliente;
         $entidadPedido = new Pedido();
         $aPedidos = $entidadPedido->pedidoPorCliente($idCliente);
@@ -64,6 +70,6 @@ class ControladorWebMiCuenta extends Controller
         $mensaje["ESTADO"] = MSG_SUCCESS;
         $mensaje["MSG"] = "Datos actualizados correctamente.";
         
-        return view("web.mi-cuenta", compact("aSucursales", "aPedidos", "cliente",'mensaje'));
+        return view("web.mi-cuenta", compact("aSucursales", "aPedidos", "cliente",'mensaje',"aCarritos"));
     }
 }

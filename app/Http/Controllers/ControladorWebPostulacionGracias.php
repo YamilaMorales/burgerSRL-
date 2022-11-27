@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Entidades\Sucursal;
+use App\Entidades\Carrito;
+use Session;
 
 
 class ControladorWebPostulacionGracias extends Controller
@@ -10,7 +12,10 @@ class ControladorWebPostulacionGracias extends Controller
     {
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();  
-        return view("web.postulacion-gracias", compact(  "aSucursales"  ));
+        $idCliente = Session::get("idCliente");
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
+        return view("web.postulacion-gracias", compact(  "aSucursales","aCarritos"  ));
             
     }
 

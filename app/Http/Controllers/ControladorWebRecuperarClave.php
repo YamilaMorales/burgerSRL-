@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entidades\Sucursal;
 use Illuminate\Http\Request;
 use App\Entidades\Cliente;
+use App\Entidades\Carrito;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -16,7 +17,10 @@ class ControladorWebRecuperarClave extends Controller
     {
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
-        return view("web.recuperar-clave", compact("aSucursales"));
+        $idCliente = Session::get("idCliente");
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
+        return view("web.recuperar-clave", compact("aSucursales","aCarritos"));
     }
 
 
@@ -30,6 +34,10 @@ class ControladorWebRecuperarClave extends Controller
 
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
+
+        $idCliente = Session::get("idCliente");
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
 
         if ($cliente->correo != "") {
 
@@ -69,14 +77,14 @@ class ControladorWebRecuperarClave extends Controller
                 //$mail->send();
                 $mensaje = "Tu nueva clave es $clave y te la hemos enviado al correo.";
 
-                return view('web.recuperar-clave', compact('mensaje', "aSucursales"));
+                return view('web.recuperar-clave', compact('mensaje', "aSucursales","aCarritos"));
             } catch (Exception $e) {
                 $mensaje = "Hubo un error al enviar el correo.";
-                return view('web.recuperar-clave', compact('mensaje' , "aSucursales"));
+                return view('web.recuperar-clave', compact('mensaje' , "aSucursales","aCarritos"));
             }
         } else {
             $mensaje = "El email es incorrecto.";
-            return view('web.recuperar-clave', compact('mensaje', "aSucursales"));
+            return view('web.recuperar-clave', compact('mensaje', "aSucursales","aCarritos"));
         }
     }
 }

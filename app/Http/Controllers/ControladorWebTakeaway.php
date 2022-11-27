@@ -14,14 +14,17 @@ class ControladorWebTakeaway extends Controller
 {
     public function index()
     {
+        $idCliente = Session::get("idCliente");
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
         $producto = new Producto();
         $aProductos = $producto->obtenerTodos();
         $categoria = new Categoria();
         $aCategorias = $categoria->obtenerTodos();
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
 
-        return view("web.takeaway", compact("aSucursales", "aProductos", "aCategorias"));
+        return view("web.takeaway", compact("aSucursales", "aProductos", "aCategorias", "aCarritos"));
     }
 
 
@@ -51,17 +54,17 @@ class ControladorWebTakeaway extends Controller
                 
                 $msg["ESTADO"] = MSG_SUCCESS;
                 $msg["MSG"] = "¡El producto se agregó correctamente al carrito!.";
-                return view('web.takeaway', compact('msg', "aCategorias", "aSucursales", "aProductos"));
+                return view('web.takeaway', compact('msg', "aCategorias", "aSucursales", "aProductos","aCarritos"));
             } else {
                 //msj 
                 $mensaje["ESTADO"] = MSG_ERROR;
                 $mensaje["MSG"] = "El producto no se agregó al carrito. Debe indicar la cantidad deseada.";
-                return view('web.takeaway', compact('mensaje', "aCategorias", "aSucursales", "aProductos"));
+                return view('web.takeaway', compact('mensaje', "aCategorias", "aSucursales", "aProductos","aCarritos"));
             }
         } else {
             $msg1["ESTADO"] = MSG_ERROR;
             $msg1["MSG"] = "Debe iniciar sesión para realizar un pedido.";
-            return view('web.takeaway', compact('msg1', "aCategorias", "aSucursales", "aProductos"));
+            return view('web.takeaway', compact('msg1', "aCategorias", "aSucursales", "aProductos","aCarritos"));
         }
     }
 }

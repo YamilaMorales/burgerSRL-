@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Entidades\Sucursal;
 use App\Entidades\Cliente;
+use App\Entidades\Carrito;
 use Illuminate\Http\Request;
+
 use Session;
 
 use function PHPUnit\Framework\returnSelf;
@@ -17,7 +19,11 @@ class ControladorWebCambiarClave extends Controller
         $sucursal = new Sucursal();
         $titulo = "Sucursales";
         $aSucursales = $sucursal->obtenerTodos();
-        return view("web.cambiar-clave", compact("titulo", "aSucursales", "sucursal"));
+        $idCliente = Session::get("idCliente");
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente); 
+
+        return view("web.cambiar-clave", compact("titulo", "aSucursales", "sucursal","aCarritos"));
     }
 
     public function cambiar(Request $request)
@@ -26,6 +32,9 @@ class ControladorWebCambiarClave extends Controller
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
         $idCliente = Session::get("idCliente");
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente); 
+       
         $cliente = new Cliente();
         $clave1 = $request->input("txtClave1");
         $clave2 = $request->input("txtClave2");
@@ -37,12 +46,12 @@ class ControladorWebCambiarClave extends Controller
             $mensaje["ESTADO"] = MSG_SUCCESS;
             $mensaje["MSG"] = "Contraseña actualizada con exito.";
 
-            return view("web.cambiar-clave", compact("aSucursales", "mensaje"));
+            return view("web.cambiar-clave", compact("aSucursales", "mensaje","aCarritos"));
         } else {
             $msg["ESTADO"] = MSG_ERROR;
             $msg["MSG"] = "Las contraseñas no coinciden.";
 
-            return view("web.cambiar-clave", compact("aSucursales", "msg"));
+            return view("web.cambiar-clave", compact("aSucursales", "msg","aCarritos"));
         }
     }
 }

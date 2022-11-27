@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entidades\Sucursal;
 use App\Entidades\cliente;
+use App\Entidades\Carrito;
 use Illuminate\Http\Request;
 
 require app_path() . '/start/constants.php';
@@ -11,15 +12,24 @@ class ControladorWebRegistrarse extends Controller
 {
     public function index()
     {
+        
+        $idCliente = Session::get("idCliente");
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
-        return view("web.registrarse", compact("aSucursales"));
+
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
+
+        return view("web.registrarse", compact("aSucursales","aCarritos"));
     }
     public function registrarse(Request $request)
 
     {
+        $idCliente = Session::get("idCliente");
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
 
         $entidad = new Cliente;
         $entidad->nombre = $request->input("txtNombre");
@@ -34,7 +44,7 @@ class ControladorWebRegistrarse extends Controller
         if ($entidad->nombre == "" || $entidad->apellido == "" || $entidad->dni == "" || $entidad->correo == "" || $entidad->celular == "" || $entidad->direccion == "") {
             $mensaje["ESTADO"] = MSG_ERROR;
             $mensaje["MSG"] = "Complete todos los datos";
-            return view("web.registrarse", compact('mensaje', 'aSucursales'));
+            return view("web.registrarse", compact('mensaje', 'aSucursales',"aCarritos"));
         } else {
             $entidad->insertar();
 

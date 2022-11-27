@@ -37,7 +37,16 @@
                 Trabaja con nosotros.
             </h2>
         </div>
+        @if(isset($mensaje))
+            <div class="row">
+                  <div class="col-md-6">
+                        <div class="alert alert-danger" role="alert">
+                              {{ $mensaje["MSG"] }}
+                        </div>
 
+                  </div>
+            </div>
+            @endif
 
         <div class="form_container">
             <form action="" method="POST" enctype="multipart/form-data">
