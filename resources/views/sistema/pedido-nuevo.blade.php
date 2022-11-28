@@ -94,6 +94,7 @@
                     @else
                     <option value="{{$cliente->idcliente}}"> {{$cliente->nombre}}</option>
                     @endif
+                   
                     @endforeach
                 </select>
             </div>

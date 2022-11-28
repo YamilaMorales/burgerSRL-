@@ -17,13 +17,13 @@ class ControladorWebCambiarClave extends Controller
     public function index()
     {
         $sucursal = new Sucursal();
-        $titulo = "Sucursales";
         $aSucursales = $sucursal->obtenerTodos();
+
         $idCliente = Session::get("idCliente");
         $carrito = new Carrito();
         $aCarritos = $carrito->obtenerPorCliente($idCliente); 
 
-        return view("web.cambiar-clave", compact("titulo", "aSucursales", "sucursal","aCarritos"));
+        return view("web.cambiar-clave", compact("aSucursales", "sucursal","aCarritos"));
     }
 
     public function cambiar(Request $request)
@@ -31,6 +31,7 @@ class ControladorWebCambiarClave extends Controller
 
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
+        
         $idCliente = Session::get("idCliente");
         $carrito = new Carrito();
         $aCarritos = $carrito->obtenerPorCliente($idCliente); 

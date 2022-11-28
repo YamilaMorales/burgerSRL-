@@ -8,6 +8,7 @@ use App\Entidades\Cliente;
 use App\Entidades\Carrito;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Session;
 
 require app_path() . '/start/constants.php';
 

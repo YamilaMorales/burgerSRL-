@@ -6,6 +6,7 @@ use App\Entidades\Sucursal;
 use App\Entidades\cliente;
 use App\Entidades\Carrito;
 use Illuminate\Http\Request;
+use Session;
 
 require app_path() . '/start/constants.php';
 class ControladorWebRegistrarse extends Controller

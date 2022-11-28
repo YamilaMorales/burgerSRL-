@@ -49,17 +49,14 @@ class ControladorWebCarrito extends Controller
 
     public function actualizar(Request $request)
     {
+        $idCliente = Session::get("idCliente");
         $carrito = new Carrito();
-       
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
 
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
 
    
-        $idCliente = Session::get("idCliente");
-
-        $aCarritos = $carrito->obtenerPorCliente($idCliente);
-            
         $cantidad = $request->input("txtCantidad");
         $idCarrito = $request->input("txtCarrito");
         $idProducto = $request->input("txtProducto");

@@ -34,10 +34,16 @@ class ControladorWebTakeaway extends Controller
         $idCliente = Session::get("idCliente");
         $idProducto = $request->input("txtProducto");
         $cantidad = $request->input("txtCantidad");
+
         $sucursal = new Sucursal();
         $aSucursales = $sucursal->obtenerTodos();
+
+        $carrito = new Carrito();
+        $aCarritos = $carrito->obtenerPorCliente($idCliente);
+
         $categoria = new Categoria();
         $aCategorias = $categoria->obtenerTodos();
+
         $producto = new Producto();
         $aProductos = $producto->obtenerTodos();
 

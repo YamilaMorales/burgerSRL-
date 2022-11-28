@@ -48,8 +48,9 @@
                                 ?>
 
                                 <form action="" method="POST">
+
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <tr>
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <td>
                                             {{$carrito->producto}}
                                         </td>
@@ -64,8 +65,11 @@
                                         <td>
                                             ${{ number_format($carrito->precio, 0,',' , '.') }}
                                         </td>
-                                        <td><input type="hidden" name="txtProducto" id="txtProducto" class="form-control" style="width: 60px;" value="{{ $carrito->fk_idproducto }}">
-                                        <td><input type="number" name="txtCantidad" id="txtCantidad" class="form-control" style="width: 60px;" min="0" value="{{ $carrito->cantidad }}">
+                                        <td>
+                                            <input type="hidden" name="txtProducto" id="txtProducto" class="form-control" style="width: 60px;" value="{{ $carrito->fk_idproducto }}">
+                                        </td>
+                                        <td> 
+                                            <input type="number" name="txtCantidad" id="txtCantidad" class="form-control" style="width: 60px;" min="0" value="{{ $carrito->cantidad }}">
                                         </td>
                                         <td>
 
@@ -126,7 +130,7 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                     <thead class="thead-dark">
-                                        
+
                                         <tr>
 
                                             <th>
@@ -141,7 +145,7 @@
                                     </thead>
 
                                     <tbody>
-                                       
+
                                         <tr>
                                             <td>
                                                 <select class="form-control" name="lstSucursal" id="lstSucursal">

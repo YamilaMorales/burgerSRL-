@@ -28,8 +28,7 @@ class ControladorPedido extends Controller
     $aClientes = $cliente->obtenerTodos();
     $aSucursales = $sucursal->obtenerTodos();
     $aEstados = $estado->obtenerTodos();
-
-
+    
  
     if (Usuario::autenticado() == true) {
       if (!Patente::autorizarOperacion("PEDIDOALTA")) {
@@ -75,11 +74,11 @@ class ControladorPedido extends Controller
       $aClientes = $cliente->obtenerTodos();
       $aSucursales = $sucursal->obtenerTodos();
       $aEstados = $estado->obtenerTodos();
+      
+     
       //validaciones
-
-
-
-
+     
+  
       if ($entidad->fecha == "" || $entidad->descripcion == "" || $entidad->total == "" || $entidad->fk_idsucursal == "" || $entidad->fk_idcliente == "" || $entidad->fk_idestado == "") {
         $msg["ESTADO"] = MSG_ERROR;
         $msg["MSG"] = "Complete todos los datos";
